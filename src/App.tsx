@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <Button>Click me</Button>
+      <Button onClick={() => alert("Hi there!")}>Click me</Button>
     </>
   )
 }
