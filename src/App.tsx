@@ -1,11 +1,13 @@
 import './App.css'
-import { Button } from './components/ui/button'
+import {RouterProvider} from 'react-router-dom'
+import router from './router/routes'
 
 function App() {
 
   return (
     <>
-      <Button onClick={() => alert("Hi there!")}>Click me</Button>
+      {/* <Button onClick={() => alert("Hi there!")}>Click me</Button> */}
+      <RouterProvider router={router}/>
     </>
   )
 }
