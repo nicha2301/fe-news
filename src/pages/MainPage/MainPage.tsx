@@ -1,8 +1,8 @@
-import Event from "./Event";
-import MainPage1 from "./MainPage1";
-import MainPage2 from "./MainPage2";
-import Media from "./Media";
-import More from "./More";
+import Event from "./components/Event";
+import MainPage1 from "./components/MainPage1";
+import MainPage2 from "./components/MainPage2";
+import Media from "./components/Media";
+import More from "./components/More";
 
 export default function MainPage() {
   return (
