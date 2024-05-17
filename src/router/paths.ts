@@ -3,4 +3,5 @@ export const paths = {
   topic: "/:topicSlug",
   detail: "/detail/:slug",
   test: "/test",
+  notFound: "/404s",
 };
