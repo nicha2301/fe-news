@@ -4,33 +4,32 @@
 // import TopicPage from "~/pages/TopicPage/TopicPage";
 import Wrong from "~/router/Wrong";
 import { paths } from "~/router/paths";
-import { Outlet, createBrowserRouter } from "react-router-dom";
+import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import Layout from "~/components/Layout/Layout";
 import MainPage from "~/pages/MainPage/MainPage";
 
 const router = createBrowserRouter([
   {
-    errorElement: (
+    path: '/',
+    element: (
       <Layout>
-        <Wrong />
+        <Outlet />
       </Layout>
     ),
     children: [
       {
-        path: "",
-        element: (
-          <Layout>
-            <Outlet />
-          </Layout>
-        ),
-        children: [
-          {
-            path: paths.home,
-            element: <MainPage />,
-          }
-        ],
+        path: paths.home,
+        element: <MainPage />,
+      },
+      {
+        path: paths.notFound,
+        element: <Wrong />,
       },
     ],
+  },
+  {
+    path: '*',
+    element: <Navigate to="/404s" />,
   },
 ]);
 
