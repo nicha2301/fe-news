@@ -26,7 +26,7 @@ export default function Header() {
       {/* Top Info  */}
       <div className="bg-[#f5f5f5] py-2">
         <div className='container'>
-          <div className=" flex items-center mx-[140px]">
+          <div className=" flex items-center mx-[120px]">
             <div id="today" className="flex items-center text-sm text-gray-700 mr-2">
               <i className="ic-calendar mr-2"></i>Thứ Ba, 14/05/2024 - 16:21
             </div>
@@ -45,7 +45,7 @@ export default function Header() {
       {/* Primary Header  */}
       <div className="bg-white py-4">
         <div className='container'>
-          <div className="mx-[140px] flex justify-between items-center">
+          <div className="mx-[120px] flex justify-between items-center">
             <img
               src={logo}
               alt="logo"
@@ -68,7 +68,7 @@ export default function Header() {
       {/* Secondary Navigation */}
       <nav className={`bg-[#c31e40] text-[15px] font-bold text-[white] top-0 w-full z-50 ${isScrolled ? 'fixed' : ''}`}>
         <div className='container'>
-          <div className="mx-[140px] px-[12px]">
+          <div className="mx-[120px] px-[12px]">
             <ul className="flex flex-wrap items-center space-x-4">
               <div className='bg-[#24232333] px-[11px] py-[9px]'>
                 <FontAwesomeIcon icon={faHouseChimney} />
