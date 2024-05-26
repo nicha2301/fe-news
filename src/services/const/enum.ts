@@ -3,6 +3,7 @@ export interface NewsTopic {
   subTopics?: NewsTopic[]
 }
 export enum Topic {
+  HOME = 'Trang chủ',
   EDUCATION = 'Giáo dục',
   POLICY = 'Chính sách',
   LOCAL = 'Địa phương',
@@ -74,35 +75,19 @@ export const newsTopics: NewsTopic[] = [
   },
   {
     name: Topic.LEGAL_EDUCATION,
-    subTopics: [
-      { name: Topic.SECURITY }, 
-      { name: Topic.LEGAL_SYSTEM }, 
-      { name: Topic.READERS_INVESTIGATION }
-    ]
+    subTopics: [{ name: Topic.SECURITY }, { name: Topic.LEGAL_SYSTEM }, { name: Topic.READERS_INVESTIGATION }]
   },
   {
     name: Topic.CONNECTION,
-    subTopics: [
-      { name: Topic.LABOR_UNION }, 
-      { name: Topic.COMPANION }, 
-      { name: Topic.SCIENCE_TECHNOLOGY }
-    ]
+    subTopics: [{ name: Topic.LABOR_UNION }, { name: Topic.COMPANION }, { name: Topic.SCIENCE_TECHNOLOGY }]
   },
   {
     name: Topic.EXCHANGE,
-    subTopics: [
-      { name: Topic.METHODOLOGY }, 
-      { name: Topic.EXPERT_CORNER }
-    ]
+    subTopics: [{ name: Topic.METHODOLOGY }, { name: Topic.EXPERT_CORNER }]
   },
   {
     name: Topic.SCHOOL,
-    subTopics: [
-      { name: Topic.SKILLS }, 
-      { name: Topic.STUDY_ABROAD }, 
-      { name: Topic.FACES }, 
-      { name: Topic.PHYSICAL }
-    ]
+    subTopics: [{ name: Topic.SKILLS }, { name: Topic.STUDY_ABROAD }, { name: Topic.FACES }, { name: Topic.PHYSICAL }]
   },
   {
     name: Topic.HUMANITY,
@@ -118,11 +103,7 @@ export const newsTopics: NewsTopic[] = [
   },
   {
     name: Topic.HEALTH,
-    subTopics: [
-      { name: Topic.HEALTH_BEAUTY }, 
-      { name: Topic.FAMILY }, 
-      { name: Topic.COVID_19_PREVENTION }
-    ]
+    subTopics: [{ name: Topic.HEALTH_BEAUTY }, { name: Topic.FAMILY }, { name: Topic.COVID_19_PREVENTION }]
   },
   {
     name: Topic.MEDIA,
@@ -135,11 +116,7 @@ export const newsTopics: NewsTopic[] = [
   },
   {
     name: Topic.CULTURE,
-    subTopics: [
-      { name: Topic.SKILLS }, 
-      { name: Topic.CULTURAL_LIFE }, 
-      { name: Topic.CELEBRITIES }
-    ]
+    subTopics: [{ name: Topic.SKILLS }, { name: Topic.CULTURAL_LIFE }, { name: Topic.CELEBRITIES }]
   },
   {
     name: Topic.SPORTS,

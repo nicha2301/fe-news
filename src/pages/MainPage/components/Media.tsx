@@ -1,10 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { BeatLoader } from 'react-spinners'
+import { RSS } from '~/services/api/model/RSSModel'
 
-export default function Media() {
+export default function Media(props: { data: RSS[] }) {
+  if (props.data.length === 0) {
+    return <BeatLoader />
+  }
   return (
-    <div className='bg-primaryColor text-white p-5'>
+    <div className='bg-primaryColor text-white p-5 mt-[30px]'>
       <div className='flex items-center justify-between'>
-        <h2 className='font-bold text-xl'>Media</h2>
+        <h2 className='font-bold text-[19px]'>Media</h2>
         <button className='flex items-center gap-x-1 text-xs'>
           Xem thêm
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='w-4 h-4'>
@@ -17,16 +23,20 @@ export default function Media() {
         </button>
       </div>
       <div className='mt-3 grid grid-cols-4 gap-5'>
-        {Array(4)
-          .fill(0)
-          .map((_, index) => (
+        {props.data.length > 0 &&
+          props.data.map((item, index) => (
             <div key={index} className='flex flex-col gap-y-2'>
-              <img src='https://source.unsplash.com/random' className='w-full aspect-video object-cover' alt='' />
-              <p className='font-bold text-base'>
-                Tổ hợp Polonez Belarus sẽ gây ác mộng cho binh sĩ NATO tại Hành lang Suwalki{' '}
+              <Link to={`/detail/${item.link?.split('/').pop()}`}>
+                <img src={item.image} className='w-full aspect-video object-cover' alt='' />
+              </Link>
+              <p className='font-bold text-[13px] text-[#FFFFFF] hover:text-[#ccc] cursor-pointer'>
+                <Link to={`/detail/${item.link?.split('/').pop()}`}>
+                  {item.title}
+                </Link>
               </p>
             </div>
-          ))}
+          ))
+        }
       </div>
     </div>
   )

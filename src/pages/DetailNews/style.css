@@ -930,7 +930,7 @@
   background: #fff
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1080px) {
   .box-social {
     display: block
   }

@@ -1,17 +1,18 @@
-import List1 from "./List1"
-import List2 from "./List2"
+import { Link } from "react-router-dom"
+import { BeatLoader } from "react-spinners"
+import { RSS } from "~/services/api/model/RSSModel"
 
-interface Props {
-  title: String
-  title2: String
-}
-export default function MainPage1({ title, title2 }: Props) {
+export default function MainPage1(props: { data: RSS[], data2: RSS[] }) {
+  if (!props.data.length || !props.data2.length) {
+    return <BeatLoader />
+  }
+
   return (
     <div>
       <div className='flex items-end gap-x-6'>
-        <h2 className='text-primaryColor text-xl whitespace-nowrap font-bold'>{title}</h2>
+        <h2 className='text-primaryColor text-[19px] whitespace-nowrap font-bold'>Toàn cảnh - Sự kiện</h2>
         <div className='h-[1px] bg-primaryColor -translate-y-1 flex-1'></div>
-        <div className='flex uppercase items-center bg-primaryColor gap-x-2 text-lg text-white py-2 w-[25%] justify-center font-semibold'>
+        <div className='flex uppercase items-center bg-primaryColor gap-x-2 text-[16px] text-white py-2 w-[26%] justify-center font-semibold'>
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='w-6 h-6'>
             <path
               fillRule='evenodd'
@@ -19,47 +20,54 @@ export default function MainPage1({ title, title2 }: Props) {
               clipRule='evenodd'
             />
           </svg>
-          {title2}
+          Mới cập nhật
         </div>
       </div>
       <div className='flex items-start gap-x-6 mt-5'>
-        <div className='w-[45%] flex flex-col gap-y-3'>
-          <img src='https://source.unsplash.com/random' alt='' className='w-full aspect-square object-cover' />
-          <h2 className='font-bold text-lg'>Nga cắt đứt cao tốc nối Liptsy, chỉ còn cách Kharkov</h2>
-          <p className='text-xs'>37 phút trước</p>
-          <p>
-            GD&TĐ - Sau khi cắt đứt tuyến đường cao tốc Kharkov-Liptsy, đồng thời bao vây thị trấn chiến lược Volchansk,
-            Quân Nga chỉ còn cách thành phố Kharkov gần 40km.
+        <div className='w-[45%] flex flex-col gap-y-1'>
+          <Link to={`/detail/${props.data[0].link?.split('/').pop()}`}>
+            <img src={props.data[0].image} className='w-full aspect-video object-cover cursor-pointer' alt='' />
+          </Link>
+          <h2 className='font-bold text-[17px] text-[#404040] hover:text-primaryColor cursor-pointer pt-3'>
+            <Link to={`/detail/${props.data[0].link?.split('/').pop()}`}>
+              {props.data[0].title}
+            </Link>
+          </h2>
+          <p className='text-[12px] text-[#707070]'>{props.data[0].pubDate}</p>
+          <p className="text-[14px] text-[#4E4E4E]">
+            {props.data[0].description}
           </p>
         </div>
-        <div className='w-[28%] flex flex-col gap-y-3'>
-          {Array(6)
-            .fill(0)
-            .map((_, index) => (
-              <List2/>
-            ))}
+        <div className='w-[28%] flex flex-col'>
+          {props.data.slice(1).map((item, index) => (
+            <div key={index} className='flex items-start gap-x-2 overflow-hidden mt-[10px] pt-[10px] border-t-[#eee] border-t border-solid overflow-hidden'>
+              <Link to={`/detail/${item.link?.split('/').pop()}`}>
+                <img src={item.image} alt='' className='w-[80px] object-cover object-center flex-shrink-0' style={{ maxWidth: 'none' }} />
+              </Link>
+              <div className='flex flex-col'>
+                <h3 className='font-bold text-[13px] text-[#4E4E4E] leading-none hover:text-primaryColor cursor-pointer'>
+                  <Link to={`/detail/${item.link?.split('/').pop()}`}>
+                    {item.title}
+                  </Link>
+                </h3>
+                <p className='text-[11px] text-[#707070]'>{item.pubDate}</p>
+              </div>
+            </div>
+
+          ))}
         </div>
         <div className='w-[27%] flex flex-col gap-y-10'>
-          <div className='shadow-2xl p-3 flex flex-col gap-y-3'>
-            {Array(6)
-              .fill(0)
-              .map((_, index) => (
-              <List1/>
-              ))}
-          </div>
-          <div className='bg-[#ECECEC] p-3 rounded-lg shadow-2xl'>
-            <h3 className='text-primaryColor font-bold text-xl flex items-center gap-x-3'>
-              <div className='h-7 w-1.5 bg-primaryColor'></div>
-              <span>SUY NGẪM</span>
-            </h3>
-            <h3 className='font-bold text-xl my-2'>Thể hiện bản lĩnh và năng lực</h3>
-            <p className='italic'>
-              GD&TĐ - Theo Báo cáo chỉ số năng lực cạnh tranh cấp tỉnh và Chỉ số xanh cấp tỉnh năm 2023, chất lượng điều
-              hành kinh
-            </p>
+          <div className='p-3 flex flex-col gap-y-3 border-b-[1px] border-l-[1px] border-r-[1px] [box-shadow:5px_5px_5px_rgba(0,_0,_0,_.1)]'>
+            {props.data2.map((item, index) => (
+              <h3 key={index} className='font-bold text-[14px] text-[#4E4E4E] leading-none py-3 border-b  hover:text-primaryColor cursor-pointer'>
+                <Link to={`/detail/${item.link?.split('/').pop()}`}>
+                  {item.title}
+                </Link>
+              </h3>
+            ))}
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }

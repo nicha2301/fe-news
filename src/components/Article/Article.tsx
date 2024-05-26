@@ -23,15 +23,14 @@ export const Article: React.FC<{ url: string }> = (props) => {
         }));
 
         setContents(newContents);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, [props.url]);
 
   if (loading) {
     return <BeatLoader />
@@ -39,9 +38,13 @@ export const Article: React.FC<{ url: string }> = (props) => {
 
   return (
     <>
-      {contents.map(({ selector, html }) => (
-        <div key={selector} className={selector.replace('.', '') + ' sticky-top'} dangerouslySetInnerHTML={{ __html: html }} />
-      ))}
+      {contents[1].html ?
+        contents.map(({ selector, html }) => (
+          <div key={selector} className={selector.replace('.', '') + ' sticky-top'} dangerouslySetInnerHTML={{ __html: html }} />
+        ))
+        :
+        <h3 className="font-semibold text-center italic opacity-75" >Tin tức không tồn tại</h3>
+      }
     </>
   );
 };

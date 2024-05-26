@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { RSS } from '../services/api/model/RSSModel'
 
-export const RSSApi = (url: string, num: number) => {
+export const RSSApi = (url: string, num?: number) => {
   const [rssItems, setRssItems] = useState<RSS[]>([])
 
   useEffect(() => {
@@ -12,6 +12,7 @@ export const RSSApi = (url: string, num: number) => {
         const parser = new DOMParser()
         const xml = parser.parseFromString(text, 'text/xml')
         const items = xml.querySelectorAll('item')
+
         const extractRelevantContent = (html: string) => {
           return parser.parseFromString(html, 'text/html').querySelector('a')?.nextSibling?.textContent || ''
         }
@@ -36,5 +37,5 @@ export const RSSApi = (url: string, num: number) => {
     fetchRSS()
   }, [])
 
-  return rssItems.slice(0, num)
+  return rssItems.slice(0, num === null ? 0 : num)
 }

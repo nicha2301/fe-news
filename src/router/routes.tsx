@@ -19,7 +19,7 @@ const router = createBrowserRouter([
         element: <MainPage />,
       },
       {
-        path: paths.test,
+        path: paths.detail,
         element: <DetailNews />,
       },
       {
