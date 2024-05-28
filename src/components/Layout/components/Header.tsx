@@ -1,10 +1,19 @@
 import { faEnvelope, faHouseChimney, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import logo from '~/assets/logo.svg';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [query, setQuery] = useState('');
+  const nav = useNavigate();
+
+  const handleSearch = (event: any) => {
+    if (event.key === 'Enter' && query.trim() !== '') {
+      nav(`tim-kiem/?q=${query}`);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,20 +55,30 @@ export default function Header() {
       <div className="bg-white py-4">
         <div className='container'>
           <div className="mx-[120px] flex justify-between items-center">
-            <img
-              src={logo}
-              alt="logo"
-              width={160}
-              className='mx-[40px]'
-            />
-            <div className="relative flex flex-row">
-              <input type="text" className="form-control txtsearch border border-gray-300 rounded-full py-2 px-4" placeholder="Tìm kiếm..." />
+            <Link to={"/"}>
               <img
-                src={"https://static-cms-giaoducthoidai.epicdn.me/v1/web/styles/img/gdtd.png"}
+                src={logo}
                 alt="logo"
-                width={76}
-                className='h-[26px] mt-2 ml-8'
+                width={160}
+                className='mx-[40px] hover:cursor-pointer'
               />
+            </Link>
+            <div className="relative flex flex-row">
+              <input
+                type="text"
+                className="form-control txtsearch border border-gray-300 rounded-full py-2 px-4"
+                placeholder="Tìm kiếm..."
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={handleSearch}
+              />
+              <Link to={"/"}>
+                <img
+                  src={"https://static-cms-giaoducthoidai.epicdn.me/v1/web/styles/img/gdtd.png"}
+                  alt="logo"
+                  width={76}
+                  className='h-[26px] mt-2 ml-8 hover:cursor-pointer'
+                />
+              </Link>
             </div>
           </div>
         </div>

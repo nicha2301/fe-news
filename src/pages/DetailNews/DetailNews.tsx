@@ -7,6 +7,7 @@ import { Topic } from "~/services/const/enum"
 import { rssFeed } from "~/services/const/map"
 import { RSSApi } from "~/utils/rssUtilsl"
 import "./style.css"
+import { BeatLoader } from "react-spinners"
 
 export const DetailNews = () => {
   const { slug } = useParams()
@@ -20,23 +21,31 @@ export const DetailNews = () => {
     }
   }, [distanceFromBottom]);
 
+  if (!data) {
+    return <BeatLoader />
+  }
+
   return (
     <div className="flex flex-col float-left max-w-[820px]">
       <div className="">
         <Article url={`https://giaoducthoidai.vn/${slug}`} />
       </div>
       <div className="many-pack">
-        <div className="box-heading border-b border-red-600 mb-[30px]">
-          <h3 className="wrap-heading text-primaryColor text-[20px]">
-            <span className="heading relative top-2 bg-white font-bold pr-4 uppercase">Đừng bỏ lỡ</span>
-          </h3>
-        </div>
+        {!data &&
+          <div className="box-heading border-b border-red-600 mb-[30px]">
+            <h3 className="wrap-heading text-primaryColor text-[20px]">
+              <span className="heading relative top-2 bg-white font-bold pr-4 uppercase">Đừng bỏ lỡ</span>
+            </h3>
+          </div>
+        }
         <div className="box-content content-list" data-source="detail-latest-newss">
           <ListArticle data={data} />
         </div>
-        <div className='flex items-center justify-center mt-5'>
-          <button className='text-gray-700 text-[15px] py-3 px-12 rounded-full border border-gray-500'>XEM THÊM</button>
-        </div>
+        {!data &&
+          <div className='flex items-center justify-center mt-5'>
+            <button className='text-gray-700 text-[15px] py-3 px-12 rounded-full border border-gray-500'>XEM THÊM</button>
+          </div>
+        }
       </div>
     </div>
   )
