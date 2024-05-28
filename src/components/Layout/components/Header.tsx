@@ -1,10 +1,19 @@
 import { faEnvelope, faHouseChimney, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import logo from '~/assets/logo.svg';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [query, setQuery] = useState('');
+  const nav = useNavigate();
+
+  const handleSearch = (event: any) => {
+    if (event.key === 'Enter' && query.trim() !== '') {
+      nav(`tim-kiem/?q=${query}`);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +35,7 @@ export default function Header() {
       {/* Top Info  */}
       <div className="bg-[#f5f5f5] py-2">
         <div className='container'>
-          <div className=" flex items-center mx-[140px]">
+          <div className=" flex items-center mx-[120px]">
             <div id="today" className="flex items-center text-sm text-gray-700 mr-2">
               <i className="ic-calendar mr-2"></i>Thứ Ba, 14/05/2024 - 16:21
             </div>
@@ -45,21 +54,31 @@ export default function Header() {
       {/* Primary Header  */}
       <div className="bg-white py-4">
         <div className='container'>
-          <div className="mx-[140px] flex justify-between items-center">
-            <img
-              src={logo}
-              alt="logo"
-              width={160}
-              className='mx-[40px]'
-            />
-            <div className="relative flex flex-row">
-              <input type="text" className="form-control txtsearch border border-gray-300 rounded-full py-2 px-4" placeholder="Tìm kiếm..." />
+          <div className="mx-[120px] flex justify-between items-center">
+            <Link to={"/"}>
               <img
-                src={"https://static-cms-giaoducthoidai.epicdn.me/v1/web/styles/img/gdtd.png"}
+                src={logo}
                 alt="logo"
-                width={76}
-                className='h-[26px] mt-2 ml-8'
+                width={160}
+                className='mx-[40px] hover:cursor-pointer'
               />
+            </Link>
+            <div className="relative flex flex-row">
+              <input
+                type="text"
+                className="form-control txtsearch border border-gray-300 rounded-full py-2 px-4"
+                placeholder="Tìm kiếm..."
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={handleSearch}
+              />
+              <Link to={"/"}>
+                <img
+                  src={"https://static-cms-giaoducthoidai.epicdn.me/v1/web/styles/img/gdtd.png"}
+                  alt="logo"
+                  width={76}
+                  className='h-[26px] mt-2 ml-8 hover:cursor-pointer'
+                />
+              </Link>
             </div>
           </div>
         </div>
@@ -68,7 +87,7 @@ export default function Header() {
       {/* Secondary Navigation */}
       <nav className={`bg-[#c31e40] text-[15px] font-bold text-[white] top-0 w-full z-50 ${isScrolled ? 'fixed' : ''}`}>
         <div className='container'>
-          <div className="mx-[140px] px-[12px]">
+          <div className="mx-[120px] px-[12px]">
             <ul className="flex flex-wrap items-center space-x-4">
               <div className='bg-[#24232333] px-[11px] py-[9px]'>
                 <FontAwesomeIcon icon={faHouseChimney} />

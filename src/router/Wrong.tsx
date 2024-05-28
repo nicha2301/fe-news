@@ -3,7 +3,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons/faMagnifyin
 
 export default function Wrong() {
   return (
-    <div className="mx-[140px] site-body py-[250px] pl-[500px] bg-left bg-no-repeat" style={{
+    <div className="site-body py-[250px] pl-[500px] bg-left bg-no-repeat" style={{
       backgroundImage: "url('https://static-cms-giaoducthoidai.epicdn.me/v1/web/styles/img/bg-404.png')",
       backgroundSize: '1022px'
     }}>
