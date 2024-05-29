@@ -11,8 +11,8 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="relative min-h-screen">
       <Header />
-      <div className="flex justify-center mt-5">
-        <div className="p-10 w-[80%] desktop-sm:w-[80%] desktop-lg:w-1/2 desktop-lg:p-0 laptop:w-11/12">
+      <div className="flex justify-center my-5 container">
+        <div className="w-[80%] desktop-sm:w-[80%] desktop-lg:w-1/2 desktop-lg:p-0 laptop:w-11/12">
           {children}
         </div>
       </div>
