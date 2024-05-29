@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import logo from '~/assets/logo.svg';
+import { ModeToggle } from '~/pages/MainPage/components/mode-toggle';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,7 +34,7 @@ export default function Header() {
   return (
     <header className="page-header">
       {/* Top Info  */}
-      <div className="bg-[#f5f5f5] py-2">
+      <div className=" py-2">
         <div className='container'>
           <div className=" flex items-center mx-[120px]">
             <div id="today" className="flex items-center text-sm text-gray-700 mr-2">
@@ -52,17 +53,18 @@ export default function Header() {
       </div>
 
       {/* Primary Header  */}
-      <div className="bg-white py-4">
+      <div className="py-4">
         <div className='container'>
           <div className="mx-[120px] flex justify-between items-center">
-            <Link to={"/"}>
-              <img
-                src={logo}
-                alt="logo"
-                width={160}
-                className='mx-[40px] hover:cursor-pointer'
-              />
-            </Link>
+      <ModeToggle/>
+           <Link to={"/"}>
+            <img
+              src={logo}
+              alt="logo"
+              width={160}
+              className='mx-[40px] hover:cursor-pointer'
+            />
+           </Link>
             <div className="relative flex flex-row">
               <input
                 type="text"
