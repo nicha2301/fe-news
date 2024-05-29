@@ -2,6 +2,7 @@ import { faEnvelope, faHouseChimney, faPhone } from '@fortawesome/free-solid-svg
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import logo from '~/assets/logo.svg';
+import { ModeToggle } from '~/pages/MainPage/components/mode-toggle';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,7 +25,7 @@ export default function Header() {
   return (
     <header className="page-header">
       {/* Top Info  */}
-      <div className="bg-[#f5f5f5] py-2">
+      <div className=" py-2">
         <div className='container'>
           <div className=" flex items-center mx-[140px]">
             <div id="today" className="flex items-center text-sm text-gray-700 mr-2">
@@ -43,9 +44,11 @@ export default function Header() {
       </div>
 
       {/* Primary Header  */}
-      <div className="bg-white py-4">
+      <div className="py-4">
         <div className='container'>
           <div className="mx-[140px] flex justify-between items-center">
+      <ModeToggle/>
+
             <img
               src={logo}
               alt="logo"
