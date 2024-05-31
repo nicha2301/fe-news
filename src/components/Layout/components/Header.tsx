@@ -36,7 +36,7 @@ export default function Header() {
       {/* Top Info  */}
       <div className=" py-2">
         <div className='container'>
-          <div className=" flex items-center mx-[120px]">
+          <div className=" flex items-center justify-center md:flex-nowrap flex-wrap">
             <div id="today" className="flex items-center text-sm text-gray-700 mr-2">
               <i className="ic-calendar mr-2"></i>Thứ Ba, 14/05/2024 - 16:21
             </div>
@@ -55,7 +55,7 @@ export default function Header() {
       {/* Primary Header  */}
       <div className="py-4">
         <div className='container'>
-          <div className="mx-[120px] flex justify-between items-center">
+          <div className="flex justify-center items-center sm:flex-nowrap flex-wrap gap-4">
       <ModeToggle/>
            <Link to={"/"}>
             <img
@@ -89,8 +89,8 @@ export default function Header() {
       {/* Secondary Navigation */}
       <nav className={`bg-[#c31e40] text-[15px] font-bold text-[white] top-0 w-full z-50 ${isScrolled ? 'fixed' : ''}`}>
         <div className='container'>
-          <div className="mx-[120px] px-[12px]">
-            <ul className="flex flex-wrap items-center space-x-4">
+          <div className="px-[12px]">
+            <ul className="flex items-center space-x-4">
               <div className='bg-[#24232333] px-[11px] py-[9px]'>
                 <FontAwesomeIcon icon={faHouseChimney} />
               </div>

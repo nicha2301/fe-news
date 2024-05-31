@@ -13,8 +13,8 @@ export default function MainPage2(props: { data: RSS[] }) {
         <h2 className='text-primaryColor font-bold text-[19px] whitespace-nowrap'>{props.data[0].category}</h2>
         <div className='w-full h-[1px] -translate-y-1 bg-primaryColor'></div>
       </div>
-      <div className='mt-4 flex items-start gap-x-4'>
-        <div className='w-1/2'>
+      <div className='mt-4 flex items-start md:flex-nowrap flex-wrap gap-4'>
+        <div className='w-full md:w-1/2'>
           <Link to={`/detail/${props.data[0].link?.split('/').pop()}`}>
             <img src={props.data[0].image} className='w-full aspect-video object-cover cursor-pointer' alt='' />
           </Link>
@@ -28,7 +28,7 @@ export default function MainPage2(props: { data: RSS[] }) {
             {props.data[0].description}
           </p>
         </div>
-        <div className='w-1/2 grid grid-cols-2 gap-4'>
+        <div className='w-full md:w-1/2 grid grid-cols-2 gap-4'>
           {props.data.slice(1).map((item, index) => (
             <div key={index} className='flex flex-col gap-y-1'>
               <Link to={`/detail/${item.link?.split('/').pop()}`}>
