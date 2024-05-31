@@ -12,7 +12,7 @@ export default function MainPage1(props: { data: RSS[]; data2: RSS[] }) {
       <div className='flex items-end xl:flex-row flex-col gap-5'>
         <div className='w-full xl:w-[73%]'>
           <div className='flex items-end gap-4'>
-            <h2 className='text-primaryColor text-[19px] whitespace-nowrap font-bold'>Toàn cảnh - Sự kiện</h2>
+            <h2 className='`text-primaryColor text-[19px] whitespace-nowrap font-bold'>Toàn cảnh - Sự kiện</h2>
             <div className='h-[1px] bg-primaryColor -translate-y-1 flex-1'></div>
           </div>
           <div className='flex items-start md:flex-row flex-col gap-4 mt-5'>
