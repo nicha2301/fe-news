@@ -9,10 +9,10 @@ export const TopicPage = () => {
   const [topic, setTopic] = useState<RSS[]>([])
   const { topicSlug } = useParams()
   // useEffect(() => {
-  //     const result = RSSApi(rssFeed[mapSlugToTopic[topicSlug||'']], 5);
+  //     const result = RSSApi(rssFeed[mapSlugToTopic[topicSlug||'']], 0);
   //     setTopic(result);
   // }, [topicSlug]);
   
   
-  return <MainPage3 data={RSSApi(rssFeed[mapSlugToTopic[topicSlug||'']], 5)} />
+  return <MainPage3 data={RSSApi(rssFeed[mapSlugToTopic[topicSlug||'']])} />
 }
