@@ -8,7 +8,7 @@ export default function Media(props: { data: RSS[] }) {
     return <BeatLoader />
   }
   return (
-    <div className='bg-primaryColor text-white p-5 mt-[30px]'>
+    <div className='bg-primaryColor  p-5 mt-[30px]'>
       <div className='flex items-center justify-between'>
         <h2 className='font-bold text-[19px]'>Media</h2>
         <button className='flex items-center gap-x-1 text-xs'>
@@ -29,7 +29,7 @@ export default function Media(props: { data: RSS[] }) {
               <Link to={`/detail/${item.link?.split('/').pop()}`}>
                 <img src={item.image} className='w-full aspect-video object-cover' alt='' />
               </Link>
-              <p className='font-bold text-[13px] text-[#FFFFFF] hover:text-[#ccc] cursor-pointer'>
+              <p className='font-bold text-[13px] cursor-pointer'>
                 <Link to={`/detail/${item.link?.split('/').pop()}`}>
                   {item.title}
                 </Link>

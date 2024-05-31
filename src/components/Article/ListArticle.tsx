@@ -18,13 +18,13 @@ export const ListArticle = (props: { data: RSS[] }) => {
               </Link>
             </figure>
             <div className="story__heading">
-              <h2 className="cms-link font-semibold text-[#404040] text-[15px] leading-6 hover:text-primaryColor cursor-pointer">
+              <h2 className="cms-link font-semibold  text-[15px] leading-6 hover:text-primaryColor cursor-pointer">
                 <Link to={`/detail/${item.link?.split('/').pop()}`} target="_self">
                   {item.title}
                 </Link>
               </h2>
-              <time className="story__time mt-2 leading-5 text-[#959595] text-[12px]">{item.pubDate}</time>
-              <div className="story__summary mt-2 leading-6 h-22 text-[#4E4E4E] text-[14px]">
+              <time className="story__time mt-2 leading-5  text-[12px]">{item.pubDate}</time>
+              <div className="story__summary mt-2 leading-6 h-22  text-[14px]">
                 {item.description}
               </div>
             </div>

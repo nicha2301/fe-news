@@ -39,7 +39,7 @@ export const RSSApi = (url: string, num?: number) => {
     fetchRSS()
   }, [])
 
-  return num===0?rssItems: rssItems.slice(0,num)
+  return rssItems.slice(0, num === null ? 0 : num)
 }
 
 export const SearchResults = async (url: string): Promise<RSS[]> => {

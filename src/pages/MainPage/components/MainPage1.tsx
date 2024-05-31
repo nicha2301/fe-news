@@ -20,17 +20,17 @@ export default function MainPage1(props: { data: RSS[]; data2: RSS[] }) {
               <Link to={`/detail/${props.data[0].link?.split('/').pop()}`}>
                 <img src={props.data[0].image} className='w-full aspect-video object-cover cursor-pointer' alt='' />
               </Link>
-              <h2 className='font-bold text-[17px] text-[#404040] hover:text-primaryColor cursor-pointer pt-3'>
+              <h2 className='font-bold text-[17px] hover:text-primaryColor cursor-pointer pt-3'>
                 <Link to={`/detail/${props.data[0].link?.split('/').pop()}`}>{props.data[0].title}</Link>
               </h2>
-              <p className='text-[12px] text-[#707070]'>{props.data[0].pubDate}</p>
-              <p className='text-[14px] text-[#4E4E4E]'>{props.data[0].description}</p>
+              <p className='text-[12px] '>{props.data[0].pubDate}</p>
+              <p className='text-[14px] '>{props.data[0].description}</p>
             </div>
             <div className='w-full md:w-[40%] flex flex-col'>
               {props.data.slice(1).map((item, index) => (
                 <div
                   key={index}
-                  className='flex items-start gap-x-2 overflow-hidden mt-[10px] pt-[10px] border-t-[#eee] border-t border-solid overflow-hidden'
+                  className='flex items-start gap-x-2 mt-[10px] pt-[10px] border-t-[#eee] border-t border-solid overflow-hidden'
                 >
                   <Link to={`/detail/${item.link?.split('/').pop()}`}>
                     <img
@@ -41,10 +41,10 @@ export default function MainPage1(props: { data: RSS[]; data2: RSS[] }) {
                     />
                   </Link>
                   <div className='flex flex-col'>
-                    <h3 className='font-bold text-[13px] text-[#4E4E4E] leading-none hover:text-primaryColor cursor-pointer'>
+                    <h3 className='font-bold text-[13px]  leading-none hover:text-primaryColor cursor-pointer'>
                       <Link to={`/detail/${item.link?.split('/').pop()}`}>{item.title}</Link>
                     </h3>
-                    <p className='text-[11px] text-[#707070]'>{item.pubDate}</p>
+                    <p className='text-[11px] '>{item.pubDate}</p>
                   </div>
                 </div>
               ))}
@@ -52,7 +52,7 @@ export default function MainPage1(props: { data: RSS[]; data2: RSS[] }) {
           </div>
         </div>
         <div className='w-full xl:w-[27%]'>
-          <div className='flex uppercase items-center bg-primaryColor gap-x-2 text-[16px] text-white py-2 justify-center font-semibold'>
+          <div className='flex uppercase items-center bg-primaryColor gap-x-2 text-[16px] py-2 justify-center font-semibold'>
             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='w-6 h-6'>
               <path
                 fillRule='evenodd'
@@ -67,7 +67,7 @@ export default function MainPage1(props: { data: RSS[]; data2: RSS[] }) {
               {props.data2.map((item, index) => (
                 <h3
                   key={index}
-                  className='font-bold text-[14px] text-[#4E4E4E] leading-none py-3 border-b  hover:text-primaryColor cursor-pointer'
+                  className='font-bold text-[14px] leading-none py-3 border-b  hover:text-primaryColor cursor-pointer'
                 >
                   <Link to={`/detail/${item.link?.split('/').pop()}`}>{item.title}</Link>
                 </h3>
