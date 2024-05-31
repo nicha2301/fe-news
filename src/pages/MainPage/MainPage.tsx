@@ -1,4 +1,4 @@
-import { RSSApi } from "~/utils/rssUtilsl";
+import { RSSApi } from "~/utils/rssUtils";
 import Event from "./components/Event";
 import MainPage1 from "./components/MainPage1";
 import MainPage2 from "./components/MainPage2";

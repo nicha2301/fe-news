@@ -5,7 +5,7 @@ import { ListArticle } from "~/components/Article/ListArticle"
 import { HandleScroll } from "~/components/HandleScroll/HandleScroll"
 import { Topic } from "~/services/const/enum"
 import { rssFeed } from "~/services/const/map"
-import { RSSApi } from "~/utils/rssUtilsl"
+import { RSSApi } from "~/utils/rssUtils"
 import "./style.css"
 import { BeatLoader } from "react-spinners"
 

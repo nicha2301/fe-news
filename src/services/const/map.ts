@@ -1,4 +1,5 @@
-import { Topic } from './enum'
+import { Topic } from "./enum"
+
 
 export const mapSlugToTopic: Record<string, Topic> = {
   'giao-duc': Topic.EDUCATION,
