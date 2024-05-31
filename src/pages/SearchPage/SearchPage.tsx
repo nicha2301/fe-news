@@ -6,7 +6,7 @@ import { BeatLoader } from "react-spinners";
 import { ListArticle } from "~/components/Article/ListArticle";
 import { HandleScroll } from "~/components/HandleScroll/HandleScroll";
 import { RSS } from "~/services/api/model/RSSModel";
-import { SearchResults } from '../../utils/rssUtilsl';
+import { SearchResults } from '../../utils/rssUtils';
 
 export const SearchPage = () => {
   const [page, setPage] = useState(0);

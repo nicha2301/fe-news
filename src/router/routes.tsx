@@ -5,6 +5,7 @@ import MainPage from "~/pages/MainPage/MainPage";
 import { SearchPage } from "~/pages/SearchPage/SearchPage";
 import Wrong from "~/router/Wrong";
 import { paths } from "~/router/paths";
+import { TopicPage } from '../pages/TopicPage/TopicPage';
 
 const router = createBrowserRouter([
   {
@@ -28,15 +29,19 @@ const router = createBrowserRouter([
         element: <SearchPage />,
       },
       {
+        path: paths.topic,
+        element: <TopicPage />,
+      },
+      {
         path: paths.notFound,
         element: <Wrong />,
       }
     ],
   },
-  {
-    path: '*',
-    element: <Navigate to="/404s" />,
-  },
+  // {
+  //   path: '*',
+  //   element: <Navigate to="/404s" />,
+  // },
 ]);
 
 export default router;
