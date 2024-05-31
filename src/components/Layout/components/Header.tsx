@@ -61,7 +61,7 @@ export default function Header() {
       {/* Primary Header  */}
       <div className='py-4'>
         <div className='container'>
-          <div className='mx-[120px] flex justify-between items-center'>
+          <div className='flex justify-center flex-wrap gap-3 items-center'>
             <ModeToggle />
             <Link to={'/'}>
               <img src={logo} alt='logo' width={160} className='mx-[40px] hover:cursor-pointer' />
@@ -91,8 +91,8 @@ export default function Header() {
       {/* Secondary Navigation */}
       <nav className={`bg-[#c31e40] text-[14px] font-bold text-[white] top-0 w-full z-50 ${isScrolled ? 'fixed' : ''}`}>
         <div className='container'>
-          <div className='mx-[120px] px-[12px]'>
-            <ul className='flex items-center justify-between space-x-4'>
+          <div className='px-[12px]'>
+            <ul className='flex items-center flex-wrap gap-x-4 gap-y-0'>
               <Link to={'/'} className='bg-[#24232333] px-[11px] py-[9px]'>
                 <FontAwesomeIcon icon={faHouseChimney} />
               </Link>

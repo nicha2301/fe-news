@@ -1,15 +1,12 @@
 import { Link } from 'react-router-dom'
 import { BeatLoader } from 'react-spinners'
 import { RSS } from '~/services/api/model/RSSModel'
-
 import { Swiper, SwiperSlide } from 'swiper/react'
-
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import 'swiper/css/grid'
-
 import { Navigation, Pagination, Scrollbar, A11y, Grid } from 'swiper/modules'
 export default function MainPage3(props: { data: RSS[] }) {
   if (props.data.length === 0) {
@@ -17,7 +14,7 @@ export default function MainPage3(props: { data: RSS[] }) {
   }
 
   return (
-    <div className='mt-[30px]'>
+    <div className='mt-[30px] container'>
       <div className='flex items-end gap-x-2'>
         <h2 className='text-primaryColor font-bold text-[19px] whitespace-nowrap'>{props.data[0].category}</h2>
         <div className='w-full h-[1px] -translate-y-1 bg-primaryColor'></div>
@@ -33,9 +30,35 @@ export default function MainPage3(props: { data: RSS[] }) {
           disableOnInteraction: false
         }}
         spaceBetween={30}
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            grid: {
+              rows: 3,
+              fill: 'row'
+            }
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+            grid: {
+              rows: 3,
+              fill: 'row'
+            }
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            grid: {
+              rows: 3,
+              fill: 'row'
+            }
+          }
+        }}
         slidesPerView={3}
         navigation
-        className='container mt-5'
+        className='container my-5'
       >
         {props.data.map((item, index) => (
           <SwiperSlide key={index}>
@@ -50,8 +73,6 @@ export default function MainPage3(props: { data: RSS[] }) {
           </SwiperSlide>
         ))}
       </Swiper>
-
-      {/* <div className='grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-5 mt-5'></div> */}
     </div>
   )
 }
