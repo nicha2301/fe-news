@@ -2,13 +2,20 @@ import { Link } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 import { RSS } from "~/services/api/model/RSSModel"
 
-export const ListArticle = (props: { data: RSS[] }) => {
+export const ListArticle = (props: { data: RSS[], header: boolean }) => {
   if (props.data.length === 0) {
     return <BeatLoader />
   }
 
   return (
     <div>
+      {props.header && (
+        <div className="box-heading border-b border-red-600 mb-[30px]">
+          <h3 className="wrap-heading text-primaryColor text-[20px]">
+            <span className="heading relative top-2 bg-white font-bold pr-4 uppercase">Đừng bỏ lỡ</span>
+          </h3>
+        </div>
+      )}
       {props.data.length > 0 &&
         props.data.map((item, index) => (
           <article className="story mt-7 overflow-hidden" key={index}>

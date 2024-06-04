@@ -98,7 +98,7 @@ export default function Header() {
               {topics.map((topic, index) => (
                 <li key={index} className="menu-item relative group py-[9px] hover:text-[#F7CE1A] hover:cursor-pointer">
                   <Link to={topic.link} className="menu-link" title="Giáo dục">{topic.name}</Link>
-                  <ul className="sub-menu text-[15px] absolute top-[39px] hidden group-hover:block pl-[10px] pr-[20px] py-[5px] bg-white text-[#242424] [box-shadow:3px_3px_3px_rgba(0,_0,_0,_.25)]">
+                  <ul className="sub-menu z-10 text-[15px] absolute top-[39px] hidden group-hover:block pl-[10px] pr-[20px] py-[5px] bg-white text-[#242424] [box-shadow:3px_3px_3px_rgba(0,_0,_0,_.25)]">
                     {topic.subTopics?.map((subTopic, index) => (
                       <li key={index} className="sub-item min-w-max">
                         <Link to={subTopic.link} className="block px-4 py-2 hover:text-primaryColor" title="Chính sách">{subTopic.name}</Link>
