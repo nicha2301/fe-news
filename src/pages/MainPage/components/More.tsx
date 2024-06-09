@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function More() {
+export default function   More() {
   return (
     <>
       <div className='flex items-center justify-center mt-[30px]'>

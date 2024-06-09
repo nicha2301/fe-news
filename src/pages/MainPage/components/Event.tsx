@@ -9,7 +9,7 @@ export default function Event(props: { data: RSS[] }) {
   }
   return (
     <div>
-      <h2 className='flex items-center gap-x-1 text-xl font-bold text-primaryColor mb-4'>
+      {/* <h2 className='flex items-center gap-x-1 text-xl font-bold text-primaryColor mb-4'>
         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='w-6 h-6'>
           <path
             fillRule='evenodd'
@@ -18,7 +18,7 @@ export default function Event(props: { data: RSS[] }) {
           />
         </svg>
         Sự kiện
-      </h2>
+      </h2> */}
       <div className='flex items-start gap-5'>
         <div className='w-1/2'>
           <Link to={`/detail/${props.data[0].link?.split('/').pop()}`}>

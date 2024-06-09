@@ -1,4 +1,4 @@
-import { Topic } from './enum'
+import { Topic } from "./enum"
 
 export const mapSlugToTopic: Record<string, Topic> = {
   'giao-duc': Topic.EDUCATION,
@@ -47,7 +47,19 @@ export const mapSlugToTopic: Record<string, Topic> = {
   'van-hoa': Topic.CULTURE,
   'doi-song-van-hoa': Topic.CULTURAL_LIFE,
   sao: Topic.CELEBRITIES,
-  'the-thao-hoc-duong': Topic.SCHOOL_SPORTS
+  'the-thao-hoc-duong': Topic.SCHOOL_SPORTS,
+  'day-hoc-lich-su-trong-truong-pho-thong': Topic.SUBJECT,
+  'meo-vat-cuoc-song': Topic.SUBJECT,
+  'phong-chong-dich-covid-19-trong-truong-hoc': Topic.SUBJECT,
+  'day-hoc-truc-tuyen': Topic.SUBJECT,
+  'xay-dung-luat-nha-giao': Topic.SUBJECT,
+  'thoat-ly-van-mau': Topic.SUBJECT,
+  'pv-gas': Topic.SUBJECT,
+  'hoi-dap-chinh-sach-doi-voi-nha-giao': Topic.SUBJECT,
+  'phong-chong-bao-luc-hoc-duong': Topic.SUBJECT,
+  'tuyen-dung-va-boi-duong-giao-vien': Topic.SUBJECT,
+  '70-nam-chien-thang-dien-bien-phu': Topic.SUBJECT,
+ 
 }
 
 export const mapNameTopicToSlug: Record<Topic, string> = {
@@ -98,7 +110,9 @@ export const mapNameTopicToSlug: Record<Topic, string> = {
   [Topic.HUMANITY]: 'nhan-ai',
   [Topic.HEALTH_BEAUTY]: 'khoe-dep',
   [Topic.FAMILY]: 'gia-dinh',
-  [Topic.HOME]: 'trang-chu'
+  [Topic.HOME]: 'trang-chu',
+  [Topic.SUBJECT]: "chu-de",
+
 }
 
 export const rssFeed: Record<Topic, string> = {
@@ -117,37 +131,56 @@ export const rssFeed: Record<Topic, string> = {
   [Topic.SECURITY]: 'https://giaoducthoidai.vn/rss/an-ninh-25.rss',
   [Topic.LEGAL_SYSTEM]: 'https://giaoducthoidai.vn/rss/phap-dinh-83.rss',
   [Topic.READERS_INVESTIGATION]: 'https://giaoducthoidai.vn/rss/goc-nhin-53.rss',
-  [Topic.CONNECTION]: 'https://giaoducthoidai.vn/rss/ket-noi-2.rss',
-  [Topic.LABOR_UNION]: 'https://giaoducthoidai.vn/rss/cong-doan-74.rss',
-  [Topic.CREATION]: 'https://giaoducthoidai.vn/rss/sang-tac-82.rss',
-  [Topic.COMPANION]: 'https://giaoducthoidai.vn/rss/dong-hanh-88.rss',
-  [Topic.SCIENCE_TECHNOLOGY]: 'https://giaoducthoidai.vn/rss/khoa-hoc-36.rss',
-  [Topic.EXCHANGE]: 'https://giaoducthoidai.vn/rss/trao-doi-3.rss',
-  [Topic.METHODOLOGY]: 'https://giaoducthoidai.vn/rss/phuong-phap-31.rss',
-  [Topic.EXPERT_CORNER]: 'https://giaoducthoidai.vn/rss/goc-chuyen-gia-63.rss',
-  [Topic.SCHOOL]: 'https://giaoducthoidai.vn/rss/hoc-duong-5.rss',
-  [Topic.SKILLS]: 'https://giaoducthoidai.vn/rss/ky-nang-song-39.rss',
-  [Topic.STUDY_ABROAD]: 'https://giaoducthoidai.vn/rss/du-hoc-72.rss',
-  [Topic.FACES]: 'https://giaoducthoidai.vn/rss/guong-mat-86.rss',
-  [Topic.PHYSICAL]: 'https://giaoducthoidai.vn/rss/the-chat-84.rss',
-  [Topic.HUMANITY]: 'https://giaoducthoidai.vn/rss/nhan-ai-13.rss',
+  [Topic.CONNECTION]: 'https://giaoducthoidai.vn/rss/ket-noi-94.rss',
+  [Topic.LABOR_UNION]: 'https://giaoducthoidai.vn/rss/cong-doan-32.rss',
+  [Topic.CREATION]: 'https://giaoducthoidai.vn/rss/sang-tao-66.rss',
+  [Topic.COMPANION]: 'https://giaoducthoidai.vn/rss/dong-hanh-79.rss',
+  [Topic.SCIENCE_TECHNOLOGY]: 'https://giaoducthoidai.vn/rss/khoa-hoc-cong-nghe-21.rss',
+  [Topic.EXCHANGE]: 'https://giaoducthoidai.vn/rss/trao-doi-43.rss',
+  [Topic.METHODOLOGY]: 'https://giaoducthoidai.vn/rss/phuong-phap-45.rss',
+  [Topic.EXPERT_CORNER]: 'https://giaoducthoidai.vn/rss/goc-chuyen-gia-20.rss',
+  [Topic.SCHOOL]: 'https://giaoducthoidai.vn/rss/hoc-duong-33.rss',
+  [Topic.SKILLS]: 'https://giaoducthoidai.vn/rss/ky-nang-song-22.rss',
+  [Topic.STUDY_ABROAD]: 'https://giaoducthoidai.vn/rss/du-hoc-60.rss',
+  [Topic.FACES]: 'https://giaoducthoidai.vn/rss/guong-mat-31.rss',
   [Topic.WORLD]: 'https://giaoducthoidai.vn/rss/the-gioi-10.rss',
-  [Topic.NATIONAL_DEFENSE_EDUCATION]: 'https://giaoducthoidai.vn/rss/giao-duc-quoc-phong-50.rss',
-  [Topic.WORLD_ISSUES]: 'https://giaoducthoidai.vn/rss/the-gioi-do-day-93.rss',
-  [Topic.STRANGE_STORIES]: 'https://giaoducthoidai.vn/rss/chuyen-la-52.rss',
-  [Topic.HEALTH]: 'https://giaoducthoidai.vn/rss/suc-khoe-9.rss',
-  [Topic.HEALTH_BEAUTY]: 'https://giaoducthoidai.vn/rss/khoe-dep-89.rss',
-  [Topic.FAMILY]: 'https://giaoducthoidai.vn/rss/gia-dinh-7.rss',
-  [Topic.COVID_19_PREVENTION]: 'https://giaoducthoidai.vn/rss/day-lui-covid-91.rss',
-  [Topic.MEDIA]: 'https://giaoducthoidai.vn/rss/video-media-14.rss',
-  [Topic.INFOGRAPHIC]: 'https://giaoducthoidai.vn/rss/infographic-media-105.rss',
-  [Topic.VIDEO]: 'https://giaoducthoidai.vn/rss/video-79.rss',
-  [Topic.HOT_NEWS]: 'https://giaoducthoidai.vn/rss/247-nong-85.rss',
-  [Topic.HIGHLIGHTS]: 'https://giaoducthoidai.vn/rss/tieu-diem-81.rss',
-  [Topic.CULTURE]: 'https://giaoducthoidai.vn/rss/van-hoa-6.rss',
-  [Topic.CULTURAL_LIFE]: 'https://giaoducthoidai.vn/rss/doi-song-van-hoa-90.rss',
-  [Topic.CELEBRITIES]: 'https://giaoducthoidai.vn/rss/the-gioi-sao-43.rss',
-  [Topic.SPORTS]: 'https://giaoducthoidai.vn/rss/the-thao-20.rss',
-  [Topic.SCHOOL_SPORTS]: 'https://giaoducthoidai.vn/rss/the-thao-hoc-duong-75.rss',
-  [Topic.HOME]: 'https://giaoducthoidai.vn/rss/home.rss'
+  [Topic.NATIONAL_DEFENSE_EDUCATION]: 'https://giaoducthoidai.vn/rss/giao-duc-quoc-phong-102.rss',
+  [Topic.WORLD_ISSUES]: 'https://giaoducthoidai.vn/rss/the-gioi-do-day-81.rss',
+  [Topic.STRANGE_STORIES]: 'https://giaoducthoidai.vn/rss/chuyen-la-24.rss',
+  [Topic.HEALTH]: 'https://giaoducthoidai.vn/rss/suc-khoe-4.rss',
+  [Topic.COVID_19_PREVENTION]: 'https://giaoducthoidai.vn/rss/khoi-luoi-covid-19-127.rss',
+  [Topic.MEDIA]: 'https://giaoducthoidai.vn/rss/media-112.rss',
+  [Topic.INFOGRAPHIC]: 'https://giaoducthoidai.vn/rss/infographic-89.rss',
+  [Topic.VIDEO]: 'https://giaoducthoidai.vn/rss/video-84.rss',
+  [Topic.HOT_NEWS]: 'https://giaoducthoidai.vn/rss/nong-247-119.rss',
+  [Topic.HIGHLIGHTS]: 'https://giaoducthoidai.vn/rss/tieu-diem-123.rss',
+  [Topic.CULTURE]: 'https://giaoducthoidai.vn/rss/van-hoa-36.rss',
+  [Topic.CULTURAL_LIFE]: 'https://giaoducthoidai.vn/rss/doi-song-van-hoa-113.rss',
+  [Topic.CELEBRITIES]: 'https://giaoducthoidai.vn/rss/sao-71.rss',
+  [Topic.SPORTS]: 'https://giaoducthoidai.vn/rss/the-thao-14.rss',
+  [Topic.SCHOOL_SPORTS]: 'https://giaoducthoidai.vn/rss/the-thao-hoc-duong-104.rss',
+  [Topic.PHYSICAL]: 'https://giaoducthoidai.vn/rss/the-chat-124.rss',
+  [Topic.HUMANITY]: 'https://giaoducthoidai.vn/rss/nhan-ai-15.rss',
+  [Topic.HEALTH_BEAUTY]: 'https://giaoducthoidai.vn/rss/khoe-dep-69.rss',
+  [Topic.FAMILY]: 'https://giaoducthoidai.vn/rss/gia-dinh-74.rss',
+  [Topic.HOME]: 'https://giaoducthoidai.vn/rss/home.rss',
+  [Topic.SUBJECT]: "",
+  
 }
+
+// export const topicsWithoutRSS: Record<string, string> = {
+//   "day-hoc-lich-su-trong-truong-pho-thong": "https://giaoducthoidai.vn/chu-de/day-hoc-lich-su-trong-truong-pho-thong-125.html",
+//   "meo-vat-cuoc-song": "https://giaoducthoidai.vn/chu-de/meo-vat-cuoc-song-70.html",
+//   "phong-chong-dich-covid-19-trong-truong-hoc": "https://giaoducthoidai.vn/chu-de/phong-chong-dich-covid-19-trong-truong-hoc-128.html",
+//   "day-hoc-truc-tuyen": "https://giaoducthoidai.vn/chu-de/day-hoc-truc-tuyen-101.html",
+//   "dong-su-kien" : "https://giaoducthoidai.vn/dong-su-kien.html",
+//   "xay-dung-luat-nha-giao" : "https://giaoducthoidai.vn/chu-de/xay-dung-luat-nha-giao-183.html",
+//   "thoat-ly-van-mau" : "https://giaoducthoidai.vn/chu-de/thoat-ly-van-mau-122.html",
+//   "pv-gas" : " https://giaoducthoidai.vn/chu-de/pv-gas-10.html",
+//   "hoi-dap-chinh-sach-doi-voi-nha-giao": "https://giaoducthoidai.vn/chu-de/hoi-dap-chinh-sach-doi-voi-nha-giao-186.html",
+//   "phong-chong-bao-luc-hoc-duong" : "https://giaoducthoidai.vn/chu-de/phong-chong-bao-luc-hoc-duong-180.html",
+//   "tuyen-dung-va-boi-duong-giao-vien" : "https://giaoducthoidai.vn/chu-de/tuyen-dung-va-boi-duong-giao-vien-189.html",
+//   "70-nam-chien-thang-dien-bien-phu" : " https://giaoducthoidai.vn/chu-de/70-nam-chien-thang-dien-bien-phu-203.html",
+
+  
+// }

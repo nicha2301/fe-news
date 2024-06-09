@@ -1,7 +1,3 @@
-export interface NewsTopic {
-  name: Topic
-  subTopics?: NewsTopic[]
-}
 export enum Topic {
   HOME = 'Trang chủ',
   EDUCATION = 'Giáo dục',
@@ -50,76 +46,8 @@ export enum Topic {
   CULTURAL_LIFE = 'Đời sống văn hoá',
   CELEBRITIES = 'Sao',
   SPORTS = 'Thể thao',
-  SCHOOL_SPORTS = 'Thể thao học đường'
+  SCHOOL_SPORTS = 'Thể thao học đường',
+  SUBJECT = 'chủ đề',
+  
 }
 
-export const newsTopics: NewsTopic[] = [
-  {
-    name: Topic.EDUCATION,
-    subTopics: [
-      { name: Topic.POLICY },
-      { name: Topic.LOCAL },
-      { name: Topic.TRAINING_ADMISSION },
-      { name: Topic.FOUR_DIRECTIONS },
-      { name: Topic.MOVEMENT }
-    ]
-  },
-  {
-    name: Topic.NEWS,
-    subTopics: [
-      { name: Topic.URBAN_EDUCATION },
-      { name: Topic.SOCIETY },
-      { name: Topic.POLITICS },
-      { name: Topic.ECONOMY }
-    ]
-  },
-  {
-    name: Topic.LEGAL_EDUCATION,
-    subTopics: [{ name: Topic.SECURITY }, { name: Topic.LEGAL_SYSTEM }, { name: Topic.READERS_INVESTIGATION }]
-  },
-  {
-    name: Topic.CONNECTION,
-    subTopics: [{ name: Topic.LABOR_UNION }, { name: Topic.COMPANION }, { name: Topic.SCIENCE_TECHNOLOGY }]
-  },
-  {
-    name: Topic.EXCHANGE,
-    subTopics: [{ name: Topic.METHODOLOGY }, { name: Topic.EXPERT_CORNER }]
-  },
-  {
-    name: Topic.SCHOOL,
-    subTopics: [{ name: Topic.SKILLS }, { name: Topic.STUDY_ABROAD }, { name: Topic.FACES }, { name: Topic.PHYSICAL }]
-  },
-  {
-    name: Topic.HUMANITY,
-    subTopics: []
-  },
-  {
-    name: Topic.WORLD,
-    subTopics: [
-      { name: Topic.NATIONAL_DEFENSE_EDUCATION },
-      { name: Topic.WORLD_ISSUES },
-      { name: Topic.STRANGE_STORIES }
-    ]
-  },
-  {
-    name: Topic.HEALTH,
-    subTopics: [{ name: Topic.HEALTH_BEAUTY }, { name: Topic.FAMILY }, { name: Topic.COVID_19_PREVENTION }]
-  },
-  {
-    name: Topic.MEDIA,
-    subTopics: [
-      { name: Topic.INFOGRAPHIC },
-      { name: Topic.VIDEO },
-      { name: Topic.HOT_NEWS },
-      { name: Topic.HIGHLIGHTS }
-    ]
-  },
-  {
-    name: Topic.CULTURE,
-    subTopics: [{ name: Topic.SKILLS }, { name: Topic.CULTURAL_LIFE }, { name: Topic.CELEBRITIES }]
-  },
-  {
-    name: Topic.SPORTS,
-    subTopics: [{ name: Topic.SCHOOL_SPORTS }]
-  }
-]

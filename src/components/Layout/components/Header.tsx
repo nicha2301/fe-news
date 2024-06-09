@@ -1,20 +1,16 @@
 import { faEnvelope, faHouseChimney, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '~/assets/logo.svg';
 import { ModeToggle } from '~/pages/MainPage/components/mode-toggle';
+import { NewsTopic, newsTopics } from '~/services/const';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [query, setQuery] = useState('');
   const nav = useNavigate();
-
-  const handleSearch = (event: any) => {
-    if (event.key === 'Enter' && query.trim() !== '') {
-      nav(`tim-kiem/?q=${query}`);
-    }
-  };
+  const topics: NewsTopic[] = newsTopics
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +26,11 @@ export default function Header() {
     };
   }, []);
 
+  const handleSearch = (event: any) => {
+    if (event.key === 'Enter' && query.trim() !== '') {
+      nav(`tim-kiem/?q=${query}`);
+    }
+  };
 
   return (
     <header className="page-header">
@@ -56,15 +57,15 @@ export default function Header() {
       <div className="py-4">
         <div className='container'>
           <div className="mx-[120px] flex justify-between items-center">
-      <ModeToggle/>
-           <Link to={"/"}>
-            <img
-              src={logo}
-              alt="logo"
-              width={160}
-              className='mx-[40px] hover:cursor-pointer'
-            />
-           </Link>
+            <ModeToggle/>
+            <Link to={"/"}>
+              <img
+                src={logo}
+                alt="logo"
+                width={160}
+                className='mx-[40px] hover:cursor-pointer'
+              />
+            </Link>
             <div className="relative flex flex-row">
               <input
                 type="text"
@@ -87,38 +88,30 @@ export default function Header() {
       </div>
 
       {/* Secondary Navigation */}
-      <nav className={`bg-[#c31e40] text-[15px] font-bold text-[white] top-0 w-full z-50 ${isScrolled ? 'fixed' : ''}`}>
+      <nav className={`bg-[#c31e40] text-[14px] font-bold text-[white] top-0 w-full z-50 ${isScrolled ? 'fixed' : ''}`}>
         <div className='container'>
           <div className="mx-[120px] px-[12px]">
-            <ul className="flex flex-wrap items-center space-x-4">
-              <div className='bg-[#24232333] px-[11px] py-[9px]'>
+            <ul className="flex items-center justify-between space-x-4">
+              <Link to={'/'} className='bg-[#24232333] px-[11px] py-[9px]'>
                 <FontAwesomeIcon icon={faHouseChimney} />
-              </div>
-              <li className="menu-item relative group">
-                <a href="https://giaoducthoidai.vn/giao-duc/" className="menu-link" title="Giáo dục">Giáo dục</a>
-                <ul className="sub-menu absolute hidden group-hover:block bg-white shadow-lg text-[black]">
-                  <li className="sub-item">
-                    <a href="https://giaoducthoidai.vn/chinh-sach/" className="block px-4 py-2 hover:bg-gray-100" title="Chính sách">Chính sách</a>
-                  </li>
-                  <li className="sub-item">
-                    <a href="https://giaoducthoidai.vn/dia-phuong/" className="block px-4 py-2 hover:bg-gray-100" title="Địa phương">Địa phương</a>
-                  </li>
-                  <li className="sub-item">
-                    <a href="https://giaoducthoidai.vn/tuyen-sinh-du-hoc/" className="block px-4 py-2 hover:bg-gray-100" title="Đào tạo - Tuyển sinh">Đào tạo - Tuyển sinh</a>
-                  </li>
-                  <li className="sub-item">
-                    <a href="https://giaoducthoidai.vn/giao-duc-bon-phuong/" className="block px-4 py-2 hover:bg-gray-100" title="Bốn phương">Bốn phương</a>
-                  </li>
-                  <li className="sub-item">
-                    <a href="https://giaoducthoidai.vn/chuyen-dong/" className="block px-4 py-2 hover:bg-gray-100" title="Chuyển động">Chuyển động</a>
-                  </li>
-                </ul>
-              </li>
-
+              </Link>
+              {topics.map((topic, index) => (
+                <li key={index} className="menu-item relative group py-[9px] hover:text-[#F7CE1A] hover:cursor-pointer">
+                  <Link to={topic.link} className="menu-link" title="Giáo dục">{topic.name}</Link>
+                  <ul className="sub-menu text-[15px] absolute top-[39px] hidden group-hover:block pl-[10px] pr-[20px] py-[5px] bg-white text-[#242424] [box-shadow:3px_3px_3px_rgba(0,_0,_0,_.25)]">
+                    {topic.subTopics?.map((subTopic, index) => (
+                      <li key={index} className="sub-item min-w-max">
+                        <Link to={subTopic.link} className="block px-4 py-2 hover:text-primaryColor" title="Chính sách">{subTopic.name}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
       </nav>
+
     </header>
   )
 }

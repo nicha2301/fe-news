@@ -37,7 +37,7 @@ export const RSSApi = (url: string, num?: number) => {
     }
 
     fetchRSS()
-  }, [])
+  }, [url])
 
   return rssItems.slice(0, num === null ? 0 : num)
 }
