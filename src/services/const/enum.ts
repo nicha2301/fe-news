@@ -46,6 +46,7 @@ export enum Topic {
   CULTURAL_LIFE = 'Đời sống văn hoá',
   CELEBRITIES = 'Sao',
   SPORTS = 'Thể thao',
-  SCHOOL_SPORTS = 'Thể thao học đường'
+  SCHOOL_SPORTS = 'Thể thao học đường',
+   HASHTAG_SUBJECT = ' Chủ đề'
 }
 
