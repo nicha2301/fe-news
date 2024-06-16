@@ -60,7 +60,7 @@ export const SearchPage = () => {
         <div className="input-search relative mb-[20px]">
           <Input 
             type="text"
-            className="txtsearch2 rounded-[35px] h-[54px] text-[20px] pl-[20px] pr-[60px] border-[1px] border-[solid] border-[#c2c1c1] w-full"
+            className="txtsearch2 rounded-[35px] h-[54px] text-[20px] text-[#000] pl-[20px] pr-[60px] border-[1px] border-[solid] border-[#c2c1c1] w-full"
             placeholder="Nhập từ khóa tìm kiếm"
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={handleSearch}
@@ -68,14 +68,14 @@ export const SearchPage = () => {
         
           <FontAwesomeIcon icon={faMagnifyingGlass} className="absolute right-[15px] top-2/4 -translate-y-1/2 w-[32px] h-[28px] opacity-50" />
         </div>
-        <p className="result  text-[22px] leading-[29px] mb-[35px]">
-          <span className="">{data[0]?.category}</span>
+        <p className="result text-[#737373] text-[22px] leading-[29px] mb-[35px]">
+          <span className="text-[#000]">{data[0]?.category}</span>
         </p>
       </div>
       <ListArticle data={data} />
       {!loading &&
         <div className='flex items-center justify-center mt-5'>
-          <button className=' text-[15px] py-3 px-12 rounded-full border border-gray-500'>XEM THÊM</button>
+          <button className='text-gray-700 text-[15px] py-3 px-12 rounded-full border border-gray-500'>XEM THÊM</button>
         </div>
       }
     </div>
