@@ -8,7 +8,6 @@ import { paths } from "~/router/paths";
 import { TopicPage } from '../pages/TopicPage/TopicPage';
 import { HashtagPage} from "~/pages/HashtagPage/HashtagPage";
 
-
 const router = createBrowserRouter([
   {
     path: '/',

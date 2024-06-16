@@ -48,18 +48,7 @@ export const mapSlugToTopic: Record<string, Topic> = {
   'van-hoa': Topic.CULTURE,
   'doi-song-van-hoa': Topic.CULTURAL_LIFE,
   sao: Topic.CELEBRITIES,
-  'the-thao-hoc-duong': Topic.SCHOOL_SPORTS,
-  'day-hoc-lich-su-trong-truong-pho-thong': Topic.HASHTAG_SUBJECT,
-  'meo-vat-cuoc-song': Topic.HASHTAG_SUBJECT,
-  'phong-chong-dich-covid-19-trong-truong-hoc': Topic.HASHTAG_SUBJECT,
-  'day-hoc-truc-tuyen': Topic.HASHTAG_SUBJECT,
-  'xay-dung-luat-nha-giao': Topic.HASHTAG_SUBJECT,
-  'thoat-ly-van-mau': Topic.HASHTAG_SUBJECT,
-  'pv-gas': Topic.HASHTAG_SUBJECT,
-  'hoi-dap-chinh-sach-doi-voi-nha-giao': Topic.HASHTAG_SUBJECT,
-  'phong-chong-bao-luc-hoc-duong': Topic.HASHTAG_SUBJECT
-,  'tuyen-dung-va-boi-duong-giao-vien': Topic.HASHTAG_SUBJECT,
-  '70-nam-chien-thang-dien-bien-phu': Topic.HASHTAG_SUBJECT,
+  'the-thao-hoc-duong': Topic.SCHOOL_SPORTS
 }
 
 export const mapNameTopicToSlug: Record<Topic, string> = {
@@ -111,7 +100,7 @@ export const mapNameTopicToSlug: Record<Topic, string> = {
   [Topic.HEALTH_BEAUTY]: 'khoe-dep',
   [Topic.FAMILY]: 'gia-dinh',
   [Topic.HOME]: 'trang-chu',
-   [Topic.HASHTAG_SUBJECT] : "chủ đề"
+  
 }
 
 export const rssFeed: Record<Topic, string> = {
@@ -163,7 +152,7 @@ export const rssFeed: Record<Topic, string> = {
   [Topic.SPORTS]: 'https://giaoducthoidai.vn/rss/the-thao-20.rss',
   [Topic.SCHOOL_SPORTS]: 'https://giaoducthoidai.vn/rss/the-thao-hoc-duong-75.rss',
   [Topic.HOME]: 'https://giaoducthoidai.vn/rss/home.rss',
-   [Topic.HASHTAG_SUBJECT] : ""
+  
 }
 
 export const topicsWithoutRSS: Record<string, string> = {
@@ -182,7 +171,7 @@ export const topicsWithoutRSS: Record<string, string> = {
 
 }
 
-// map.ts
+
 export const slides = [
   { path: '/chu-de/meo-vat-cuoc-song', label: '#Mẹo vặt cuộc sống' },
   { path: '/chu-de/day-hoc-truc-tuyen', label: '#Dạy-Học trực tuyến' },
