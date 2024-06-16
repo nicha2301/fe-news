@@ -43,7 +43,7 @@ export const DetailNews = () => {
         </div>
         {!data &&
           <div className='flex items-center justify-center mt-5'>
-            <button className=' text-[15px] py-3 px-12 rounded-full border border-gray-500'>XEM THÊM</button>
+            <button className='text-gray-700 text-[15px] py-3 px-12 rounded-full border border-gray-500'>XEM THÊM</button>
           </div>
         }
       </div>
