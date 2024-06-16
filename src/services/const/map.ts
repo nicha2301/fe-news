@@ -99,7 +99,8 @@ export const mapNameTopicToSlug: Record<Topic, string> = {
   [Topic.HUMANITY]: 'nhan-ai',
   [Topic.HEALTH_BEAUTY]: 'khoe-dep',
   [Topic.FAMILY]: 'gia-dinh',
-  [Topic.HOME]: 'trang-chu'
+  [Topic.HOME]: 'trang-chu',
+  
 }
 
 export const rssFeed: Record<Topic, string> = {
@@ -150,5 +151,38 @@ export const rssFeed: Record<Topic, string> = {
   [Topic.CELEBRITIES]: 'https://giaoducthoidai.vn/rss/the-gioi-sao-43.rss',
   [Topic.SPORTS]: 'https://giaoducthoidai.vn/rss/the-thao-20.rss',
   [Topic.SCHOOL_SPORTS]: 'https://giaoducthoidai.vn/rss/the-thao-hoc-duong-75.rss',
-  [Topic.HOME]: 'https://giaoducthoidai.vn/rss/home.rss'
+  [Topic.HOME]: 'https://giaoducthoidai.vn/rss/home.rss',
+  
 }
+
+export const topicsWithoutRSS: Record<string, string> = {
+  "day-hoc-lich-su-trong-truong-pho-thong": "https://giaoducthoidai.vn/chu-de/day-hoc-lich-su-trong-truong-pho-thong-125.html",
+  "meo-vat-cuoc-song": "https://giaoducthoidai.vn/chu-de/meo-vat-cuoc-song-70.html",
+  "phong-chong-dich-covid-19-trong-truong-hoc": "https://giaoducthoidai.vn/chu-de/phong-chong-dich-covid-19-trong-truong-hoc-128.html",
+  "day-hoc-truc-tuyen": "https://giaoducthoidai.vn/chu-de/day-hoc-truc-tuyen-101.html",
+  "dong-su-kien" : "https://giaoducthoidai.vn/dong-su-kien.html",
+  "xay-dung-luat-nha-giao" : "https://giaoducthoidai.vn/chu-de/xay-dung-luat-nha-giao-183.html",
+  "thoat-ly-van-mau" : "https://giaoducthoidai.vn/chu-de/thoat-ly-van-mau-122.html",
+  "pv-gas" : " https://giaoducthoidai.vn/chu-de/pv-gas-10.html",
+  "hoi-dap-chinh-sach-doi-voi-nha-giao": "https://giaoducthoidai.vn/chu-de/hoi-dap-chinh-sach-doi-voi-nha-giao-186.html",
+  "phong-chong-bao-luc-hoc-duong" : "https://giaoducthoidai.vn/chu-de/phong-chong-bao-luc-hoc-duong-180.html",
+  "tuyen-dung-va-boi-duong-giao-vien" : "https://giaoducthoidai.vn/chu-de/tuyen-dung-va-boi-duong-giao-vien-189.html",
+  "70-nam-chien-thang-dien-bien-phu" : " https://giaoducthoidai.vn/chu-de/70-nam-chien-thang-dien-bien-phu-203.html",
+
+}
+
+
+export const slides = [
+  { path: '/chu-de/meo-vat-cuoc-song', label: '#Mẹo vặt cuộc sống' },
+  { path: '/chu-de/day-hoc-truc-tuyen', label: '#Dạy-Học trực tuyến' },
+  { path: '/chu-de/day-hoc-lich-su-trong-truong-pho-thong', label: '#Dạy-Học lịch sử trong trường phổ thông' },
+  { path: '/chu-de/phong-chong-dich-covid-19-trong-truong-hoc', label: '#Phòng chống dịch Covid-19 trong trường học' },
+  { path: '/chu-de/xay-dung-luat-nha-giao', label: '#Xây dựng luật nhà giáo' },
+  { path: '/chu-de/thoat-ly-van-mau', label: '#Thoát ly văn mẫu' },
+  { path: '/chu-de/pv-gas', label: '#PV GAS' },
+  { path: '/chu-de/hoi-dap-chinh-sach-doi-voi-nha-giao', label: '#Hỏi đáp chính sách đối với nhà giáo' },
+  { path: '/chu-de/phong-chong-bao-luc-hoc-duong', label: '#Phòng chông bạo lực học đường' },
+  { path: '/chu-de/tuyen-dung-va-boi-duong-giao-vien', label: '#Tuyển dụng và bồi dưỡng giáo viên' },
+  { path: '/chu-de/70-nam-chien-thang-dien-bien-phu', label: '#70 năm chiến thắng điện biên phủ' },
+];
+

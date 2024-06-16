@@ -6,6 +6,7 @@ import { SearchPage } from "~/pages/SearchPage/SearchPage";
 import Wrong from "~/router/Wrong";
 import { paths } from "~/router/paths";
 import { TopicPage } from '../pages/TopicPage/TopicPage';
+import { HashtagPage} from "~/pages/HashtagPage/HashtagPage";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: paths.search,
         element: <SearchPage />,
+      },
+      {
+        path: paths.chuDe,
+        element: <HashtagPage/>,
       },
       {
         path: paths.topic,
