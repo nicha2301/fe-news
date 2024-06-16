@@ -4,6 +4,7 @@ export const paths = {
   detail: "/detail/:slug",
   search: "/tim-kiem/",
   test: "/test",
+  chuDe: "/chu-de/:topicSlug",
   notFound: "/404s",
   education:'/education',
   policy:'/policy',
