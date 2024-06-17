@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 import { RSS } from "~/services/api/model/RSSModel"
 
-export const ListArticle = (props: { data: RSS[] }) => {
+export const ListArticle = (props: { data: RSS[], header: boolean }) => {
   if (props.data.length === 0) {
     return <BeatLoader />
   }

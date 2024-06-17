@@ -30,6 +30,7 @@
     "react-router-dom": "^6.23.1",
     "react-spinners": "^0.13.8",
     "rss-parser": "^3.13.0",
+    "swiper": "^11.1.4",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"
   },

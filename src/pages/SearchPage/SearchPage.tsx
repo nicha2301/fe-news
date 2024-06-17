@@ -70,7 +70,7 @@ export const SearchPage = () => {
           <span className="text-[#000]">{data[0]?.category}</span>
         </p>
       </div>
-      <ListArticle data={data} />
+      <ListArticle data={data} header={false} />
       {!loading &&
         <div className='flex items-center justify-center mt-5'>
           <button className='text-gray-700 text-[15px] py-3 px-12 rounded-full border border-gray-500'>XEM THÊM</button>
