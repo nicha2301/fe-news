@@ -5,5 +5,5 @@ export const paths = {
   search: "/tim-kiem/",
   test: "/test",
   chuDe: "/chu-de/:topicSlug",
-  notFound: "/404s",
+  notFound: "/404s"
 };

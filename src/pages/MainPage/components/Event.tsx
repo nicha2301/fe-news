@@ -19,7 +19,7 @@ export default function Event(props: { data: RSS[] }) {
         </svg>
         Sự kiện
       </h2>
-      <div className='flex items-start gap-5'>
+       <div className='flex items-start gap-5'>
         <div className='w-1/2'>
           <Link to={`/detail/${props.data[0].link?.split('/').pop()}`}>
             <img src={props.data[0].image} className='w-full aspect-video object-cover' alt='' />

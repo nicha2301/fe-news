@@ -22,7 +22,7 @@ export const ListArticle = (props: { data: RSS[], header: boolean }) => {
               </Link>
             </figure>
             <div className="story__heading">
-              <h2 className="cms-link font-semibold text-[#404040] text-[15px] leading-6 hover:text-primaryColor cursor-pointer">
+               <h2 className="cms-link font-semibold text-[#404040] text-[15px] leading-6 hover:text-primaryColor cursor-pointer">
                 <Link to={`/detail/${item.link?.split('/').pop()}`} target="_self">
                   {item.title}
                 </Link>

@@ -68,6 +68,7 @@ export const SearchResults = async (url: string): Promise<RSS[]> => {
     console.error('Error fetching search results:', error)
     return []
   }
+
 }
 export const fetchHTMLData = async (url: string, page: number): Promise<RSS[]> => {
   try {
@@ -96,4 +97,3 @@ export const fetchHTMLData = async (url: string, page: number): Promise<RSS[]> =
     return [];
   }
 };
-

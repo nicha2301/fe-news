@@ -19,15 +19,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: paths.home,
-        element: <MainPage />,
+        element: <MainPage />
       },
       {
         path: paths.detail,
-        element: <DetailNews />,
+        element: <DetailNews />
       },
       {
         path: paths.search,
-        element: <SearchPage />,
+        element: <SearchPage />
       },
       {
         path: paths.chuDe,
@@ -39,9 +39,9 @@ const router = createBrowserRouter([
       },
       {
         path: paths.notFound,
-        element: <Wrong />,
-      }
-    ],
+        element: <Wrong />
+      },
+    ]
   },
   // {
   //   path: '*',
@@ -49,4 +49,4 @@ const router = createBrowserRouter([
   // },
 ]);
 
-export default router;
+export default router

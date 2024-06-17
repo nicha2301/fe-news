@@ -1,12 +1,12 @@
-import { RSSApi } from "~/utils/rssUtils";
-import Event from "./components/Event";
-import MainPage1 from "./components/MainPage1";
-import MainPage2 from "./components/MainPage2";
-import Media from "./components/Media";
-import More from "./components/More";
-import { Topic } from "~/services/const/enum";
-import { rssFeed } from '../../services/const/map';
-import { BeatLoader } from 'react-spinners';
+import { RSSApi } from '~/utils/rssUtils'
+import Event from './components/Event'
+import MainPage1 from './components/MainPage1'
+import MainPage2 from './components/MainPage2'
+import Media from './components/Media'
+import More from './components/More'
+import { Topic } from '~/services/const/enum'
+import { rssFeed } from '../../services/const/map'
+import { BeatLoader } from 'react-spinners'
 
 export default function MainPage() {
   const newestArticle = RSSApi(rssFeed[Topic.HOME], 6)
@@ -32,21 +32,22 @@ export default function MainPage() {
   return (
     <div className='flex flex-col gap-y-4 '>
       <Event data={four_direction} />
-      <MainPage1 data={defense_education} data2={newestArticle}/>
+      <MainPage1 data={defense_education} data2={newestArticle} />
       <MainPage2 data={topic_news} />
       <MainPage2 data={topic_education} />
       <MainPage2 data={topic_legalEducation} />
       <MainPage2 data={topic_connection} />
       <MainPage2 data={topic_exchange} />
-      <MainPage2 data={topic_school}/>
-      <MainPage2 data={topic_humanity}/>
-      <MainPage2 data={topic_world}/>
-      <MainPage2 data={topic_health}/>
-      <MainPage2 data={topic_family}/>
-      <Media data={media}/>
-      <MainPage2 data={topic_culture}/>
-      <MainPage2 data={topic_sport}/>
+      <MainPage2 data={topic_school} />
+      <MainPage2 data={topic_humanity} />
+      <MainPage2 data={topic_world} />
+      <MainPage2 data={topic_health} />
+      <MainPage2 data={topic_family} />
+      <Media data={media} />
+      <MainPage2 data={topic_culture} />
+      <MainPage2 data={topic_sport} />
       <More />
+      
     </div>
   )
 }

@@ -1,39 +1,40 @@
-import { faEnvelope, faHouseChimney, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '~/assets/logo.svg';
-import { ModeToggle } from '~/pages/MainPage/components/mode-toggle';
-import { NewsTopic, newsTopics } from '~/services/const';
+import { faEnvelope, faHouseChimney, faPhone } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import logo from '~/assets/logo.svg'
+import { Input } from '~/components/ui/input'
+import { ModeToggle } from '~/pages/MainPage/components/mode-toggle'
+import { NewsTopic, newsTopics } from '~/services/const'
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [query, setQuery] = useState('');
-  const nav = useNavigate();
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [query, setQuery] = useState('')
+  const nav = useNavigate()
   const topics: NewsTopic[] = newsTopics
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const threshold = 135;
-      setIsScrolled(scrollTop > threshold);
-    };
+      const scrollTop = window.scrollY
+      const threshold = 135
+      setIsScrolled(scrollTop > threshold)
+    }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   const handleSearch = (event: any) => {
     if (event.key === 'Enter' && query.trim() !== '') {
-      nav(`tim-kiem/?q=${query}`);
+      nav(`tim-kiem/?q=${query}`)
     }
-  };
+  }
 
   return (
-    <header className="page-header">
+    <header className='page-header'>
       {/* Top Info  */}
       <div className=" py-2">
         <div className='container'>
@@ -111,7 +112,6 @@ export default function Header() {
           </div>
         </div>
       </nav>
-
     </header>
   )
 }
