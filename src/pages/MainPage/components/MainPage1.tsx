@@ -40,26 +40,25 @@ export default function MainPage1(props: { data: RSS[], data2: RSS[] }) {
         </div>
         <div className='w-[28%] flex flex-col'>
           {props.data.slice(1).map((item, index) => (
-            <div key={index} className='flex items-start gap-x-2 overflow-hidden mt-[10px] pt-[10px] border-t-[#eee] border-t border-solid overflow-hidden'>
-              <Link to={`/detail/${item.link?.split('/').pop()}`}>
-                <img src={item.image} alt='' className='w-[80px] object-cover object-center flex-shrink-0' style={{ maxWidth: 'none' }} />
-              </Link>
-              <div className='flex flex-col'>
-                <h3 className='font-bold text-[13px] text-[#4E4E4E] leading-none hover:text-primaryColor cursor-pointer'>
-                  <Link to={`/detail/${item.link?.split('/').pop()}`}>
-                    {item.title}
-                  </Link>
-                </h3>
-                <p className='text-[11px] text-[#707070]'>{item.pubDate}</p>
-              </div>
-            </div>
-
+            <article key={index} className="mb-5 story">
+              <figure className="w-[90px] h-[50px] float-left mr-3 mt-[3px] story__thumb">
+                <Link to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
+                  <img className="" src={item.image} alt={item.title} />
+                </Link>
+              </figure>
+              <h2 className="font-semibold text-base text-[15px] text-[#404040] hover:text-primaryColor cursor-pointer story__heading">
+                <Link className="cms-link" to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
+                  {item.title}
+                </Link>
+              </h2>
+              <time className="mt-1.5 text-xs leading-[14px] text-[#959595] story__time">{item.pubDate}</time>
+            </article>
           ))}
         </div>
         <div className='w-[27%] flex flex-col gap-y-10'>
           <div className='p-3 flex flex-col gap-y-3 border-b-[1px] border-l-[1px] border-r-[1px] [box-shadow:5px_5px_5px_rgba(0,_0,_0,_.1)]'>
             {props.data2.map((item, index) => (
-              <h3 key={index} className='font-bold text-[14px] text-[#4E4E4E] leading-none py-3 border-b  hover:text-primaryColor cursor-pointer'>
+              <h3 key={index} className='font-bold text-[15px] text-[#4E4E4E] py-1 border-b  hover:text-primaryColor cursor-pointer'>
                 <Link to={`/detail/${item.link?.split('/').pop()}`}>
                   {item.title}
                 </Link>

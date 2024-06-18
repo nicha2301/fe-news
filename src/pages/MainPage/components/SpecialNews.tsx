@@ -3,6 +3,8 @@ import { BeatLoader } from "react-spinners"
 import { Pagination, Navigation } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { RSS } from "~/services/api/model/RSSModel"
+import bgHeading from "~/assets/img/bg-heading.png"
+import bgSpecialNews from "~/assets/img/bg-special_news.jpg"
 
 export const SpecialNews = (props: { data: RSS[] }) => {
   if (props.data.length === 0) {
@@ -10,8 +12,8 @@ export const SpecialNews = (props: { data: RSS[] }) => {
   }
 
   return (
-    <div className="special-news relative bg-cover bg-center pl-[20px] pr-[20px] mb-[30px] min-w-[820px] min-h-[420px]" style={{ backgroundImage: 'url(https://static-cms-giaoducthoidai.epicdn.me/v1/web/styles/img/bg-special_news.jpg)' }} >
-      <div className="box-heading relative h-[70px] mb-2.5" style={{ background: 'url(https://static-cms-giaoducthoidai.epicdn.me/v1/web/styles/img/bg-heading.png) center center / 196px 78px no-repeat' }}>
+    <div className="special-news relative bg-cover bg-center pl-[20px] pr-[20px] mb-[30px] min-w-[820px] min-h-[420px]" style={{ backgroundImage: `url(${bgSpecialNews})` }} >
+      <div className="box-heading relative h-[70px] mb-2.5" style={{ background: `url(${bgHeading}) center center / 196px 78px no-repeat` }}>
         <h3 className="wrap-heading absolute left-1/2 top-[60%] transform -translate-x-1/2 -translate-y-1/2">
           <span className="heading text-[#c31e40] uppercase font-semibold text-[20px] leading-[23px]">Tin nổi bật</span>
         </h3>
