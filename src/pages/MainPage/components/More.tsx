@@ -3,10 +3,7 @@ import React from 'react'
 export default function More() {
   return (
     <>
-      <div className='flex items-center justify-center mt-[30px]'>
-        <button className='text-gray-700 py-3 px-12 rounded-full border border-gray-500'>XEM THÊM</button>
-      </div>
-      <div className='flex items-center bg-primaryColor rounded-t-2xl text-white font-bold text-[16px] text-[#FFFFFF]'>
+      <div className='flex items-center bg-primaryColor rounded-t-2xl mt-[40px] mb-[30px] text-white font-bold text-[16px] text-[#FFFFFF]'>
         <div className='flex-1 py-4 text-center border-r border-r-white'>GIÁO DỤC</div>
         <div className='flex-1 py-4 text-center border-r border-r-white'>THỜI SỰ</div>
         <div className='flex-1 py-4 text-center border-r border-r-white'>GIÁO DỤC PHÁP LUẬT</div>

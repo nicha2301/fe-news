@@ -1,10 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons/faMagnifyingGlass";
+import bg_404 from "~/assets/img/bg-404.png";
 
 export default function Wrong() {
   return (
     <div className="site-body py-[250px] pl-[500px] bg-left bg-no-repeat" style={{
-      backgroundImage: "url('https://static-cms-giaoducthoidai.epicdn.me/v1/web/styles/img/bg-404.png')",
+      backgroundImage: `url(${bg_404})`,
       backgroundSize: '1022px'
     }}>
       <div className=" flex flex-col justify-center items-center text-center">

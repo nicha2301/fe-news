@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '~/assets/logo.svg'
+import m_logo from '~/assets/img/gdtd-logo.png'
 import { Input } from '~/components/ui/input'
 import { ModeToggle } from '~/pages/MainPage/components/mode-toggle'
 import { NewsTopic, newsTopics } from '~/services/const'
@@ -77,7 +78,7 @@ export default function Header() {
               />
               <Link to={"/"}>
                 <img
-                  src={"https://static-cms-giaoducthoidai.epicdn.me/v1/web/styles/img/gdtd.png"}
+                  src={m_logo}
                   alt="logo"
                   width={76}
                   className='h-[26px] mt-2 ml-8 hover:cursor-pointer'

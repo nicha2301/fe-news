@@ -1,3 +1,5 @@
+import logoFooter from "~/assets/img/logo-footer.png"
+
 export default function Footer() {
   return (
     <footer className="py-12 text-[#FFFFFF] bg-[#c31e40] text-[15px]">
@@ -5,7 +7,7 @@ export default function Footer() {
         <div className="flex flex-col items-center ">
           <div className="text-2xl font-bold mb-2">
             <img
-              src={"https://static-cms-giaoducthoidai.epicdn.me/v1/web/styles/img/logo-footer.png"}
+              src={logoFooter}
               alt="logo"
               width={200}
             />

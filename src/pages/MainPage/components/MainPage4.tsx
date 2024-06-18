@@ -36,7 +36,7 @@ export default function MainPage2(props: { data: RSS[] }) {
         </article>
         <div className="h-[480px] overflow-y-scroll custom-scrollbar feature">
           {props.data.slice(1).map((item, index) => (
-            <article className="mb-5 story">
+            <article key={index} className="mb-5 story">
               <figure className="w-[135px] h-[90px] float-left mr-3 mt-[3px] story__thumb">
                 <Link to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
                   <img className="" src={item.image} alt={item.title} />

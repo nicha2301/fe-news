@@ -507,7 +507,7 @@
 .article__tag {
   margin-top: 16px;
   position: relative;
-  background: url("https://static-cms-giaoducthoidai.epicdn.me/v1/web/styles/img/icon-key.png") left top -5px/138px no-repeat
+  background: url("/src/assets/img/icon-key.png") left top -5px/138px no-repeat
 }
 
 .article__tag .box-content {
@@ -962,22 +962,22 @@
 }
 
 .box-social .zalo {
-  background: url("https://static-cms-giaoducthoidai.epicdn.me/v1/web/styles/img/social-zalo.svg") center bottom/25px no-repeat;
-  min-height: 40px
+  background: url("/src/assets/img/zalo.svg") center bottom / 25px no-repeat;
+  min-height: 40px;
 }
 
 .box-social .facebook {
-  background: url("https://static-cms-giaoducthoidai.epicdn.me/v1/web/styles/img/social-fb.svg") center bottom/25px no-repeat;
+  background: url("/src/assets/img/fb.svg") center bottom/25px no-repeat;
   min-height: 40px
 }
 
 .box-social .comment {
-  background: url("https://static-cms-giaoducthoidai.epicdn.me/v1/web/styles/img/comment.png") center top 12px/34px no-repeat
+  background: url("/src/assets/img/comment.png") center top 12px/34px no-repeat
 }
 
 .box-social .news {
   border-radius: 0 0 29px 29px;
-  background: url("https://static-cms-giaoducthoidai.epicdn.me/v1/web/styles/img/news.png") center top 12px/40px no-repeat
+  background: url("/src/assets/img/news.png") center top 12px/40px no-repeat
 }
 
 .social-follow {
@@ -1021,7 +1021,7 @@
 
 @supports (position: sticky) {
   .sticky-top {
-      position:sticky;
-      z-index: 1
+    position: sticky;
+    z-index: 1
   }
 }
