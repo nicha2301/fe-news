@@ -6,7 +6,7 @@ import { mapSlugToTopic, rssFeed } from '~/services/const/map'
 import { RSSApi } from '~/utils/rssUtils'
 import More from '../MainPage/components/More'
 import { Topic } from '~/services/const/enum'
-import { HandleScroll } from '~/components/HandleScroll/HandleScroll'
+import { HandleScroll } from '~/utils/HandleScroll'
 
 export const TopicPage = () => {
   const { topicSlug } = useParams()

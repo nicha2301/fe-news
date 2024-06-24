@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
-import { ListArticle } from "~/components/Article/ListArticle";
-import { HandleScroll } from "~/components/HandleScroll/HandleScroll";
+import { HandleScroll } from "~/utils/HandleScroll";
 import { RSS } from "~/services/api/model/RSSModel";
 import { SearchResults } from '../../utils/rssUtils';
 import { Input } from "~/components/ui/input";
+import { ListArticle } from "../MainPage/components/ListArticle";
 
 export const SearchPage = () => {
   const [page, setPage] = useState(0);

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
-import { ListArticle } from "~/components/Article/ListArticle";
-import { HandleScroll } from "~/components/HandleScroll/HandleScroll";
+import { HandleScroll } from "~/utils/HandleScroll";
 import { RSS } from "~/services/api/model/RSSModel";
 
 
 import { topicsWithoutRSS } from '~/services/const/map'; 
 import { fetchHTMLData } from "~/utils/rssUtils";
+import { ListArticle } from "../MainPage/components/ListArticle";
 
 
 
