@@ -34,18 +34,18 @@ export const SpecialNews = (props: { data: RSS[] }) => {
               <SwiperSlide key={index}>
                 <article key={index} className="story bg-white h-[260px] overflow-hidden">
                   <figure className="story__thumb">
-                    <Link to={`/detail/${item.link?.split('/').pop()}`}>
+                    <a href={`/detail/${item.link?.split('/').pop()}`}>
                       <img src={item.image} alt={item.title} />
-                    </Link>
+                    </a>
                   </figure>
                   <h3 className="story__heading mt-2.5 mb-1 text-[16px] font-medium text-[#404040] px-2.5 line-clamp-4 overflow-hidden text-ellipsis hover:opacity-60 cursor-pointer">
-                    <Link className="cms-link" to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
+                    <a className="cms-link" href={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
                       {item.title}
-                    </Link>
+                    </a>
                   </h3>
-                  <Link to={`/detail/${item.link?.split('/').pop()}`} className="story__cate text-[#c31e40] no-underline mr-[14px] text-[12px] float-left ml-[10px]" title="Thời sự">
+                  <a href={`/detail/${item.link?.split('/').pop()}`} className="story__cate text-[#c31e40] no-underline mr-[14px] text-[12px] float-left ml-[10px]" title="Thời sự">
                     Thời sự
-                  </Link>
+                  </a>
                   <h3 className='story__time mt-[5px] text-[12px]  text-[#959595]'>3 giờ trước</h3>
                 </article>
               </SwiperSlide>

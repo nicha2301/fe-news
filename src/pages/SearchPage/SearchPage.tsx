@@ -17,7 +17,7 @@ export const SearchPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const location = useLocation()
   const nav = useNavigate()
-  const distanceFromBottom = HandleScroll()
+  const {distanceFromBottom} = HandleScroll()
   const query = new URLSearchParams(location.search).get('q')
 
   useEffect(() => {

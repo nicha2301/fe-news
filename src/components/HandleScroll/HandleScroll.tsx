@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react'
 
 export const HandleScroll = () => {
+  const [distanceFromTop, setDistanceFromTop] = useState(0)
   const [distanceFromBottom, setDistanceFromBottom] = useState(0)
 
   const handleScroll = () => {
     const scrollTop = window.scrollY
     const windowHeight = window.innerHeight
     const documentHeight = document.documentElement.scrollHeight
-    const distance = documentHeight - (scrollTop + windowHeight)
-    setDistanceFromBottom(distance)
+
+    const distanceTop = scrollTop
+    const distanceBottom = documentHeight - (scrollTop + windowHeight)
+
+    setDistanceFromTop(distanceTop)
+    setDistanceFromBottom(distanceBottom)
   }
 
   useEffect(() => {
@@ -19,5 +24,5 @@ export const HandleScroll = () => {
     }
   }, [])
 
-  return distanceFromBottom
+  return { distanceFromTop, distanceFromBottom }
 }

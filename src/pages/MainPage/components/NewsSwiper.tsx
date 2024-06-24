@@ -25,13 +25,13 @@ export const NewsSwiper = (props: { data: RSS[] }) => {
           {props.data.map((item, index) => (
             <SwiperSlide key={index}>
               <div key={index} className='flex flex-col gap-y-2'>
-                <Link to={`/detail/${item.link?.split('/').pop()}`}>
+                <a href={`/detail/${item.link?.split('/').pop()}`}>
                   <img src={item.image} className='w-[245px] h-[165px]' alt={item.title} />
-                </Link>
+                </a>
                 <p className='font-semibold text-[15px] text-[#FFFFFF] hover:text-[#ccc] cursor-pointer'>
-                  <Link to={`/detail/${item.link?.split('/').pop()}`}>
+                  <a href={`/detail/${item.link?.split('/').pop()}`}>
                     {item.title}
-                  </Link>
+                  </a>
                 </p>
                 <span className='text-[12px] text-[#CED4DA]'>{props.data[0].pubDate}</span>
               </div>

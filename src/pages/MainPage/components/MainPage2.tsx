@@ -15,13 +15,13 @@ export default function MainPage2(props: { data: RSS[] }) {
       </div>
       <div className='mt-4 flex items-start gap-x-4'>
         <div className='w-1/2'>
-          <Link to={`/detail/${props.data[0].link?.split('/').pop()}`}>
+          <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
             <img src={props.data[0].image} className='w-full aspect-video object-cover cursor-pointer' alt='' />
-          </Link>
+          </a>
           <h2 className='font-bold text-[17px] text-[#404040] hover:text-primaryColor cursor-pointer pt-3'>
-            <Link to={`/detail/${props.data[0].link?.split('/').pop()}`}>
+            <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
               {props.data[0].title}
-            </Link>
+            </a>
           </h2>
           <span className='text-[12px] text-[#707070]'>{props.data[0].pubDate}</span>
           <p className='text-[14px] text-[#4E4E4E]'>
@@ -31,13 +31,13 @@ export default function MainPage2(props: { data: RSS[] }) {
         <div className='w-1/2 grid grid-cols-2 gap-4'>
           {props.data.slice(1).map((item, index) => (
             <div key={index} className='flex flex-col gap-y-1'>
-              <Link to={`/detail/${item.link?.split('/').pop()}`}>
+              <a href={`/detail/${item.link?.split('/').pop()}`}>
                 <img src={item.image} className='w-full aspect-video object-cover' alt='' />
-              </Link>
+              </a>
               <h3 className='font-semibold text-[14px] text-[#4E4E4E] hover:text-primaryColor cursor-pointer'>
-                <Link to={`/detail/${item.link?.split('/').pop()}`}>
+                <a href={`/detail/${item.link?.split('/').pop()}`}>
                   {item.title}
-                </Link>
+                </a>
               </h3>
             </div>
           ))}

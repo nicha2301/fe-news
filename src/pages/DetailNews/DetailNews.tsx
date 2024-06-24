@@ -19,7 +19,7 @@ export const DetailNews = () => {
   const data2 = RSSApi(rssFeed[Topic.HOME], 7)
   const data3 = RSSApi(rssFeed[Topic.HIGHLIGHTS], 10)
   const data4 = RSSApi(rssFeed[Topic.HOT_NEWS], 10)
-  const distanceFromBottom = HandleScroll()
+  const {distanceFromBottom} = HandleScroll()
 
   useEffect(() => {
     if (distanceFromBottom < 300) {

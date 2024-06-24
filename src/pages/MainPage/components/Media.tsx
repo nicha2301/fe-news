@@ -26,13 +26,13 @@ export default function Media(props: { data: RSS[] }) {
         {props.data.length > 0 &&
           props.data.map((item, index) => (
             <div key={index} className='flex flex-col gap-y-2'>
-              <Link to={`/detail/${item.link?.split('/').pop()}`}>
+              <a href={`/detail/${item.link?.split('/').pop()}`}>
                 <img src={item.image} className='w-full aspect-video object-cover' alt='' />
-              </Link>
+              </a>
               <p className='font-bold text-[13px] text-[#FFFFFF] hover:text-[#ccc] cursor-pointer'>
-                <Link to={`/detail/${item.link?.split('/').pop()}`}>
+                <a href={`/detail/${item.link?.split('/').pop()}`}>
                   {item.title}
-                </Link>
+                </a>
               </p>
             </div>
           ))

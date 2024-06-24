@@ -17,7 +17,7 @@ export const HashtagPage = () => {
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [data, setData] = useState<RSS[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const distanceFromBottom = HandleScroll();
+  const {distanceFromBottom} = HandleScroll();
   const sourceUrl = topicsWithoutRSS[topicSlug || ''];
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export const HashtagPage = () => {
      
       <div className="w-[70%] desktop-sm:w-[80%] desktop-lg:w-1/2 desktop-lg:p-0 laptop:w-11/12">
         
-        <ListArticle data={data} />
+        <ListArticle data={data} header={false} />
         {!loading &&
           <div className='flex items-center justify-center mt-5'>
             <button className='text-gray-700 text-[15px] py-3 px-12 rounded-full border border-gray-500' onClick={() => setPage(prevPage => prevPage + 1)}>XEM THÊM</button>
