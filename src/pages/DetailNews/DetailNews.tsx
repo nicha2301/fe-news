@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
-import { Article } from "~/components/Article/Article"
-import { ListArticle } from "~/components/Article/ListArticle"
-import { HandleScroll } from "~/components/HandleScroll/HandleScroll"
+import { HandleScroll } from "~/utils/HandleScroll"
 import { Topic } from "~/services/const/enum"
 import { rssFeed } from "~/services/const/map"
 import { RSSApi } from "~/utils/rssUtils"
@@ -11,6 +9,8 @@ import MainPage4 from "../MainPage/components/MainPage4"
 import { NewsSwiper } from "../MainPage/components/NewsSwiper"
 import "./style.css"
 import { SpecialNews } from "../MainPage/components/SpecialNews"
+import { Article } from "~/utils/Article"
+import { ListArticle } from "../MainPage/components/ListArticle"
 
 export const DetailNews = () => {
   const { slug } = useParams()
@@ -19,7 +19,7 @@ export const DetailNews = () => {
   const data2 = RSSApi(rssFeed[Topic.HOME], 7)
   const data3 = RSSApi(rssFeed[Topic.HIGHLIGHTS], 10)
   const data4 = RSSApi(rssFeed[Topic.HOT_NEWS], 10)
-  const distanceFromBottom = HandleScroll()
+  const {distanceFromBottom} = HandleScroll()
 
   useEffect(() => {
     if (distanceFromBottom < 300) {

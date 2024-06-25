@@ -60,14 +60,14 @@ export default function Header() {
         <div className='container'>
           <div className="mx-[120px] flex justify-between items-center">
             <ModeToggle/>
-            <Link to={"/"}>
+            <a href={"/"}>
               <img
                 src={logo}
                 alt="logo"
                 width={160}
                 className='mx-[40px] hover:cursor-pointer'
               />
-            </Link>
+            </a>
             <div className="relative flex flex-row">
               <input
                 type="text"
@@ -76,14 +76,14 @@ export default function Header() {
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleSearch}
               />
-              <Link to={"/"}>
+              <a href={"/"}>
                 <img
                   src={m_logo}
                   alt="logo"
                   width={76}
                   className='h-[26px] mt-2 ml-8 hover:cursor-pointer'
                 />
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -94,16 +94,16 @@ export default function Header() {
         <div className='container'>
           <div className="mx-[120px] px-[12px]">
             <ul className="flex items-center justify-between space-x-4">
-              <Link to={'/'} className='bg-[#24232333] px-[11px] py-[9px]'>
+              <a href={'/'} className='bg-[#24232333] px-[11px] py-[9px]'>
                 <FontAwesomeIcon icon={faHouseChimney} />
-              </Link>
+              </a>
               {topics.map((topic, index) => (
                 <li key={index} className="menu-item relative group py-[9px] hover:text-[#F7CE1A] hover:cursor-pointer">
-                  <Link to={topic.link} className="menu-link" title="Giáo dục">{topic.name}</Link>
+                  <a href={topic.link} className="menu-link" title="Giáo dục">{topic.name}</a>
                   <ul className="sub-menu z-10 text-[15px] absolute top-[39px] hidden group-hover:block pl-[10px] pr-[20px] py-[5px] bg-white text-[#242424] [box-shadow:3px_3px_3px_rgba(0,_0,_0,_.25)]">
                     {topic.subTopics?.map((subTopic, index) => (
                       <li key={index} className="sub-item min-w-max">
-                        <Link to={subTopic.link} className="block px-4 py-2 hover:text-primaryColor" title="Chính sách">{subTopic.name}</Link>
+                        <a href={subTopic.link} className="block px-4 py-2 hover:text-primaryColor" title="Chính sách">{subTopic.name}</a>
                       </li>
                     ))}
                   </ul>
