@@ -8,13 +8,14 @@ export const Article: React.FC<{ url: string }> = (props) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const selectors = ['.box-social', '.article'];
+  const proxyUrl = "https://api.allorigins.win/get?url="
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(props.url);
-        const html = response.data;
-        const $ = cheerio.load(html);
+        const response = await axios.get(proxyUrl + encodeURIComponent(props.url));
+        const html = response.data.contents
+        const $ = cheerio.load(html, { xmlMode: true });
 
 
         const newContents = selectors.map(selector => ({

@@ -3,6 +3,8 @@ import { RSS } from '../services/api/model/RSSModel'
 import axios from 'axios'
 import cheerio from 'cheerio'
 
+const proxyUrl = "https://api.allorigins.win/get?url="
+
 const parser = new DOMParser()
 export const RSSApi = (url: string, num?: number) => {
   const [rssItems, setRssItems] = useState<RSS[]>([])
@@ -10,9 +12,10 @@ export const RSSApi = (url: string, num?: number) => {
   useEffect(() => {
     const fetchRSS = async () => {
       try {
-        const response = await fetch(url)
-        const text = await response.text()
-        const xml = parser.parseFromString(text, 'text/xml')
+        const response = await fetch(proxyUrl + encodeURIComponent(url))
+        const json = await response.json();
+        const xmlContent = json.contents;
+        const xml = parser.parseFromString(xmlContent, "application/xml");
         const items = xml.querySelectorAll('item')
 
         const extractRelevantContent = (html: string) => {
@@ -44,9 +47,9 @@ export const RSSApi = (url: string, num?: number) => {
 
 export const SearchResults = async (url: string): Promise<RSS[]> => {
   try {
-    const response = await axios.get(url)
-    const html = response.data
-    const $ = cheerio.load(html)
+    const response = await axios.get(proxyUrl + encodeURIComponent(url))
+    const html = response.data.contents
+    const $ = cheerio.load(html, { xmlMode: true });
     const items = $('.story')
     const amountResultSearch = $('.search-wrapper')
     const rssItems: RSS[] = items
@@ -72,10 +75,9 @@ export const SearchResults = async (url: string): Promise<RSS[]> => {
 }
 export const fetchHTMLData = async (url: string, page: number): Promise<RSS[]> => {
   try {
-    const response = await axios.get(`${url}?page=${page}`);
-    const html = response.data;
-    console.log(html)
-    const $ = cheerio.load(html);
+    const response = await axios.get(`${proxyUrl + encodeURIComponent(url)}?page=${page}`);
+    const html = response.data.contents
+    const $ = cheerio.load(html, { xmlMode: true });
 
     const articles: RSS[] = [];
     const category = $('div.cate-breadcrumb h1 a.cate-parent').text().trim();
