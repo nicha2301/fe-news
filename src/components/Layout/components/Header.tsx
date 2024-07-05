@@ -84,6 +84,7 @@ export default function Header() {
                   className='h-[26px] mt-2 ml-8 hover:cursor-pointer'
                 />
               </a>
+              <a href="/lich-su-doc" > Link nef</a>
             </div>
           </div>
         </div>
