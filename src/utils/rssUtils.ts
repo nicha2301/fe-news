@@ -74,7 +74,6 @@ export const fetchHTMLData = async (url: string, page: number): Promise<RSS[]> =
   try {
     const response = await axios.get(`${url}?page=${page}`);
     const html = response.data;
-    // console.log(html)
     const $ = cheerio.load(html);
 
     const articles: RSS[] = [];

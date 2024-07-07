@@ -1,37 +1,37 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { BeatLoader } from "react-spinners";
-import { HandleScroll } from "~/utils/HandleScroll";
-import { Topic } from "~/services/const/enum";
-import { rssFeed } from "~/services/const/map";
-import { RSSApi } from "~/utils/rssUtils";
-import MainPage4 from "../MainPage/components/MainPage4";
-import { NewsSwiper } from "../MainPage/components/NewsSwiper";
-import "./style.css";
-import { SpecialNews } from "../MainPage/components/SpecialNews";
-import { Article } from "~/utils/Article";
-import { ListArticle } from "../MainPage/components/ListArticle";
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { BeatLoader } from "react-spinners"
+import { HandleScroll } from "~/utils/HandleScroll"
+import { Topic } from "~/services/const/enum"
+import { rssFeed } from "~/services/const/map"
+import { RSSApi } from "~/utils/rssUtils"
+import MainPage4 from "../MainPage/components/MainPage4"
+import { NewsSwiper } from "../MainPage/components/NewsSwiper"
+import "./style.css"
+import { SpecialNews } from "../MainPage/components/SpecialNews"
+import { Article } from "~/utils/Article"
+import { ListArticle } from "../MainPage/components/ListArticle"
 import { RSS } from "~/services/api/model/RSSModel";
 import axios from "axios";
 import cheerio from "cheerio";
 
 export const DetailNews = () => {
-  const { slug } = useParams();
-  const [amountArticle, setAmountArticle] = useState(5);
-  const data = RSSApi(rssFeed[Topic.HOME], amountArticle);
-  const data2 = RSSApi(rssFeed[Topic.HOME], 7);
-  const data3 = RSSApi(rssFeed[Topic.HIGHLIGHTS], 10);
-  const data4 = RSSApi(rssFeed[Topic.HOT_NEWS], 10);
-  const { distanceFromBottom } = HandleScroll();
+  const { slug } = useParams()
+  const [amountArticle, setAmountArticle] = useState(5)
+  const data = RSSApi(rssFeed[Topic.HOME], amountArticle)
+  const data2 = RSSApi(rssFeed[Topic.HOME], 7)
+  const data3 = RSSApi(rssFeed[Topic.HIGHLIGHTS], 10)
+  const data4 = RSSApi(rssFeed[Topic.HOT_NEWS], 10)
+  const {distanceFromBottom} = HandleScroll()
 
   useEffect(() => {
     if (distanceFromBottom < 300) {
-      setAmountArticle(amountArticle + 5);
+      setAmountArticle(amountArticle + 5)
     }
   }, [distanceFromBottom]);
 
   if (!data) {
-    return <BeatLoader />;
+    return <BeatLoader />
   }
 
   const saveArticleToLocalStorage = (article: RSS) => {
@@ -103,5 +103,5 @@ export const DetailNews = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

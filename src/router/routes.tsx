@@ -7,7 +7,6 @@ import Wrong from "~/router/Wrong";
 import { paths } from "~/router/paths";
 import { TopicPage } from '../pages/TopicPage/TopicPage';
 import { HashtagPage} from "~/pages/HashtagPage/HashtagPage";
-// import ReadingHistoryPage from "~/pages/ReadingHistoryPage/ReadingHistoryPage";
 import {ReadingHistoryPage} from "~/pages/ReadingHistoryPage/ReadingHistoryPage";
 
 

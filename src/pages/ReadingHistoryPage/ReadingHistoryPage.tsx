@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { RSS } from '~/services/api/model/RSSModel';
 import { ListArticle } from '../MainPage/components/ListArticle';
-import { useParams } from 'react-router-dom';
-import { RSSApi } from '~/utils/rssUtils';
-import { rssFeed } from '~/services/const/map';
-import { Topic } from '~/services/const/enum';
-import { HandleScroll } from '~/utils/HandleScroll';
 
 export const ReadingHistoryPage = () => {
   const [readArticles, setReadArticles] = useState<RSS[]>([]);
