@@ -96,3 +96,50 @@ export const fetchHTMLData = async (url: string, page: number): Promise<RSS[]> =
     return [];
   }
 };
+
+export const saveArticleToLocalStorage = (article: RSS) => {
+  const storedArticles = localStorage.getItem("readArticles");
+  const articles = storedArticles ? JSON.parse(storedArticles) : [];
+
+  const articleExists = articles.some((storedArticle: RSS) => storedArticle.link === article.link);
+  if (!articleExists) {
+    const articleData = {
+      title: article.title,
+      link: article.link,
+      description: article.description,
+      pubDate: article.pubDate,
+      image: article.image,
+      category: article.category,
+    };
+
+    articles.push(articleData);
+    localStorage.setItem("readArticles", JSON.stringify(articles));
+  }
+};
+
+export const fetchArticleData = async (url: string) => {
+  try {
+    const response = await axios.get(url);
+    const html = response.data;
+    const $ = cheerio.load(html);
+
+    const title = $("meta[property='og:title']").attr("content") || $("title").text();
+    const description = $("meta[property='og:description']").attr("content") || "";
+    const pubDate = $("meta[property='article:published_time']").attr("content") || new Date().toISOString();
+    const image = $("meta[property='og:image']").attr("content") || "";
+    const category = $("meta[property='article:section']").attr("content") || "";
+
+    const articleData: RSS = {
+      title,
+      link: url,
+      description,
+      pubDate,
+      image,
+      category
+    };
+
+    saveArticleToLocalStorage(articleData);
+  } catch (error) {
+    console.error("Error fetching article data:", error);
+  }
+};

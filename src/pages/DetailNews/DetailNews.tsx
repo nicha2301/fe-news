@@ -4,7 +4,7 @@ import { BeatLoader } from "react-spinners"
 import { HandleScroll } from "~/utils/HandleScroll"
 import { Topic } from "~/services/const/enum"
 import { rssFeed } from "~/services/const/map"
-import { RSSApi } from "~/utils/rssUtils"
+import { fetchArticleData, RSSApi } from "~/utils/rssUtils"
 import MainPage4 from "../MainPage/components/MainPage4"
 import { NewsSwiper } from "../MainPage/components/NewsSwiper"
 import "./style.css"
@@ -30,63 +30,19 @@ export const DetailNews = () => {
     }
   }, [distanceFromBottom]);
 
-  if (!data) {
-    return <BeatLoader />
-  }
-
-  const saveArticleToLocalStorage = (article: RSS) => {
-    const storedArticles = localStorage.getItem("readArticles");
-    const articles = storedArticles ? JSON.parse(storedArticles) : [];
-
-    const articleExists = articles.some((storedArticle: RSS) => storedArticle.link === article.link);
-    if (!articleExists) {
-      const articleData = {
-        title: article.title,
-        link: article.link,
-        description: article.description,
-        pubDate: article.pubDate,
-        image: article.image,
-        category: article.category,
-      };
-
-      articles.push(articleData);
-      localStorage.setItem("readArticles", JSON.stringify(articles));
-    }
-  };
-
   useEffect(() => {
-    const fetchArticleData = async (url: string) => {
-      try {
-        const response = await axios.get(url);
-        const html = response.data;
-        const $ = cheerio.load(html);
-
-        const title = $("meta[property='og:title']").attr("content") || $("title").text();
-        const description = $("meta[property='og:description']").attr("content") || "";
-        const pubDate = $("meta[property='article:published_time']").attr("content") || new Date().toISOString();
-        const image = $("meta[property='og:image']").attr("content") || "";
-        const category = $("meta[property='article:section']").attr("content") || "";
-
-        const articleData: RSS = {
-          title,
-          link: url,
-          description,
-          pubDate,
-          image,
-          category
-        };
-
-        saveArticleToLocalStorage(articleData);
-      } catch (error) {
-        console.error("Error fetching article data:", error);
-      }
-    };
-
     if (slug) {
       const articleUrl = `https://giaoducthoidai.vn/${slug}`;
       fetchArticleData(articleUrl);
     }
   }, [slug]);
+
+
+  if (!data) {
+    return <BeatLoader />
+  }
+
+  
 
   return (
     <div className="flex flex-col float-left max-w-[820px]">
