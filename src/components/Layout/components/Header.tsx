@@ -1,7 +1,7 @@
 import { faEnvelope, faHouseChimney, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '~/assets/logo.svg'
 import { MenuAvt } from '~/pages/MainPage/components/MenuAvt'
 import { ModeToggle } from '~/pages/MainPage/components/mode-toggle'
@@ -75,7 +75,7 @@ export default function Header() {
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleSearch}
               />
-              <MenuAvt/>
+              <MenuAvt />
             </div>
           </div>
         </div>
@@ -91,11 +91,11 @@ export default function Header() {
               </a>
               {topics.map((topic, index) => (
                 <li key={index} className="menu-item relative group py-[9px] hover:text-[#F7CE1A] hover:cursor-pointer">
-                  <a href={topic.link} className="menu-link" title="Giáo dục">{topic.name}</a>
+                  <Link to={topic.link} className="menu-link" title="Giáo dục">{topic.name}</Link>
                   <ul className="sub-menu z-10 text-[15px] absolute top-[39px] hidden group-hover:block pl-[10px] pr-[20px] py-[5px] bg-white text-[#242424] [box-shadow:3px_3px_3px_rgba(0,_0,_0,_.25)]">
                     {topic.subTopics?.map((subTopic, index) => (
                       <li key={index} className="sub-item min-w-max">
-                        <a href={subTopic.link} className="block px-4 py-2 hover:text-primaryColor" title="Chính sách">{subTopic.name}</a>
+                        <Link to={subTopic.link} className="block px-4 py-2 hover:text-primaryColor" title="Chính sách">{subTopic.name}</Link>
                       </li>
                     ))}
                   </ul>

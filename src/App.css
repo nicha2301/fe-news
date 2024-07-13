@@ -48,10 +48,3 @@
 .sticky-top-1 {
   position: fixed;
 }
-
-.custom-dropdown-item.dropdown-item.active,
-.custom-dropdown-item.dropdown-item:active {
-  color: inherit !important;
-  text-decoration: none !important;
-  background-color: inherit !important; 
-}

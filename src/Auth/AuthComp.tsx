@@ -40,7 +40,7 @@ const AuthComponent: React.FC = () => {
           clientId={clientId}
           onLogoutSuccess={onLogoutSuccess}
           render={(renderProps) => (
-            <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="logout-button w-full hover:bg-[#f3f4f7] text-left py-[4px] px-[16px]">
+            <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="logout-button w-full hover:bg-[#f3f4f7] text-left">
                Đăng xuất
             </button>
           )}
@@ -53,7 +53,7 @@ const AuthComponent: React.FC = () => {
           cookiePolicy={'single_host_origin'}
           isSignedIn={true}
           render={(renderProps) => (
-            <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="login-button w-full hover:bg-[#f3f4f7] text-left py-[4px] px-[16px]">
+            <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="login-button w-full hover:bg-[#f3f4f7] text-left">
               Đăng nhập
             </button>
           )}
