@@ -1,10 +1,9 @@
 import { faEnvelope, faHouseChimney, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import logo from '~/assets/logo.svg'
-import m_logo from '~/assets/img/gdtd-logo.png'
-import { Input } from '~/components/ui/input'
+import { MenuAvt } from '~/pages/MainPage/components/MenuAvt'
 import { ModeToggle } from '~/pages/MainPage/components/mode-toggle'
 import { NewsTopic, newsTopics } from '~/services/const'
 
@@ -59,7 +58,7 @@ export default function Header() {
       <div className="py-4">
         <div className='container'>
           <div className="mx-[120px] flex justify-between items-center">
-            <ModeToggle/>
+            <ModeToggle />
             <a href={"/"}>
               <img
                 src={logo}
@@ -76,14 +75,7 @@ export default function Header() {
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleSearch}
               />
-              <a href={"/"}>
-                <img
-                  src={m_logo}
-                  alt="logo"
-                  width={76}
-                  className='h-[26px] mt-2 ml-8 hover:cursor-pointer'
-                />
-              </a>
+              <MenuAvt/>
             </div>
           </div>
         </div>
@@ -113,6 +105,6 @@ export default function Header() {
           </div>
         </div>
       </nav>
-    </header>
+    </header >
   )
 }
