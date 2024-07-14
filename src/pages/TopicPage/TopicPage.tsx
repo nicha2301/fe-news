@@ -7,6 +7,7 @@ import { RSSApi } from '~/utils/rssUtils'
 import More from '../MainPage/components/More'
 import { Topic } from '~/services/const/enum'
 import { HandleScroll } from '~/utils/HandleScroll'
+import { Helmet } from 'react-helmet'
 
 export const TopicPage = () => {
   const { topicSlug } = useParams()
@@ -22,7 +23,6 @@ export const TopicPage = () => {
   const subTitle = newsTopics.filter(item => item.name === title)
 
   useEffect(() => {
-    console.log(distanceFromTop, distanceFromBottom);
     if (distanceFromBottom < 300) {
       setAmountArticle(prev => prev + 5);
     }
@@ -41,6 +41,9 @@ export const TopicPage = () => {
 
   return (
     <>
+        <Helmet>
+                <title>{title}</title>
+            </Helmet>
       <div className="cate-breadcrumb flex items-center mb-8 mt-3">
         <h1>
           <a

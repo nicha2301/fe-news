@@ -3,7 +3,7 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 import { BeatLoader } from 'react-spinners';
 import DOMPurify from "dompurify";
-import { Button } from "~/components/ui/button";
+import { Helmet } from "react-helmet";
 const cssContent = `
 .article>* {
   margin-bottom: 16px
@@ -1045,7 +1045,7 @@ export const Article: React.FC<{ url: string }> = (props) => {
   const [contents, setContents] = useState<{ selector: string, html: string }[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const selectors = ['.box-social', '.article'];
-
+  const [title, setTitle] = useState<any>('')
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -1058,7 +1058,8 @@ export const Article: React.FC<{ url: string }> = (props) => {
           selector,
           html: $(selector).html() || ''
         }));
-
+        const parser = new DOMParser()
+        setTitle(parser.parseFromString(newContents[1].html, 'text/html').querySelector('h1')?.textContent)
         setContents(newContents);
         setLoading(false);
       } catch (error) {
@@ -1102,6 +1103,9 @@ export const Article: React.FC<{ url: string }> = (props) => {
  }
   return (
     <>
+      <Helmet>
+                <title>{title}</title>
+            </Helmet>
             <button  onClick={handleDownload} type="button" className="button mb-2">
   <div className="button-top">Tải về</div>
   <div className="button-bottom"></div>
@@ -1109,7 +1113,6 @@ export const Article: React.FC<{ url: string }> = (props) => {
 
   
 </button>
-
       {contents[1].html ?
         contents.map(({ selector, html }) => (
           <div key={selector} className={selector.replace('.', '') + ' sticky-top'} dangerouslySetInnerHTML={{ __html: html }} />

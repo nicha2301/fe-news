@@ -8,6 +8,7 @@ import { RSS } from "~/services/api/model/RSSModel";
 import { SearchResults } from '../../utils/rssUtils';
 import { Input } from "~/components/ui/input";
 import { ListArticle } from "../MainPage/components/ListArticle";
+import { Helmet } from "react-helmet";
 
 export const SearchPage = () => {
   const [page, setPage] = useState(0);
@@ -56,6 +57,9 @@ export const SearchPage = () => {
 
   return (
     <div className="w-[70%] desktop-sm:w-[80%] desktop-lg:w-1/2 desktop-lg:p-0 laptop:w-11/12">
+          <Helmet>
+                <title>Tìm kiếm "{query}"</title>
+            </Helmet>
       <div className="search-wrapper mb-[35px]">
         <div className="input-search relative mb-[20px]">
           <Input 
