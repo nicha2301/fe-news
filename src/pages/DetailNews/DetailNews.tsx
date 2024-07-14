@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
-import { HandleScroll } from "~/utils/HandleScroll"
 import { Topic } from "~/services/const/enum"
 import { rssFeed } from "~/services/const/map"
+import { Article } from "~/utils/Article"
+import { HandleScroll } from "~/utils/HandleScroll"
 import { RSSApi } from "~/utils/rssUtils"
+import { CommentBox } from "../../utils/CommentBox"
+import { ListArticle } from "../MainPage/components/ListArticle"
 import MainPage4 from "../MainPage/components/MainPage4"
 import { NewsSwiper } from "../MainPage/components/NewsSwiper"
-import "./style.css"
 import { SpecialNews } from "../MainPage/components/SpecialNews"
-import { Article } from "~/utils/Article"
-import { ListArticle } from "../MainPage/components/ListArticle"
-import { CommentBox } from "../MainPage/components/CommentBox"
+import "./style.css"
 
 export const DetailNews = () => {
   const { slug } = useParams()
@@ -37,7 +37,7 @@ export const DetailNews = () => {
       <div className="many-pack">
         <div className="box-content content-list">
           <Article url={`https://giaoducthoidai.vn/${slug}`} />
-          <CommentBox/>
+          <CommentBox slug={`${slug}`}/>
           <NewsSwiper data={data2} />
           <MainPage4 data={data4} />
           <SpecialNews data={data3} />

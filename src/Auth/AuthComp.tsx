@@ -2,15 +2,34 @@ import { gapi } from 'gapi-script';
 import React, { useEffect } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useAuth } from './AuthContext';
+import { doc, setDoc } from "firebase/firestore";
+import { User } from '~/services/api/model/User';
+import { db } from '~/config/firebaseConfig';
 
 const clientId = "305353374248-tmancapiepdhm8ghj411st7jq1ru2mp5.apps.googleusercontent.com";
 
 const AuthComponent: React.FC = () => {
   const { user, login, logout } = useAuth();
 
-  const onSuccess = (res: any) => {
-    console.log("success: ", res.profileObj);
-    login(res.profileObj); 
+  const onSuccess = async (res: any) => {
+
+    const userData: User = new User(
+      res.profileObj.googleId || "",
+      res.profileObj.imageUrl || "",
+      res.profileObj.email || "",
+      res.profileObj.name || "",
+      res.profileObj.givenName || "",
+      res.profileObj.familyName || ""
+    );
+
+    try {
+      await setDoc(doc(db, "users", res.profileObj.googleId), { ...userData }, { merge: true });
+      console.log("User data inserted successfully:", userData);
+    } catch (error) {
+      console.error("Error inserting user data: ", error);
+    }
+
+    login(res.profileObj);
   };
 
   const onFailure = (res: any) => {
@@ -41,7 +60,7 @@ const AuthComponent: React.FC = () => {
           onLogoutSuccess={onLogoutSuccess}
           render={(renderProps) => (
             <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="logout-button w-full hover:bg-[#f3f4f7] text-left">
-               Đăng xuất
+              Đăng xuất
             </button>
           )}
         />
