@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { BeatLoader } from 'react-spinners'
 import { RSS } from '~/services/api/model/RSSModel'

@@ -6,8 +6,8 @@ import { SearchPage } from "~/pages/SearchPage/SearchPage";
 import Wrong from "~/router/Wrong";
 import { paths } from "~/router/paths";
 import { TopicPage } from '../pages/TopicPage/TopicPage';
-import { HashtagPage} from "~/pages/HashtagPage/HashtagPage";
-import {ReadingHistoryPage} from "~/pages/ReadingHistoryPage/ReadingHistoryPage";
+import { HashtagPage } from "~/pages/HashtagPage/HashtagPage";
+import { ReadingHistoryPage } from "~/pages/ReadingHistoryPage/ReadingHistoryPage";
 
 
 const router = createBrowserRouter([
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: paths.chuDe,
-        element: <HashtagPage/>,
+        element: <HashtagPage />,
       },
       {
         path: paths.topic,
@@ -43,17 +43,17 @@ const router = createBrowserRouter([
         path: paths.readingHistory,
         element: <ReadingHistoryPage />
       },
-    
+
       {
         path: paths.notFound,
         element: <Wrong />
       },
     ]
   },
-  // {
-  //   path: '*',
-  //   element: <Navigate to="/404s" />,
-  // },
+  {
+    path: '*',
+    element: <Navigate to="/404s" />,
+  },
 ]);
 
 export default router
