@@ -1,90 +1,19 @@
-import { faEnvelope, faHouseChimney, faPhone } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import logo from '~/assets/logo.svg'
-import { MenuAvt } from '~/pages/MainPage/components/MenuAvt'
-import { format } from 'date-fns' // import date
-import { vi } from 'date-fns/locale' // Import ngôn ngữ tiếng Việt
-import m_logo from '~/assets/img/gdtd-logo.png'
-import { Input } from '~/components/ui/input'
-import { ModeToggle } from '~/pages/MainPage/components/mode-toggle'
-import { NewsTopic, newsTopics } from '~/services/const'
-import axios from 'axios'
-type CityType = 'Ho Chi Minh' | 'Ha Noi' | 'Da Nang' | 'Hue' | 'Can Tho' | 'Tay Ninh' // Thêm các thành phố khác vào đây nếu cần
-const cities = [
-   { name: 'Hồ Chí Minh', value: 'Ho Chi Minh' },
-   { name: 'Hà Nội', value: 'Ha Noi' },
-   { name: 'Đà Nẵng', value: 'Da Nang' },
-   { name: 'Huế', value: 'Hue' },
-   { name: 'Cần Thơ', value: 'Can Tho' },
-   { name: 'Tây Ninh', value: 'Tay Ninh' },
-   { name: 'Nha Trang', value: 'Nha Trang' },
-   { name: 'Vũng Tàu', value: 'Vung Tau' },
-   { name: 'Phan Thiết', value: 'Phan Thiet' },
-   { name: 'Buôn Ma Thuột', value: 'Buon Ma Thuot' },
-   { name: 'Lâm Đồng', value: 'Lam Dong' },
-   { name: 'An Giang', value: 'An Giang' },
-   { name: 'Bà Rịa - Vũng Tàu', value: 'Ba Ria - Vung Tau' },
-   { name: 'Bắc Giang', value: 'Bac Giang' },
-   { name: 'Bắc Kạn', value: 'Bac Kan' },
-   { name: 'Bạc Liêu', value: 'Bac Lieu' },
-   { name: 'Bắc Ninh', value: 'Bac Ninh' },
-   { name: 'Bến Tre', value: 'Ben Tre' },
-   { name: 'Bình Định', value: 'Binh Dinh' },
-   { name: 'Bình Dương', value: 'Binh Duong' },
-   { name: 'Bình Phước', value: 'Binh Phuoc' },
-   { name: 'Bình Thuận', value: 'Binh Thuan' },
-   { name: 'Cà Mau', value: 'Ca Mau' },
-   { name: 'Cao Bằng', value: 'Cao Bang' },
-   { name: 'Đắk Lắk', value: 'Dak Lak' },
-   { name: 'Đắk Nông', value: 'Dak Nong' },
-   { name: 'Điện Biên', value: 'Dien Bien' },
-   { name: 'Đồng Nai', value: 'Dong Nai' },
-   { name: 'Đồng Tháp', value: 'Dong Thap' },
-   { name: 'Gia Lai', value: 'Gia Lai' },
-   { name: 'Hà Giang', value: 'Ha Giang' },
-   { name: 'Hà Nam', value: 'Ha Nam' },
-   { name: 'Hà Tĩnh', value: 'Ha Tinh' },
-   { name: 'Hải Dương', value: 'Hai Duong' },
-   { name: 'Hải Phòng', value: 'Hai Phong' },
-   { name: 'Hậu Giang', value: 'Hau Giang' },
-   { name: 'Hòa Bình', value: 'Hoa Binh' },
-   { name: 'Hưng Yên', value: 'Hung Yen' },
-   { name: 'Khánh Hòa', value: 'Khanh Hoa' },
-   { name: 'Kiên Giang', value: 'Kien Giang' },
-   { name: 'Kon Tum', value: 'Kon Tum' },
-   { name: 'Lai Châu', value: 'Lai Chau' },
-   { name: 'Lạng Sơn', value: 'Lang Son' },
-   { name: 'Lào Cai', value: 'Lao Cai' },
-   { name: 'Long An', value: 'Long An' },
-   { name: 'Nam Định', value: 'Nam Dinh' },
-   { name: 'Nghệ An', value: 'Nghe An' },
-   { name: 'Ninh Bình', value: 'Ninh Binh' },
-   { name: 'Ninh Thuận', value: 'Ninh Thuan' },
-   { name: 'Phú Thọ', value: 'Phu Tho' },
-   { name: 'Phú Yên', value: 'Phu Yen' },
-   { name: 'Quảng Bình', value: 'Quang Binh' },
-   { name: 'Quảng Nam', value: 'Quang Nam' },
-   { name: 'Quảng Ngãi', value: 'Quang Ngai' },
-   { name: 'Quảng Ninh', value: 'Quang Ninh' },
-   { name: 'Quảng Trị', value: 'Quang Tri' },
-   { name: 'Sóc Trăng', value: 'Soc Trang' },
-   { name: 'Sơn La', value: 'Son La' },
-   { name: 'Tây Ninh', value: 'Tay Ninh' },
-   { name: 'Thái Bình', value: 'Thai Binh' },
-   { name: 'Thái Nguyên', value: 'Thai Nguyen' },
-   { name: 'Thanh Hóa', value: 'Thanh Hoa' },
-   { name: 'Thừa Thiên Huế', value: 'Thua Thien Hue' },
-   { name: 'Tiền Giang', value: 'Tien Giang' },
-   { name: 'Trà Vinh', value: 'Tra Vinh' },
-   { name: 'Tuyên Quang', value: 'Tuyen Quang' },
-   { name: 'Vĩnh Long', value: 'Vinh Long' },
-   { name: 'Vĩnh Phúc', value: 'Vinh Phuc' },
-   { name: 'Yên Bái', value: 'Yen Bai' }
-]
+import { faEnvelope, faHouseChimney, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
+import { format } from 'date-fns'; // import date
+import { vi } from 'date-fns/locale'; // Import ngôn ngữ tiếng Việt
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import logo from '~/assets/logo.svg';
+import { MenuAvt } from '~/pages/MainPage/components/MenuAvt';
+import { ModeToggle } from '~/pages/MainPage/components/mode-toggle';
+import { NewsTopic, newsTopics } from '~/services/const';
+import { cities } from '~/services/const/city';
+type CityType = 'Ho Chi Minh' | 'Ha Noi' | 'Da Nang' | 'Hue' | 'Can Tho' | 'Tay Ninh'
+
 export default function Header() {
-  const currentDate = format(new Date(), 'EEEE, dd/MM/yyyy', { locale: vi }) // Định dạng ngày tháng hiện tại với tiếng Việt
+  const currentDate = format(new Date(), 'EEEE, dd/MM/yyyy', { locale: vi }) 
   const [weather, setWeather] = useState({ temp: 29 })
   const [city, setCity] = useState<CityType>('Ho Chi Minh')
   const [isScrolled, setIsScrolled] = useState(false)
@@ -94,7 +23,7 @@ export default function Header() {
   useEffect(() => {
     const fetchWeather = async (city: CityType): Promise<void> => {
        try {
-          const apiKey = '3969490f133ac0be1449ae2f365d58cf' // Sử dụng API key của bạn
+          const apiKey = '3969490f133ac0be1449ae2f365d58cf' 
           const response = await axios.get(
              `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
           )
@@ -135,7 +64,7 @@ export default function Header() {
       <div className=" py-2">
         <div className='container'>
           <div className=" flex items-center mx-[120px]">
-          <div className='flex space-x-2'>
+          <div className='flex space-x-2 items-center mr-4'>
             <span>{currentDate}</span>
             <span>|</span>
             <span>
@@ -173,11 +102,11 @@ export default function Header() {
            
             <div className="flex items-center text-sm text-gray-700 ">
               <FontAwesomeIcon icon={faPhone} />
-              <span className="fa-solid fa-phone mr-2"></span>Đường dây nóng: <strong className="text-[#c31e40] mr-2">096.733.5089</strong>
+              <span className="fa-solid fa-phone mr-2"></span>Đường dây nóng: <strong className="text-[#c31e40] mx-2">096.733.5089</strong>
             </div>
             <div className="flex items-center text-sm text-gray-700">
               <FontAwesomeIcon icon={faEnvelope} />
-              <span className="icon icon-mail mr-2"></span>Email: <a href="mailto:gdtddientu@gmail.com" className="text-blue-600 hover:underline">gdtddientu@gmail.com</a>
+              <span className="icon icon-mail mr-2"></span>Email: <a href="mailto:gdtddientu@gmail.com" className="text-blue-600 hover:underline mx-2">gdtddientu@gmail.com</a>
             </div>
           </div>
         </div>
@@ -204,15 +133,6 @@ export default function Header() {
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleSearch}
               />
-              <a href={"/"}>
-                <img
-                  src={m_logo}
-                  alt="logo"
-                  width={76}
-                  className='h-[26px] mt-2 ml-8 hover:cursor-pointer'
-                />
-              </a>
-              <a href="/lich-su-doc" > Link nef</a>
               <MenuAvt />
             </div>
           </div>

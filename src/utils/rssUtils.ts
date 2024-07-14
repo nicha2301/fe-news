@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { RSS } from '../services/api/model/RSSModel'
 import axios from 'axios'
 import cheerio from 'cheerio'
+import { useEffect, useState } from 'react'
+import { RSS } from '../services/api/model/RSSModel'
 
 const parser = new DOMParser()
 export const RSSApi = (url: string, num?: number) => {

@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
-import { Pagination, Navigation } from "swiper/modules"
+import { Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { RSS } from "~/services/api/model/RSSModel"
 import bgHeading from "~/assets/img/bg-heading.png"
 import bgSpecialNews from "~/assets/img/bg-special_news.jpg"
+import { RSS } from "~/services/api/model/RSSModel"
 
 export const SpecialNews = (props: { data: RSS[] }) => {
   if (props.data.length === 0) {

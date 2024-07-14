@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { BeatLoader } from 'react-spinners'
 import { newsTopics } from '~/services/const'
+import { Topic } from '~/services/const/enum'
 import { mapSlugToTopic, rssFeed } from '~/services/const/map'
+import { HandleScroll } from '~/utils/HandleScroll'
 import { RSSApi } from '~/utils/rssUtils'
 import More from '../MainPage/components/More'
-import { Topic } from '~/services/const/enum'
-import { HandleScroll } from '~/utils/HandleScroll'
 
 export const TopicPage = () => {
   const { topicSlug } = useParams()

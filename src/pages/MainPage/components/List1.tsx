@@ -1,4 +1,3 @@
-import React from 'react'
 
 export default function List1() {
   return  <h3 className='font-bold leading-none py-3 border-b border-b-gray-300'>
