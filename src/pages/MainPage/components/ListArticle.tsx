@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 import { RSS } from "~/services/api/model/RSSModel"
 
-export const ListArticle = (props: { data: RSS[], header: boolean }) => {
+export const ListArticle = (props: { data: RSS[], header: boolean,  onRemoveArticle?: (link: string) => void  }) => {
   if (props.data.length === 0) {
     return <BeatLoader />
   }
@@ -33,6 +33,14 @@ export const ListArticle = (props: { data: RSS[], header: boolean }) => {
               <div className="story__summary mt-2 leading-6 h-22 text-[#4E4E4E] text-[14px]">
                 {item.description}
               </div>
+              {props.onRemoveArticle && (
+                <button
+                  onClick={() => props.onRemoveArticle?.(item.link!)}
+                  className="mt-2 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"
+                >
+                  Xóa
+                </button>
+              )}
             </div>
           </article>
         ))
