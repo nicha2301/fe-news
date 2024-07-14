@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 import { Pagination, Navigation } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
