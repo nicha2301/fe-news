@@ -80,6 +80,11 @@
   transition: all .1s ease-in-out;
 }
 
+body>div:last-of-type {
+  transform: none;
+  transition: none;
+}
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
 }
