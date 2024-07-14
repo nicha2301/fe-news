@@ -88,8 +88,36 @@ export default function Header() {
   const [city, setCity] = useState<CityType>('Ho Chi Minh')
   const [isScrolled, setIsScrolled] = useState(false)
   const [query, setQuery] = useState('')
+  //@ts-ignore
+  const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
   const nav = useNavigate()
   const topics: NewsTopic[] = newsTopics
+
+  useEffect(() => {
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      const recognizer = new SpeechRecognition();
+      recognizer.continuous = false;
+      recognizer.lang = 'vi-VN';
+      recognizer.interimResults = false;
+      recognizer.maxAlternatives = 1;
+  //@ts-ignore
+      recognizer.onresult = (event: SpeechRecognitionEvent) => {
+        const transcript = event.results[0][0].transcript;
+        setQuery(transcript);
+      };
+
+      setRecognition(recognizer);
+    } else {
+      console.warn('Trình duyệt của bạn không hỗ trợ Web Speech API');
+    }
+  }, []);
+
+  const startListening = () => {
+    if (recognition) {
+      recognition.start();
+    }
+  };
   useEffect(() => {
     const fetchWeather = async (city: CityType): Promise<void> => {
        try {
@@ -122,8 +150,9 @@ export default function Header() {
     }
   }, [])
 
-  const handleSearch = (event: any) => {
-    if (event.key === 'Enter' && query.trim() !== '') {
+  const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (query.trim() !== '') {
       nav(`tim-kiem/?q=${query}`)
     }
   }
@@ -196,13 +225,22 @@ export default function Header() {
               />
             </a>
             <div className="relative flex flex-row">
-              <input
-                type="text"
-                className="form-control txtsearch border border-gray-300 rounded-full py-2 px-4"
-                placeholder="Tìm kiếm..."
-                onChange={(e) => setQuery(e.target.value)}
-                onKeyDown={handleSearch}
-              />
+               <form onSubmit={handleSearch} className='flex items-center border rounded bg-primary-foreground'>
+      <input
+        type='search'
+        className='p-2 rounded-l outline-none border-none bg-primary-foreground'
+        placeholder='Tìm kiếm...'
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <button type='button' onClick={startListening} className='p-2 text-white'>
+        🎤
+      </button>
+      <button type='submit' className='bg-primaryColor p-2 whitespace-nowrap rounded-r text-white'>
+        Tìm kiếm
+      </button>
+    </form>
+             
               <a href={"/"}>
                 <img
                   src={m_logo}
