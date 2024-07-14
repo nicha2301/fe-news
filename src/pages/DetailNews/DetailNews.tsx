@@ -11,6 +11,7 @@ import "./style.css"
 import { SpecialNews } from "../MainPage/components/SpecialNews"
 import { Article } from "~/utils/Article"
 import { ListArticle } from "../MainPage/components/ListArticle"
+import { CommentBox } from "../MainPage/components/CommentBox"
 
 export const DetailNews = () => {
   const { slug } = useParams()
@@ -36,6 +37,7 @@ export const DetailNews = () => {
       <div className="many-pack">
         <div className="box-content content-list">
           <Article url={`https://giaoducthoidai.vn/${slug}`} />
+          <CommentBox/>
           <NewsSwiper data={data2} />
           <MainPage4 data={data4} />
           <SpecialNews data={data3} />

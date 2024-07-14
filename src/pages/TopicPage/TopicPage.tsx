@@ -22,7 +22,6 @@ export const TopicPage = () => {
   const subTitle = newsTopics.filter(item => item.name === title)
 
   useEffect(() => {
-    console.log(distanceFromTop, distanceFromBottom);
     if (distanceFromBottom < 300) {
       setAmountArticle(prev => prev + 5);
     }

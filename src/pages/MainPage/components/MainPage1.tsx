@@ -25,13 +25,13 @@ export default function MainPage1(props: { data: RSS[], data2: RSS[] }) {
       </div>
       <div className='flex items-start gap-x-6 mt-5'>
         <div className='w-[45%] flex flex-col gap-y-1'>
-          <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
+          <Link to={`/detail/${props.data[0].link?.split('/').pop()}`}>
             <img src={props.data[0].image} className='w-full aspect-video object-cover cursor-pointer' alt='' />
-          </a>
+          </Link>
           <h2 className='font-bold text-[17px] text-[#404040] hover:text-primaryColor cursor-pointer pt-3'>
-            <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
+            <Link to={`/detail/${props.data[0].link?.split('/').pop()}`}>
               {props.data[0].title}
-            </a>
+            </Link>
           </h2>
           <p className='text-[12px] text-[#707070]'>{props.data[0].pubDate}</p>
           <p className="text-[14px] text-[#4E4E4E]">
@@ -42,9 +42,9 @@ export default function MainPage1(props: { data: RSS[], data2: RSS[] }) {
           {props.data.slice(1).map((item, index) => (
             <article key={index} className="mb-5 story">
               <figure className="w-[90px] h-[50px] float-left mr-3 mt-[3px] story__thumb">
-                <a href={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
+                <Link to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
                   <img className="" src={item.image} alt={item.title} />
-                </a>
+                </Link>
               </figure>
               <h2 className="font-semibold text-base text-[15px] text-[#404040] hover:text-primaryColor cursor-pointer story__heading">
                 <Link className="cms-link" to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
@@ -59,9 +59,9 @@ export default function MainPage1(props: { data: RSS[], data2: RSS[] }) {
           <div className='p-3 flex flex-col gap-y-3 border-b-[1px] border-l-[1px] border-r-[1px] [box-shadow:5px_5px_5px_rgba(0,_0,_0,_.1)]'>
             {props.data2.map((item, index) => (
               <h3 key={index} className='font-bold text-[15px] text-[#4E4E4E] py-1 border-b  hover:text-primaryColor cursor-pointer'>
-                <a href={`/detail/${item.link?.split('/').pop()}`}>
+                <Link to={`/detail/${item.link?.split('/').pop()}`}>
                   {item.title}
-                </a>
+                </Link>
               </h3>
             ))}
           </div>

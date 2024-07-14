@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { useLocation } from 'react-router-dom';
 import Slider from "~/pages/MainPage/components/Slider/Slider";
+import { NewsAlerts } from "~/utils/Alert";
 
 export default function Layout({ children }: { children: ReactNode }) {
   const location = useLocation();
@@ -19,6 +20,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         </div>
       </div>
       <Footer />
+      <NewsAlerts/>
     </div>
   );
 }

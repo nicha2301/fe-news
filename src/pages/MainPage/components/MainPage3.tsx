@@ -63,11 +63,11 @@ export default function MainPage3(props: { data: RSS[] }) {
         {props.data.map((item, index) => (
           <SwiperSlide key={index}>
             <div key={index} className='flex items-center gap-4'>
-              <a className='block w-1/2' href={`/detail/${item.link?.split('/').pop()}`}>
+              <Link className='block w-1/2' to={`/detail/${item.link?.split('/').pop()}`}>
                 <img src={item.image} className='w-full aspect-video object-cover' alt='' />
-              </a>
+              </Link>
               <h3 className='font-semibold w-1/2 hover:text-primaryColor cursor-pointer'>
-                <a href={`/detail/${item.link?.split('/').pop()}`}>{item.title}</a>
+                <Link to={`/detail/${item.link?.split('/').pop()}`}>{item.title}</Link>
               </h3>
             </div>
           </SwiperSlide>
