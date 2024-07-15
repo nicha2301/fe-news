@@ -3,6 +3,18 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 import { BeatLoader } from 'react-spinners';
 import DOMPurify from "dompurify";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  LinkedinShareButton,
+  LineIcon,
+  EmailShareButton,
+  EmailIcon,
+  TelegramShareButton,
+  TelegramIcon
+} from 'react-share'
 import { Helmet } from "react-helmet";
 const cssContent = `
 .article>* {
@@ -1045,6 +1057,7 @@ export const Article: React.FC<{ url: string }> = (props) => {
   const [contents, setContents] = useState<{ selector: string, html: string }[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const selectors = ['.box-social', '.article'];
+  const pathname = window.location.href
   const [title, setTitle] = useState<any>('')
   useEffect(() => {
     const fetchData = async () => {
@@ -1097,7 +1110,7 @@ export const Article: React.FC<{ url: string }> = (props) => {
     const element = document.createElement('a')
     const file = new Blob([htmlContent], { type: 'text/html' })
     element.href = URL.createObjectURL(file)
-    element.download = `article.html`
+    element.download = `${title }.html`
     document.body.appendChild(element) // Required for this to work in FireFox
     element.click()
  }
@@ -1106,6 +1119,23 @@ export const Article: React.FC<{ url: string }> = (props) => {
       <Helmet>
                 <title>{title}</title>
             </Helmet>
+            <div className='flex items-center gap-x-4 mb-3'>
+            <FacebookShareButton url={pathname}>
+               <FacebookIcon size={40} round />
+            </FacebookShareButton>
+            <TwitterShareButton url={pathname}>
+               <TwitterIcon size={40} round />
+            </TwitterShareButton>
+            <LinkedinShareButton url={pathname}>
+               <LineIcon size={40} round />
+            </LinkedinShareButton>
+            <EmailShareButton url={pathname}>
+               <EmailIcon size={40} round />
+            </EmailShareButton>
+            <TelegramShareButton url={pathname}>
+               <TelegramIcon size={40} round />
+            </TelegramShareButton>
+         </div>
             <button  onClick={handleDownload} type="button" className="button mb-2">
   <div className="button-top">Tải về</div>
   <div className="button-bottom"></div>
