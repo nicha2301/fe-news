@@ -35,6 +35,7 @@ export default function MainPage() {
           <Helmet>
                 <title>Báo Giáo dục và Thời đại Online</title>
             </Helmet>
+
       <Event data={four_direction} />
       <MainPage1 data={defense_education} data2={newestArticle} />
       <MainPage2 data={topic_news} />
