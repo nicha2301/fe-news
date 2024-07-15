@@ -21,7 +21,7 @@ export default function MainPage2(props: { data: RSS[] }) {
               <img className="" src={props.data[0].image} alt={props.data[0].title} />
             </a>
           </figure>
-          <h2 className="font-semibold text-lg leading-6 text-[#404040] hover:text-primaryColor cursor-pointer story__heading">
+          <h2 className="font-semibold text-lg leading-6  hover:text-primaryColor cursor-pointer story__heading">
             <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
               {props.data[0].title}
             </a>
@@ -42,7 +42,7 @@ export default function MainPage2(props: { data: RSS[] }) {
                   <img className="" src={item.image} alt={item.title} />
                 </a>
               </figure>
-              <h2 className="font-semibold text-base leading-6 text-[#404040] hover:text-primaryColor cursor-pointer story__heading">
+              <h2 className="font-semibold text-base leading-6  hover:text-primaryColor cursor-pointer story__heading">
                 <Link className="cms-link" to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
                   {item.title}
                 </Link>

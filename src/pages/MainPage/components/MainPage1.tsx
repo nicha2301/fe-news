@@ -28,13 +28,13 @@ export default function MainPage1(props: { data: RSS[], data2: RSS[] }) {
           <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
             <img src={props.data[0].image} className='w-full aspect-video object-cover cursor-pointer' alt='' />
           </a>
-          <h2 className='font-bold text-[17px] text-[#404040] hover:text-primaryColor cursor-pointer pt-3'>
+          <h2 className='font-bold text-[17px]  hover:text-primaryColor cursor-pointer pt-3'>
             <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
               {props.data[0].title}
             </a>
           </h2>
           <p className='text-[12px] text-[#707070]'>{props.data[0].pubDate}</p>
-          <p className="text-[14px] text-[#4E4E4E]">
+          <p className="text-[14px] ">
             {props.data[0].description}
           </p>
         </div>
@@ -46,7 +46,7 @@ export default function MainPage1(props: { data: RSS[], data2: RSS[] }) {
                   <img className="" src={item.image} alt={item.title} />
                 </a>
               </figure>
-              <h2 className="font-semibold text-base text-[15px] text-[#404040] hover:text-primaryColor cursor-pointer story__heading">
+              <h2 className="font-semibold text-base text-[15px]  hover:text-primaryColor cursor-pointer story__heading">
                 <Link className="cms-link" to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
                   {item.title}
                 </Link>
@@ -58,7 +58,7 @@ export default function MainPage1(props: { data: RSS[], data2: RSS[] }) {
         <div className='w-[27%] flex flex-col gap-y-10'>
           <div className='p-3 flex flex-col gap-y-3 border-b-[1px] border-l-[1px] border-r-[1px] [box-shadow:5px_5px_5px_rgba(0,_0,_0,_.1)]'>
             {props.data2.map((item, index) => (
-              <h3 key={index} className='font-bold text-[15px] text-[#4E4E4E] py-1 border-b  hover:text-primaryColor cursor-pointer'>
+              <h3 key={index} className='font-bold text-[15px]  py-1 border-b  hover:text-primaryColor cursor-pointer'>
                 <a href={`/detail/${item.link?.split('/').pop()}`}>
                   {item.title}
                 </a>

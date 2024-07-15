@@ -37,7 +37,7 @@ export const SpecialNews = (props: { data: RSS[] }) => {
                       <img src={item.image} alt={item.title} />
                     </a>
                   </figure>
-                  <h3 className="story__heading mt-2.5 mb-1 text-[16px] font-medium text-[#404040] px-2.5 line-clamp-4 overflow-hidden text-ellipsis hover:opacity-60 cursor-pointer">
+                  <h3 className="story__heading mt-2.5 mb-1 text-[16px] font-medium  px-2.5 line-clamp-4 overflow-hidden text-ellipsis hover:opacity-60 cursor-pointer">
                     <a className="cms-link" href={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
                       {item.title}
                     </a>
