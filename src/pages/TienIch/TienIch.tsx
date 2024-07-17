@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { Helmet } from "react-helmet"
 import ExchangeRates from "~/components/TienIch/ExchangeRate"
-import GoldPrices from "~/components/TienIch/GoldPrices"
 import LotteryResults from "~/components/TienIch/LotteryResult"
 import StockInfo from "~/components/TienIch/StockInfo"
 interface NavigationProps {
@@ -18,14 +17,6 @@ const Navigation = ({ setActiveTab, activeTab }:NavigationProps) => {
                    onClick={() => setActiveTab('exchange-rate')}
                 >
                    Tỷ giá ngoại tệ
-                </button>
-             </li>
-             <li>
-                <button
-                   className={`${activeTab === 'gold-price' && 'text-primaryColor'}`}
-                   onClick={() => setActiveTab('gold-price')}
-                >
-                   Giá vàng
                 </button>
              </li>
              <li>
@@ -62,7 +53,6 @@ const Navigation = ({ setActiveTab, activeTab }:NavigationProps) => {
           </h1>
           <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
           {activeTab === 'exchange-rate' && <ExchangeRates />}
-          {activeTab === 'gold-price' && <GoldPrices />}
           {activeTab === 'lottery-results' && <LotteryResults />}
           {activeTab === 'stock-market' && <StockInfo />}
         
