@@ -43,6 +43,7 @@
     "react-google-login": "^5.2.2",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.23.1",
+    "react-share": "^5.1.0",
     "react-spinners": "^0.13.8",
     "rss-parser": "^3.13.0",
     "swiper": "^11.1.4",

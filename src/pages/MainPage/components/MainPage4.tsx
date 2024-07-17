@@ -17,12 +17,12 @@ export default function MainPage2(props: { data: RSS[] }) {
       <div className="grid grid-cols-[380px_1fr] gap-6 box-content" data-source="content-box-focus">
         <article className="story primary">
           <figure className="mb-2.5 story__thumb">
-            <Link to={`/detail/${props.data[0].link?.split('/').pop()}`} title={props.data[0].title}>
-              <img className="" src={props.data[0].image} alt={props.data[0].title} />
-            </Link>
+            <a href={`/detail/${props.data[0].link?.split('/').pop()}`} title={props.data[0].title}>
+              <img loading="lazy" className="" src={props.data[0].image} alt={props.data[0].title} />
+            </a>
           </figure>
-          <h2 className="font-semibold text-lg leading-6 text-[#404040] hover:text-primaryColor cursor-pointer story__heading">
-            <Link to={`/detail/${props.data[0].link?.split('/').pop()}`}>
+          <h2 className="font-semibold text-lg leading-6  hover:text-primaryColor cursor-pointer story__heading">
+            <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
               {props.data[0].title}
             </Link>
           </h2>
@@ -38,11 +38,11 @@ export default function MainPage2(props: { data: RSS[] }) {
           {props.data.slice(1).map((item, index) => (
             <article key={index} className="mb-5 story">
               <figure className="w-[135px] h-[90px] float-left mr-3 mt-[3px] story__thumb">
-                <Link to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
-                  <img className="" src={item.image} alt={item.title} />
-                </Link>
+                <a href={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
+                  <img loading="lazy" className="" src={item.image} alt={item.title} />
+                </a>
               </figure>
-              <h2 className="font-semibold text-base leading-6 text-[#404040] hover:text-primaryColor cursor-pointer story__heading">
+              <h2 className="font-semibold text-base leading-6  hover:text-primaryColor cursor-pointer story__heading">
                 <Link className="cms-link" to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
                   {item.title}
                 </Link>

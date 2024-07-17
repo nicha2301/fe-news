@@ -7,6 +7,7 @@ import More from './components/More'
 import { Topic } from '~/services/const/enum'
 import { rssFeed } from '../../services/const/map'
 import { BeatLoader } from 'react-spinners'
+import { Helmet } from 'react-helmet'
 
 export default function MainPage() {
   const newestArticle = RSSApi(rssFeed[Topic.HOME], 6)
@@ -31,6 +32,9 @@ export default function MainPage() {
   }
   return (
     <div className='flex flex-col gap-y-4 '>
+          <Helmet>
+                <title>Báo Giáo dục và Thời đại Online</title>
+            </Helmet>
       <Event data={four_direction} />
       <MainPage1 data={defense_education} data2={newestArticle} />
       <MainPage2 data={topic_news} />
@@ -46,7 +50,6 @@ export default function MainPage() {
       <Media data={media} />
       <MainPage2 data={topic_culture} />
       <MainPage2 data={topic_sport} />
-      <More />
       
     </div>
   )

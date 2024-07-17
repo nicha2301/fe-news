@@ -34,11 +34,11 @@ export const SpecialNews = (props: { data: RSS[] }) => {
               <SwiperSlide key={index}>
                 <article key={index} className="story bg-white h-[260px] overflow-hidden">
                   <figure className="story__thumb">
-                    <Link to={`/detail/${item.link?.split('/').pop()}`}>
-                      <img src={item.image} alt={item.title} />
-                    </Link>
+                    <a href={`/detail/${item.link?.split('/').pop()}`}>
+                      <img loading="lazy" src={item.image} alt={item.title} />
+                    </a>
                   </figure>
-                  <h3 className="story__heading mt-2.5 mb-1 text-[16px] font-medium text-[#404040] px-2.5 line-clamp-4 overflow-hidden text-ellipsis hover:opacity-60 cursor-pointer">
+                  <h3 className="story__heading mt-2.5 mb-1 text-[16px] font-medium  px-2.5 line-clamp-4 overflow-hidden text-ellipsis hover:opacity-60 cursor-pointer">
                     <a className="cms-link" href={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
                       {item.title}
                     </a>

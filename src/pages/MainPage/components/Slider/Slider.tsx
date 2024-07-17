@@ -22,7 +22,7 @@ const Slider = () => {
     };
 
     return (
-        <div className='slider-container'>
+        <div className='slider-container hidden lg:block'>
             <div className='flex items-end gap-x-2 container-event'>
                 <h2 className="flex items-center gap-x-1 text-xl font-bold text-primaryColor mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">

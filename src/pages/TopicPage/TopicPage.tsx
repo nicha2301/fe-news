@@ -7,6 +7,10 @@ import { mapSlugToTopic, rssFeed } from '~/services/const/map'
 import { HandleScroll } from '~/utils/HandleScroll'
 import { RSSApi } from '~/utils/rssUtils'
 import More from '../MainPage/components/More'
+import { Topic } from '~/services/const/enum'
+import { HandleScroll } from '~/utils/HandleScroll'
+import { Helmet } from 'react-helmet'
+
 
 export const TopicPage = () => {
   const { topicSlug } = useParams()
@@ -40,10 +44,13 @@ export const TopicPage = () => {
 
   return (
     <>
+        <Helmet>
+                <title>{title}</title>
+            </Helmet>
       <div className="cate-breadcrumb flex items-center mb-8 mt-3">
         <h1>
           <a
-            className="cate-parent border-l-[7px] border-[#c31e40] text-[#363636] inline-block text-[20px] font-semibold pl-2.5 no-underline uppercase"
+            className="cate-parent border-l-[7px] border-[#c31e40]  inline-block text-[20px] font-semibold pl-2.5 no-underline uppercase"
             href="#"
             title={title}>
             {title}
@@ -53,7 +60,7 @@ export const TopicPage = () => {
           {subTitle.length > 0 && subTitle[0].subTopics?.map((item, index) => (
             <li key={index}>
               <Link
-                className="cate-child text-[#363636] inline-block text-[14px] font-semibold mx-[10px] my-[0] no-underline hover:text-[#c31e40]"
+                className="cate-child  inline-block text-[14px] font-semibold mx-[10px] my-[0] no-underline hover:text-[#c31e40]"
                 title={item.name}
                 to={`/${item.link}`}>
                 {item.name}
@@ -70,10 +77,10 @@ export const TopicPage = () => {
               <article className="story">
                 <figure className="story__thumb">
                   <Link className="cms-link" to={`/detail/${data[0].link?.split('/').pop()}`} target="_self">
-                    <img className="lazyloaded w-[650px]" src={data[0].image} data-src={data[0].image} alt={data[0].title} />
+                    <img loading="lazy" className="lazyloaded w-[650px]" src={data[0].image} data-src={data[0].image} alt={data[0].title} />
                   </Link>
                 </figure>
-                <h2 className="story__heading pt-3 text-[#363636] text-[22px]">
+                <h2 className="story__heading pt-3  text-[22px]">
                   <Link className="cms-link font-semibold hover:text-primaryColor cursor-pointer" to={`/detail/${data[0].link?.split('/').pop()}`} target="_self">
                     {data[0].title}
                   </Link>
@@ -86,16 +93,16 @@ export const TopicPage = () => {
               <article key={index} className="story mt-[25px] h-[145px]">
                 <figure className="story__thumb float-left mr-[20px]">
                   <Link to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
-                    <img className="lazyloaded w-[220px] h-[145px]" src={item.image} alt={item.title} />
+                    <img loading="lazy" className="lazyloaded w-[220px] h-[145px]" src={item.image} alt={item.title} />
                   </Link>
                 </figure>
                 <h3 className="story__heading">
-                  <Link className="cms-link font-semibold text-[16px] leading-[24px] text-[#404040] hover:text-primaryColor cursor-pointer" to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
+                  <Link className="cms-link font-semibold text-[16px] leading-[24px]  hover:text-primaryColor cursor-pointer" to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
                     {item.title}
                   </Link>
                 </h3>
                 <time className="story__time mt-[5px] text-[12px] leading-[14px] text-[#959595]">{item.pubDate}</time>
-                <div className="story__summary story__shorten mt-[8px] text-[15px] text-[#4E4E4E] leading-[22px] max-h-[88px] overflow-hidden">
+                <div className="story__summary story__shorten mt-[8px] text-[15px]  leading-[22px] max-h-[88px] overflow-hidden">
                   {item.description}
                 </div>
               </article>
@@ -107,7 +114,7 @@ export const TopicPage = () => {
             <div className="header-bg mb-7">
               <div className="box-heading mb-5 pb-[3px]">
                 <h3 className="wrap-heading">
-                  <span className="heading bg-[#f5f5f5] border-l-[7px] border-[#c31e40] text-[#4E4E4E] text-[22px] font-semibold block py-[5px] px-[5px]">Tin tiêu điểm</span>
+                  <span className="heading bg-[#f5f5f5] border-l-[7px] border-[#c31e40]  text-[22px] font-semibold block py-[5px] px-[5px]">Tin tiêu điểm</span>
                 </h3>
               </div>
               <div className="box-content" data-source="zone-box-focus-8">
@@ -115,10 +122,10 @@ export const TopicPage = () => {
                   <article key={index} className="story mt-3 first:mt-0">
                     <figure className="story__thumb w-[160px] h-[105px]">
                       <Link to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
-                        <img className="lazyloaded h-[105px]" src={item.image} alt={item.title} />
+                        <img loading="lazy" className="lazyloaded h-[105px]" src={item.image} alt={item.title} />
                       </Link>
                     </figure>
-                    <h2 className="story__heading text-[12px] text-[#4E4E4E] font-semibold pt-2">
+                    <h2 className="story__heading text-[12px]  font-semibold pt-2">
                       <Link className="cms-link hover:text-primaryColor cursor-pointer" to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
                         {item.title}
                       </Link>
@@ -132,7 +139,7 @@ export const TopicPage = () => {
             <div className="header-bg mb-7">
               <div className="box-heading mb-5 pb-[3px]">
                 <h3 className="wrap-heading">
-                  <span className="heading bg-[#f5f5f5] border-l-[7px] border-[#c31e40] text-[#4E4E4E] text-[22px] font-semibold block py-[5px] px-[5px]">Tin nổi bật</span>
+                  <span className="heading bg-[#f5f5f5] border-l-[7px] border-[#c31e40]  text-[22px] font-semibold block py-[5px] px-[5px]">Tin nổi bật</span>
                 </h3>
               </div>
               <div className="box-content" data-source="zone-box-focus-8">
@@ -140,10 +147,10 @@ export const TopicPage = () => {
                   <article key={index} className="story mt-3 first:mt-0">
                     <figure className="story__thumb w-[160px] h-[105px]">
                       <Link to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
-                        <img className="lazyloaded h-[105px]" src={item.image} alt={item.title} />
+                        <img loading="lazy" className="lazyloaded h-[105px]" src={item.image} alt={item.title} />
                       </Link>
                     </figure>
-                    <h2 className="story__heading text-[12px] text-[#4E4E4E] font-semibold pt-2">
+                    <h2 className="story__heading text-[12px]  font-semibold pt-2">
                       <Link className="cms-link hover:text-primaryColor cursor-pointer" to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
                         {item.title}
                       </Link>

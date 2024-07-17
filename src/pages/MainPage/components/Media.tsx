@@ -21,13 +21,13 @@ export default function Media(props: { data: RSS[] }) {
           </svg>
         </button>
       </div>
-      <div className='mt-3 grid grid-cols-4 gap-5'>
+      <div className='mt-3 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 gap-5'>
         {props.data.length > 0 &&
           props.data.map((item, index) => (
             <div key={index} className='flex flex-col gap-y-2'>
-              <Link to={`/detail/${item.link?.split('/').pop()}`}>
-                <img src={item.image} className='w-full aspect-video object-cover' alt='' />
-              </Link>
+              <a href={`/detail/${item.link?.split('/').pop()}`}>
+                <img loading="lazy" src={item.image} className='w-full aspect-video object-cover' alt='' />
+              </a>
               <p className='font-bold text-[13px] text-[#FFFFFF] hover:text-[#ccc] cursor-pointer'>
                 <Link to={`/detail/${item.link?.split('/').pop()}`}>
                   {item.title}
