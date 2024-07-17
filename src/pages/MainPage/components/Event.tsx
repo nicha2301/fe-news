@@ -12,7 +12,7 @@ export default function Event(props: { data: RSS[] }) {
       <div className='flex items-start flex-col lg:flex-row gap-5'>
         <div className='lg:w-1/2 w-full'>
           <Link to={`/detail/${props.data[0].link?.split('/').pop()}`}>
-            <img src={props.data[0].image} className='w-full aspect-video object-cover' alt='' />
+            <img loading="lazy" src={props.data[0].image} className='w-full aspect-video object-cover' alt='' />
           </Link>
         </div>
         <div className='lg:w-[30%] w-full flex flex-col gap-y-4'>
@@ -31,7 +31,7 @@ export default function Event(props: { data: RSS[] }) {
         {props.data.slice(1).map((item, index) => (
           <div key={index} className='flex flex-col gap-y-1'>
             <Link to={`/detail/${item.link?.split('/').pop()}`}>
-              <img src={item.image} className='w-full aspect-video object-cover' alt='' />
+              <img loading="lazy" src={item.image} className='w-full aspect-video object-cover' alt='' />
             </Link>
             <h3 className='font-semibold text-[14px]  hover:text-primaryColor cursor-pointer'>
               <Link to={`/detail/${item.link?.split('/').pop()}`}>

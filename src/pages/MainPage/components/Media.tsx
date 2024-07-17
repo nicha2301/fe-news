@@ -27,7 +27,7 @@ export default function Media(props: { data: RSS[] }) {
           props.data.map((item, index) => (
             <div key={index} className='flex flex-col gap-y-2'>
               <a href={`/detail/${item.link?.split('/').pop()}`}>
-                <img src={item.image} className='w-full aspect-video object-cover' alt='' />
+                <img loading="lazy" src={item.image} className='w-full aspect-video object-cover' alt='' />
               </a>
               <p className='font-bold text-[13px] text-[#FFFFFF] hover:text-[#ccc] cursor-pointer'>
                 <a href={`/detail/${item.link?.split('/').pop()}`}>

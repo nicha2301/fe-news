@@ -20,7 +20,7 @@ export const ListArticle = (props: { data: RSS[], header: boolean }) => {
           <article className="story mt-7 overflow-hidden" key={index}>
             <figure className="story__thumb w-[300px] float-left mr-[20px]">
               <Link className="cms-link" to={`/detail/${item.link?.split('/').pop()}`} target="_self">
-                <img className="lazyloaded" src={item.image} data-src={item.image} alt={item.title} />
+                <img loading="lazy" className="lazyloaded" src={item.image} data-src={item.image} alt={item.title} />
               </Link>
             </figure>
             <div className="story__heading">

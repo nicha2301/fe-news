@@ -26,7 +26,7 @@ export const NewsSwiper = (props: { data: RSS[] }) => {
             <SwiperSlide key={index}>
               <div key={index} className='flex flex-col gap-y-2'>
                 <a href={`/detail/${item.link?.split('/').pop()}`}>
-                  <img src={item.image} className='w-[245px] h-[165px]' alt={item.title} />
+                  <img loading="lazy" src={item.image} className='w-[245px] h-[165px]' alt={item.title} />
                 </a>
                 <p className='font-semibold text-[15px] text-[#FFFFFF] hover:text-[#ccc] cursor-pointer'>
                   <a href={`/detail/${item.link?.split('/').pop()}`}>

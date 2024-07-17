@@ -74,7 +74,7 @@ export const TopicPage = () => {
               <article className="story">
                 <figure className="story__thumb">
                   <Link className="cms-link" to={`/detail/${data[0].link?.split('/').pop()}`} target="_self">
-                    <img className="lazyloaded w-[650px]" src={data[0].image} data-src={data[0].image} alt={data[0].title} />
+                    <img loading="lazy" className="lazyloaded w-[650px]" src={data[0].image} data-src={data[0].image} alt={data[0].title} />
                   </Link>
                 </figure>
                 <h2 className="story__heading pt-3  text-[22px]">
@@ -90,7 +90,7 @@ export const TopicPage = () => {
               <article key={index} className="story mt-[25px] h-[145px]">
                 <figure className="story__thumb float-left mr-[20px]">
                   <Link to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
-                    <img className="lazyloaded w-[220px] h-[145px]" src={item.image} alt={item.title} />
+                    <img loading="lazy" className="lazyloaded w-[220px] h-[145px]" src={item.image} alt={item.title} />
                   </Link>
                 </figure>
                 <h3 className="story__heading">
@@ -119,7 +119,7 @@ export const TopicPage = () => {
                   <article key={index} className="story mt-3 first:mt-0">
                     <figure className="story__thumb w-[160px] h-[105px]">
                       <Link to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
-                        <img className="lazyloaded h-[105px]" src={item.image} alt={item.title} />
+                        <img loading="lazy" className="lazyloaded h-[105px]" src={item.image} alt={item.title} />
                       </Link>
                     </figure>
                     <h2 className="story__heading text-[12px]  font-semibold pt-2">
@@ -144,7 +144,7 @@ export const TopicPage = () => {
                   <article key={index} className="story mt-3 first:mt-0">
                     <figure className="story__thumb w-[160px] h-[105px]">
                       <Link to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
-                        <img className="lazyloaded h-[105px]" src={item.image} alt={item.title} />
+                        <img loading="lazy" className="lazyloaded h-[105px]" src={item.image} alt={item.title} />
                       </Link>
                     </figure>
                     <h2 className="story__heading text-[12px]  font-semibold pt-2">

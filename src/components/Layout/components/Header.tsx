@@ -221,7 +221,7 @@ export default function Header() {
           <div className="mx-[120px] flex justify-between items-center">
             <ModeToggle/>
             <a href={"/"}>
-              <img
+              <img loading="lazy"
                 src={logo}
                 alt="logo"
                 width={160}
@@ -246,7 +246,7 @@ export default function Header() {
     </form>
              
               <a href={"/"}>
-                <img
+                <img loading="lazy"
                   src={m_logo}
                   alt="logo"
                   width={76}
@@ -294,7 +294,7 @@ export default function Header() {
 
         </button>
 
-       <Link to={'/'}> <img src="/src/assets/logo.svg" className='w-16 h-12' alt="" /></Link>
+       <Link to={'/'}> <img loading="lazy" src="/src/assets/logo.svg" className='w-16 h-12' alt="" /></Link>
       </div>
     </div>
   </header>

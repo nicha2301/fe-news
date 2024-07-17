@@ -16,7 +16,7 @@ export default function MainPage2(props: { data: RSS[] }) {
       <div className='mt-4 flex items-start lg:flex-row flex-col gap-4'>
         <div className='w-full lg:w-1/2'>
           <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
-            <img src={props.data[0].image} className='w-full aspect-video object-cover cursor-pointer' alt='' />
+            <img loading="lazy" src={props.data[0].image} className='w-full aspect-video object-cover cursor-pointer' alt='' />
           </a>
           <h2 className='font-bold text-[17px]  hover:text-primaryColor cursor-pointer pt-3'>
             <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
@@ -32,7 +32,7 @@ export default function MainPage2(props: { data: RSS[] }) {
           {props.data.slice(1).map((item, index) => (
             <div key={index} className='flex flex-col gap-y-1'>
               <a href={`/detail/${item.link?.split('/').pop()}`}>
-                <img src={item.image} className='w-full aspect-video object-cover' alt='' />
+                <img loading="lazy" src={item.image} className='w-full aspect-video object-cover' alt='' />
               </a>
               <h3 className='font-semibold text-[14px]  hover:text-primaryColor cursor-pointer'>
                 <a href={`/detail/${item.link?.split('/').pop()}`}>

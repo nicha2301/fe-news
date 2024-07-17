@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="container grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="flex flex-col items-center ">
           <div className="text-2xl font-bold mb-2">
-            <img
+            <img loading="lazy"
               src={logoFooter}
               alt="logo"
               width={200}

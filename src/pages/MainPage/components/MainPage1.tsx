@@ -26,7 +26,7 @@ export default function MainPage1(props: { data: RSS[], data2: RSS[] }) {
     <div className='flex flex-col md:flex-row items-start gap-x-6 mt-5'>
       <div className='w-full md:w-[45%] flex flex-col gap-y-1'>
         <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
-          <img src={props.data[0].image} className='w-full aspect-video object-cover cursor-pointer' alt='' />
+          <img loading="lazy" src={props.data[0].image} className='w-full aspect-video object-cover cursor-pointer' alt='' />
         </a>
         <h2 className='font-bold text-[17px] hover:text-primaryColor cursor-pointer pt-3'>
           <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
@@ -43,7 +43,7 @@ export default function MainPage1(props: { data: RSS[], data2: RSS[] }) {
           <article key={index} className="mb-5 story">
             <figure className="w-[90px] h-[50px] float-left mr-3 mt-[3px] story__thumb">
               <a href={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
-                <img className="" src={item.image} alt={item.title} />
+                <img loading="lazy" className="" src={item.image} alt={item.title} />
               </a>
             </figure>
             <h2 className="font-semibold text-base text-[15px] hover:text-primaryColor cursor-pointer story__heading">
