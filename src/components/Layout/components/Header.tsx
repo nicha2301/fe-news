@@ -203,11 +203,11 @@ export default function Header() {
             </div>
             </div>
            
-            <div className="flex items-center text-sm text-gray-700 ">
+            <div className="flex items-center text-sm  ">
               <FontAwesomeIcon icon={faPhone} />
               <span className="fa-solid fa-phone mr-2"></span>Đường dây nóng: <strong className="text-[#c31e40] mr-2">096.733.5089</strong>
             </div>
-            <div className="flex items-center text-sm text-gray-700">
+            <div className="flex items-center text-sm ">
               <FontAwesomeIcon icon={faEnvelope} />
               <span className="icon icon-mail mr-2"></span>Email: <a href="mailto:gdtddientu@gmail.com" className="text-blue-600 hover:underline">gdtddientu@gmail.com</a>
             </div>
