@@ -82,7 +82,10 @@ const cities = [
    { name: 'Vĩnh Phúc', value: 'Vinh Phuc' },
    { name: 'Yên Bái', value: 'Yen Bai' }
 ]
+
+
 export default function Header() {
+  const [openMenuMobile, setOpenMenuMobile] = useState(false)
   const currentDate = format(new Date(), 'EEEE, dd/MM/yyyy', { locale: vi }) // Định dạng ngày tháng hiện tại với tiếng Việt
   const [weather, setWeather] = useState({ temp: 29 })
   const [city, setCity] = useState<CityType>('Ho Chi Minh')
@@ -158,11 +161,12 @@ export default function Header() {
   }
 
   return (
-    <header className='page-header'>
+    <>
+    <header className='page-header hidden lg:block'>
       {/* Top Info  */}
       <div className=" py-2">
         <div className='container'>
-          <div className=" flex items-center mx-[120px]">
+          <div className=" flex items-center justify-center flex-wrap">
           <div className='flex space-x-2'>
             <span>{currentDate}</span>
             <span>|</span>
@@ -279,5 +283,119 @@ export default function Header() {
         </div>
       </nav>
     </header>
+  
+  <header className='lg:hidden h-12 bg-secondary fixed z-[49] top-0 inset-x-0'>
+    <div className='container h-full'>
+      <div className='flex items-center justify-between h-full'>
+        <button onClick={()=>setOpenMenuMobile(true)}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+</svg>
+
+        </button>
+
+       <Link to={'/'}> <img src="/src/assets/logo.svg" className='w-16 h-12' alt="" /></Link>
+      </div>
+    </div>
+  </header>
+
+<div className={`bg-secondary z-[50] p-2 fixed left-0 inset-y-0 ${openMenuMobile?'translate-x-0':'-translate-x-full'} transition-all duration-300`}>
+  <button className='absolute top-3 right-3' onClick={()=>setOpenMenuMobile(false)}>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-7">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+</svg>
+
+  </button>
+  <div className=" flex items-center justify-center flex-wrap mt-6">
+          <div className='flex space-x-2 flex-wrap'>
+            <span>{currentDate}</span>
+            <span>|</span>
+            <span>
+               <select
+                  className='bg-transparent border-none outline-none'
+                  value={city}
+                  onChange={(e) => setCity(e.target.value as CityType)}
+               >
+                  {cities.map((city) => (
+                     <option className='bg-primary-foreground' key={city.value} value={city.value}>
+                        {city.name}
+                     </option>
+                  ))}
+               </select>
+            </span>
+
+            <div className='flex items-center gap-x-1'>
+               {weather.temp}°C{' '}
+               <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='size-5'
+               >
+                  <path
+                     strokeLinecap='round'
+                     strokeLinejoin='round'
+                     d='M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z'
+                  />
+               </svg>
+            </div>
+            </div>
+           
+            <div className="flex items-center text-sm ">
+              <FontAwesomeIcon icon={faPhone} />
+              <span className="fa-solid fa-phone mr-2"></span>Đường dây nóng: <strong className="text-[#c31e40] mr-2">096.733.5089</strong>
+            </div>
+            <div className="flex items-center text-sm">
+              <FontAwesomeIcon icon={faEnvelope} />
+              <span className="icon icon-mail mr-2"></span>Email: <a href="mailto:gdtddientu@gmail.com" className="text-blue-600 hover:underline">gdtddientu@gmail.com</a>
+            </div>
+          </div>
+<div className='flex items-center justify-between'>
+
+          <form onSubmit={handleSearch} className='inline-flex mt-5 items-center border rounded bg-primary-foreground'>
+      <input
+        type='search'
+        className='p-2 rounded-l outline-none border-none bg-primary-foreground'
+        placeholder='Tìm kiếm...'
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <button type='button' onClick={startListening} className='p-2 text-white'>
+        🎤
+      </button>
+      <button type='submit' className='bg-primaryColor p-2 whitespace-nowrap rounded-r text-white'>
+        Tìm kiếm
+      </button>
+    </form>
+
+   <div className='translate-y-2.5'>
+   <ModeToggle/>
+   </div>
+
+</div>
+<ul className="flex flex-col  mt-5 space-x-4">
+              <Link to={'/'} className='p-2'>
+                <FontAwesomeIcon icon={faHouseChimney} />
+              </Link>
+              {topics.map((topic, index) => (
+                <li key={index} className="menu-item relative group py-[9px] hover:text-[#F7CE1A] hover:cursor-pointer">
+                  <a href={topic.link} className="menu-link" title="Giáo dục">{topic.name}</a>
+                  <ul className="sub-menu z-10 text-[15px] absolute top-[39px] hidden group-hover:block pl-[10px] pr-[20px] py-[5px] bg-white text-[#242424] [box-shadow:3px_3px_3px_rgba(0,_0,_0,_.25)]">
+                    {topic.subTopics?.map((subTopic, index) => (
+                      <li key={index} className="sub-item min-w-max">
+                        <a href={subTopic.link} className="block px-4 py-2 hover:text-primaryColor" title="Chính sách">{subTopic.name}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+</div>
+    </>
+
+
+
   )
 }

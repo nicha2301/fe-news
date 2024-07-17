@@ -1065,8 +1065,6 @@ export const Article: React.FC<{ url: string }> = (props) => {
         const response = await axios.get(props.url);
         const html = response.data;
         const $ = cheerio.load(html);
-
-
         const newContents = selectors.map(selector => ({
           selector,
           html: $(selector).html() || ''
@@ -1082,10 +1080,6 @@ export const Article: React.FC<{ url: string }> = (props) => {
 
     fetchData();
   }, [props.url]);
-
-
-
-
 
   if (loading) {
     return <BeatLoader />
@@ -1117,8 +1111,8 @@ export const Article: React.FC<{ url: string }> = (props) => {
   return (
     <>
       <Helmet>
-                <title>{title}</title>
-            </Helmet>
+          <title>{title}</title>
+      </Helmet>
             <div className='flex items-center gap-x-4 mb-3'>
             <FacebookShareButton url={pathname}>
                <FacebookIcon size={40} round />
@@ -1140,8 +1134,6 @@ export const Article: React.FC<{ url: string }> = (props) => {
   <div className="button-top">Tải về</div>
   <div className="button-bottom"></div>
   <div className="button-base"></div>
-
-  
 </button>
       {contents[1].html ?
         contents.map(({ selector, html }) => (
