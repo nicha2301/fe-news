@@ -21,7 +21,7 @@ export default function MainPage2(props: { data: RSS[] }) {
           <h2 className='font-bold text-[17px]  hover:text-primaryColor cursor-pointer pt-3'>
             <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
               {props.data[0].title}
-            </a>
+            </Link>
           </h2>
           <span className='text-[12px] text-[#707070]'>{props.data[0].pubDate}</span>
           <p className='text-[14px] '>
@@ -37,7 +37,7 @@ export default function MainPage2(props: { data: RSS[] }) {
               <h3 className='font-semibold text-[14px]  hover:text-primaryColor cursor-pointer'>
                 <a href={`/detail/${item.link?.split('/').pop()}`}>
                   {item.title}
-                </a>
+                </Link>
               </h3>
             </div>
           ))}

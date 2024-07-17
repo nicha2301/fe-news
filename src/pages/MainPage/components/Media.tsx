@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { BeatLoader } from 'react-spinners'
 import { RSS } from '~/services/api/model/RSSModel'
@@ -30,9 +29,9 @@ export default function Media(props: { data: RSS[] }) {
                 <img loading="lazy" src={item.image} className='w-full aspect-video object-cover' alt='' />
               </a>
               <p className='font-bold text-[13px] text-[#FFFFFF] hover:text-[#ccc] cursor-pointer'>
-                <a href={`/detail/${item.link?.split('/').pop()}`}>
+                <Link to={`/detail/${item.link?.split('/').pop()}`}>
                   {item.title}
-                </a>
+                </Link>
               </p>
             </div>
           ))

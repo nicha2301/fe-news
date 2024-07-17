@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
-import { Pagination, Navigation } from "swiper/modules"
+import { Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { RSS } from "~/services/api/model/RSSModel"
 import bgHeading from "~/assets/img/bg-heading.png"
 import bgSpecialNews from "~/assets/img/bg-special_news.jpg"
+import { RSS } from "~/services/api/model/RSSModel"
 
 export const SpecialNews = (props: { data: RSS[] }) => {
   if (props.data.length === 0) {
@@ -42,9 +43,9 @@ export const SpecialNews = (props: { data: RSS[] }) => {
                       {item.title}
                     </a>
                   </h3>
-                  <a href={`/detail/${item.link?.split('/').pop()}`} className="story__cate text-[#c31e40] no-underline mr-[14px] text-[12px] float-left ml-[10px]" title="Thời sự">
+                  <Link to={`/detail/${item.link?.split('/').pop()}`} className="story__cate text-[#c31e40] no-underline mr-[14px] text-[12px] float-left ml-[10px]" title="Thời sự">
                     Thời sự
-                  </a>
+                  </Link>
                   <h3 className='story__time mt-[5px] text-[12px]  text-[#959595]'>3 giờ trước</h3>
                 </article>
               </SwiperSlide>

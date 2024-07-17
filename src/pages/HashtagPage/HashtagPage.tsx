@@ -3,13 +3,9 @@ import { useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import { HandleScroll } from "~/utils/HandleScroll";
 import { RSS } from "~/services/api/model/RSSModel";
-
-
-import { topicsWithoutRSS } from '~/services/const/map'; 
+import { topicsWithoutRSS } from '~/services/const/map';
 import { fetchHTMLData } from "~/utils/rssUtils";
 import { ListArticle } from "../MainPage/components/ListArticle";
-
-
 
 export const HashtagPage = () => {
   const { topicSlug } = useParams<{ topicSlug: string }>();
@@ -17,7 +13,7 @@ export const HashtagPage = () => {
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [data, setData] = useState<RSS[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const {distanceFromBottom} = HandleScroll();
+  const { distanceFromBottom } = HandleScroll();
   const sourceUrl = topicsWithoutRSS[topicSlug || ''];
 
   useEffect(() => {
@@ -26,7 +22,6 @@ export const HashtagPage = () => {
 
       setIsFetching(true);
       const searchResult = await fetchHTMLData(sourceUrl, page);
-      console.log('Fetched Data:', searchResult); // Kiểm tra dữ liệu trả về
       setData(prevData => page === 0 ? searchResult : [...prevData, ...searchResult]);
       setLoading(false);
       setIsFetching(false);
@@ -42,7 +37,6 @@ export const HashtagPage = () => {
   }, [distanceFromBottom]);
 
   useEffect(() => {
-    // Reset page and data when topicSlug changes
     setPage(0);
     setData([]);
   }, [topicSlug]);
@@ -53,9 +47,9 @@ export const HashtagPage = () => {
 
   return (
     <div className="container">
-     
+
       <div className="w-[70%] desktop-sm:w-[80%] desktop-lg:w-1/2 desktop-lg:p-0 laptop:w-11/12">
-        
+
         <ListArticle data={data} header={false} />
         {!loading &&
           <div className='flex items-center justify-center mt-5'>

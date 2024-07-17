@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
-import { HandleScroll } from "~/utils/HandleScroll";
-import { RSS } from "~/services/api/model/RSSModel";
-import { SearchResults } from '../../utils/rssUtils';
 import { Input } from "~/components/ui/input";
+import { RSS } from "~/services/api/model/RSSModel";
+import { HandleScroll } from "~/utils/HandleScroll";
+import { SearchResults } from '../../utils/rssUtils';
 import { ListArticle } from "../MainPage/components/ListArticle";
 import { Helmet } from "react-helmet";
 

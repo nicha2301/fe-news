@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './style.css';
+import { useEffect, useState } from 'react';
 import { slides } from '~/services/const/map';
+import './style.css';
 
 const Slider = () => {
     

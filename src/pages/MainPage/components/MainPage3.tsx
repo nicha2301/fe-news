@@ -67,7 +67,7 @@ export default function MainPage3(props: { data: RSS[] }) {
                 <img loading="lazy" src={item.image} className='w-full aspect-video object-cover' alt='' />
               </a>
               <h3 className='font-semibold w-1/2 hover:text-primaryColor cursor-pointer'>
-                <a href={`/detail/${item.link?.split('/').pop()}`}>{item.title}</a>
+                <Link to={`/detail/${item.link?.split('/').pop()}`}>{item.title}</Link>
               </h3>
             </div>
           </SwiperSlide>

@@ -1,4 +1,3 @@
-import React from 'react'
 
 export default function List2() {
   return  <div className='flex items-start gap-x-2 py-3 border-b border-b-gray-300'>

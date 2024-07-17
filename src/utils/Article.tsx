@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
 import axios from 'axios';
 import cheerio from 'cheerio';
-import { BeatLoader } from 'react-spinners';
 import DOMPurify from "dompurify";
 import {
   FacebookShareButton,
@@ -16,6 +14,8 @@ import {
   TelegramIcon
 } from 'react-share'
 import { Helmet } from "react-helmet";
+import { useEffect, useState } from "react";
+import { BeatLoader } from 'react-spinners';
 const cssContent = `
 .article>* {
   margin-bottom: 16px
@@ -31,7 +31,7 @@ const cssContent = `
 
 .article img {
   max-width: 100%;
-  height: auto
+  height: autoO
 }
 
 .article table.picture {

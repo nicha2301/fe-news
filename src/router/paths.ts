@@ -6,5 +6,7 @@ export const paths = {
   test: "/test",
   chuDe: "/chu-de/:topicSlug",
   notFound: "/404s",
-  tienIch:'tien-ich'
+  tienIch:'tien-ich',
+  readingHistory : "/lich-su-doc",
+  notFound: "/404s"
 };
