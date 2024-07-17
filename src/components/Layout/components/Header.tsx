@@ -278,6 +278,7 @@ export default function Header() {
                   </ul>
                 </li>
               ))}
+              <Link to={'/tien-ich'}>Tiện ích</Link>
             </ul>
           </div>
         </div>
