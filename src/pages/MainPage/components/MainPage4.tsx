@@ -24,7 +24,7 @@ export default function MainPage2(props: { data: RSS[] }) {
           <h2 className="font-semibold text-lg leading-6  hover:text-primaryColor cursor-pointer story__heading">
             <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
               {props.data[0].title}
-            </Link>
+            </a>
           </h2>
           <Link to={`${props.data[0].category}`} className="text-[#c31e40] no-underline mr-3.5 text-xs leading-[14px] float-left mt-1.5 story__cate" >
             {props.data[0].category}
