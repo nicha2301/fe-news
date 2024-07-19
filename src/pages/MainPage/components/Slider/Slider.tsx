@@ -8,7 +8,7 @@ const Slider = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentSlide((prevSlide) => (prevSlide + 4) % slides.length);
+            setCurrentSlide((prevSlide) => (prevSlide + 2) % slides.length);
         }, 4000);
         return () => clearInterval(interval);
     }, [slides.length]);
@@ -22,7 +22,7 @@ const Slider = () => {
     };
 
     return (
-        <div className='slider-container hidden lg:block'>
+        <div className='slider-container hidden lg:block max-w-[820px]'>
             <div className='flex items-end gap-x-2 container-event'>
                 <h2 className="flex items-center gap-x-1 text-xl font-bold text-primaryColor mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -30,8 +30,8 @@ const Slider = () => {
                     </svg>
                     <a href="/chu-de/dong-su-kien">Sự kiện</a>
                 </h2>
-                <div className='slider'  >
-                    {slides.slice(currentSlide, currentSlide + 4).map((slide, index) => (
+                <div className='slider min-w-[615px] max-w-[615px] overflow-hidden'  >
+                    {slides.slice(currentSlide, currentSlide + 2).map((slide, index) => (
                         <div key={index} className='slide' >
                             <a href={slide.path}>{slide.label}</a>
                         </div>

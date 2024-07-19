@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
 import { BeatLoader } from 'react-spinners'
 import { newsTopics } from '~/services/const'
@@ -7,9 +8,6 @@ import { mapSlugToTopic, rssFeed } from '~/services/const/map'
 import { HandleScroll } from '~/utils/HandleScroll'
 import { RSSApi } from '~/utils/rssUtils'
 import More from '../MainPage/components/More'
-import { Topic } from '~/services/const/enum'
-import { HandleScroll } from '~/utils/HandleScroll'
-import { Helmet } from 'react-helmet'
 
 
 export const TopicPage = () => {

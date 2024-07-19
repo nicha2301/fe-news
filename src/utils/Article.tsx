@@ -1056,7 +1056,7 @@ const cssContent = `
 export const Article: React.FC<{ url: string }> = (props) => {
   const [contents, setContents] = useState<{ selector: string, html: string }[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const selectors = ['.box-social', '.article'];
+  const selectors = ['.article'];
   const pathname = window.location.href
   const [title, setTitle] = useState<any>('')
   useEffect(() => {
@@ -1065,12 +1065,17 @@ export const Article: React.FC<{ url: string }> = (props) => {
         const response = await axios.get(props.url);
         const html = response.data;
         const $ = cheerio.load(html);
+        
+        selectors.forEach(selector => {
+          $(selector).find('.related-news, .article__tag').remove();
+        });
+
         const newContents = selectors.map(selector => ({
           selector,
           html: $(selector).html() || ''
         }));
         const parser = new DOMParser()
-        setTitle(parser.parseFromString(newContents[1].html, 'text/html').querySelector('h1')?.textContent)
+        setTitle(parser.parseFromString(newContents[0].html, 'text/html').querySelector('h1')?.textContent)
         setContents(newContents);
         setLoading(false);
       } catch (error) {
@@ -1104,38 +1109,38 @@ export const Article: React.FC<{ url: string }> = (props) => {
     const element = document.createElement('a')
     const file = new Blob([htmlContent], { type: 'text/html' })
     element.href = URL.createObjectURL(file)
-    element.download = `${title }.html`
+    element.download = `${title}.html`
     document.body.appendChild(element) // Required for this to work in FireFox
     element.click()
- }
+  }
   return (
     <>
       <Helmet>
-          <title>{title}</title>
+        <title>{title}</title>
       </Helmet>
-            <div className='flex items-center gap-x-4 mb-3'>
-            <FacebookShareButton url={pathname}>
-               <FacebookIcon size={40} round />
-            </FacebookShareButton>
-            <TwitterShareButton url={pathname}>
-               <TwitterIcon size={40} round />
-            </TwitterShareButton>
-            <LinkedinShareButton url={pathname}>
-               <LineIcon size={40} round />
-            </LinkedinShareButton>
-            <EmailShareButton url={pathname}>
-               <EmailIcon size={40} round />
-            </EmailShareButton>
-            <TelegramShareButton url={pathname}>
-               <TelegramIcon size={40} round />
-            </TelegramShareButton>
-         </div>
-            <button  onClick={handleDownload} type="button" className="button mb-2">
-  <div className="button-top">Tải về</div>
-  <div className="button-bottom"></div>
-  <div className="button-base"></div>
-</button>
-      {contents[1].html ?
+      <div className='flex items-center gap-x-4 mb-3'>
+        <FacebookShareButton url={pathname}>
+          <FacebookIcon size={40} round />
+        </FacebookShareButton>
+        <TwitterShareButton url={pathname}>
+          <TwitterIcon size={40} round />
+        </TwitterShareButton>
+        <LinkedinShareButton url={pathname}>
+          <LineIcon size={40} round />
+        </LinkedinShareButton>
+        <EmailShareButton url={pathname}>
+          <EmailIcon size={40} round />
+        </EmailShareButton>
+        <TelegramShareButton url={pathname}>
+          <TelegramIcon size={40} round />
+        </TelegramShareButton>
+      </div>
+      <button onClick={handleDownload} type="button" className="button mb-2">
+        <div className="button-top">Tải về</div>
+        <div className="button-bottom"></div>
+        <div className="button-base"></div>
+      </button>
+      {contents[0].html ?
         contents.map(({ selector, html }) => (
           <div key={selector} className={selector.replace('.', '') + ' sticky-top'} dangerouslySetInnerHTML={{ __html: html }} />
         ))
