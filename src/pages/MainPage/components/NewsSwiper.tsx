@@ -1,3 +1,5 @@
+import { formatDistanceToNow } from 'date-fns';
+import { vi } from 'date-fns/locale';
 import { Link } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 import { Pagination } from 'swiper/modules';
@@ -33,7 +35,7 @@ export const NewsSwiper = (props: { data: RSS[] }) => {
                     {item.title}
                   </Link>
                 </p>
-                <span className='text-[12px] text-[#CED4DA]'>{props.data[0].pubDate}</span>
+                <span className='text-[12px] text-[#CED4DA]'>{item.pubDate ? formatDistanceToNow(item.pubDate, {locale: vi}) + " trước" : ''}</span>
               </div>
             </SwiperSlide>
           ))}

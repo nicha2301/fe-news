@@ -1,4 +1,5 @@
 import { formatDistanceToNow } from 'date-fns';
+import { vi } from 'date-fns/locale';
 import { Comment } from "~/services/api/model/Comment";
 
 export const CommentList = (props: { comments: Comment[] }) => {
@@ -25,7 +26,7 @@ export const CommentList = (props: { comments: Comment[] }) => {
               <div className="comment-content bg-gray-100 p-3 rounded-lg w-full">
                 <p className="text-sm text-gray-700">{comment.content}</p>
                 <p className="text-xs text-gray-500 mt-1">
-                  - {comment.user} • {formatDistanceToNow(comment.createdAt)} ago
+                  - {comment.user} • {formatDistanceToNow(comment.createdAt, { locale: vi })} trước
                 </p>
               </div>
             </li>

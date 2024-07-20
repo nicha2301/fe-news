@@ -1008,6 +1008,10 @@ const cssContent = `
   width: 75%;
   margin: 0 auto
 }
+  
+.follow-link {
+  display: none;
+}
 
 .social-follow a {
   font-weight: 700
@@ -1059,13 +1063,14 @@ export const Article: React.FC<{ url: string }> = (props) => {
   const selectors = ['.article'];
   const pathname = window.location.href
   const [title, setTitle] = useState<any>('')
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(props.url);
         const html = response.data;
         const $ = cheerio.load(html);
-        
+
         selectors.forEach(selector => {
           $(selector).find('.related-news, .article__tag').remove();
         });
@@ -1090,7 +1095,7 @@ export const Article: React.FC<{ url: string }> = (props) => {
     return <BeatLoader />
   }
   const handleDownload = () => {
-    const sanitizedContent = DOMPurify.sanitize(contents[1].html)
+    const sanitizedContent = DOMPurify.sanitize(contents[0].html)
     const htmlContent = `
        <!DOCTYPE html>
        <html lang="en">
@@ -1101,7 +1106,9 @@ export const Article: React.FC<{ url: string }> = (props) => {
           <style>${cssContent}</style>
        </head>
        <body class="container">
+        <div class="article">
           ${sanitizedContent}
+        </div>
        </body>
        </html>
     `
@@ -1110,7 +1117,7 @@ export const Article: React.FC<{ url: string }> = (props) => {
     const file = new Blob([htmlContent], { type: 'text/html' })
     element.href = URL.createObjectURL(file)
     element.download = `${title}.html`
-    document.body.appendChild(element) // Required for this to work in FireFox
+    document.body.appendChild(element)
     element.click()
   }
   return (

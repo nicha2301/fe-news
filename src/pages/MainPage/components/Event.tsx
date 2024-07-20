@@ -1,6 +1,8 @@
+import { formatDistanceToNow } from 'date-fns'
 import { Link } from 'react-router-dom'
 import { BeatLoader } from 'react-spinners'
 import { RSS } from '~/services/api/model/RSSModel'
+import { vi } from 'date-fns/locale'
 
 export default function Event(props: { data: RSS[] }) {
   if (props.data.length === 0) {
@@ -20,7 +22,7 @@ export default function Event(props: { data: RSS[] }) {
               {props.data[0].title}
             </Link>
           </h3>
-          <i className='text-[14px] text-[#7D7D7D] italic'>{props.data[0].pubDate}</i>
+          <i className='text-[14px] text-[#7D7D7D] italic'>{props.data[0].pubDate ? formatDistanceToNow(props.data[0].pubDate, {locale: vi}) + ' trước' : ''}</i>
           <p className='text-[15px] '>
             {props.data[0].description}
           </p>

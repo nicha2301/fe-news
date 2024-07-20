@@ -1,3 +1,5 @@
+import { formatDistanceToNow } from "date-fns"
+import { vi } from "date-fns/locale"
 import { Link } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 import { Navigation, Pagination } from "swiper/modules"
@@ -46,7 +48,7 @@ export const SpecialNews = (props: { data: RSS[] }) => {
                   <Link to={`/detail/${item.link?.split('/').pop()}`} className="story__cate text-[#c31e40] no-underline mr-[14px] text-[12px] float-left ml-[10px]" title="Thời sự">
                     Thời sự
                   </Link>
-                  <h3 className='story__time mt-[5px] text-[12px]  text-[#959595]'>3 giờ trước</h3>
+                  <h3 className='story__time mt-[5px] text-[12px]  text-[#959595]'>{item.pubDate ? formatDistanceToNow(item.pubDate, {locale: vi}) + " trước" : ''}</h3>
                 </article>
               </SwiperSlide>
             ))}

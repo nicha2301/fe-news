@@ -1,3 +1,5 @@
+import { formatDistanceToNow } from 'date-fns'
+import { vi } from 'date-fns/locale'
 import { Link } from 'react-router-dom'
 import { BeatLoader } from 'react-spinners'
 import { RSS } from '~/services/api/model/RSSModel'
@@ -29,7 +31,7 @@ export default function MainPage2(props: { data: RSS[] }) {
           <Link to={`${props.data[0].category}`} className="text-[#c31e40] no-underline mr-3.5 text-xs leading-[14px] float-left mt-1.5 story__cate" >
             {props.data[0].category}
           </Link>
-          <time className="mt-1.5 text-xs leading-[14px] text-[#959595] story__time">{props.data[0].pubDate}</time>
+          <time className="mt-1.5 text-xs leading-[14px] text-[#959595] story__time">{props.data[0].pubDate ? formatDistanceToNow(props.data[0].pubDate, {locale: vi}) + " trước" : ''}</time>
           <div className="mt-1 text-base leading-[22px] story__summary story__shorten">
             {props.data[0].description}
           </div>
@@ -50,7 +52,7 @@ export default function MainPage2(props: { data: RSS[] }) {
               <Link to={`/detail/${item.link?.split('/').pop()}`} className="text-[#c31e40] no-underline mr-3.5 text-xs leading-[14px] float-left mt-1.5 story__cate" title={item.category}>
                 {item.category}
               </Link>
-              <time className="mt-1.5 text-xs leading-[14px] text-[#959595] story__time">{item.pubDate}</time>
+              <time className="mt-1.5 text-xs leading-[14px] text-[#959595] story__time">{item.pubDate ? formatDistanceToNow(item.pubDate, {locale: vi}) + " trước" : ''}</time>
               <div className="mt-1.5 text-sm leading-[22px] max-h-[66px] ml-[147px] overflow-hidden story__summary story__shorten">
                 {item.description}
               </div>

@@ -1,3 +1,5 @@
+import { formatDistanceToNow } from "date-fns"
+import { vi } from "date-fns/locale"
 import { Link } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 import { RSS } from "~/services/api/model/RSSModel"
@@ -29,7 +31,7 @@ export const ListArticle = (props: { data: RSS[], header: boolean,  onRemoveArti
                   {item.title}
                 </Link>
               </h2>
-              <time className="story__time mt-2 leading-5 text-[#959595] text-[12px]">{item.pubDate}</time>
+              <time className="story__time mt-2 leading-5 text-[#959595] text-[12px]">{item.pubDate ? formatDistanceToNow(item.pubDate, {locale: vi}) + " trước" : ''}</time>
               <div className="story__summary mt-2 leading-6 h-22  text-[14px]">
                 {item.description}
               </div>

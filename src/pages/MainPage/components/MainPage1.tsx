@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom"
+import { formatDistanceToNow } from "date-fns"
+import { vi } from "date-fns/locale"
 import { BeatLoader } from "react-spinners"
 import { RSS } from "~/services/api/model/RSSModel"
 
@@ -33,7 +34,7 @@ export default function MainPage1(props: { data: RSS[], data2: RSS[] }) {
             {props.data[0].title}
           </a>
         </h2>
-        <p className='text-[12px] text-[#707070]'>{props.data[0].pubDate}</p>
+        <p className='text-[12px] text-[#707070]'>{props.data[0].pubDate ? formatDistanceToNow(props.data[0].pubDate, {locale: vi}) + " trước" : ''}</p>
         <p className="text-[14px] ">
           {props.data[0].description}
         </p>
@@ -51,7 +52,7 @@ export default function MainPage1(props: { data: RSS[], data2: RSS[] }) {
                 {item.title}
               </a>
             </h2>
-            <time className="mt-1.5 text-xs leading-[14px] text-[#959595] story__time">{item.pubDate}</time>
+            <time className="mt-1.5 text-xs leading-[14px] text-[#959595] story__time">{item.pubDate ? formatDistanceToNow(item.pubDate, {locale: vi}) + " trước" : ''}</time>
           </article>
         ))}
       </div>
