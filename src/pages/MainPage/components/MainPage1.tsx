@@ -1,9 +1,29 @@
 import { formatDistanceToNow } from "date-fns"
 import { vi } from "date-fns/locale"
+import { useState } from "react";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BeatLoader } from "react-spinners"
+import { useAuth } from "~/Auth/AuthContext";
 import { RSS } from "~/services/api/model/RSSModel"
+import { favoriteArticle } from "~/utils/firebase";
 
 export default function MainPage1(props: { data: RSS[], data2: RSS[] }) {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [favorited, setFavorited] = useState<string[]>([]);
+
+  const authContext = useAuth();
+  const { user } = authContext?.user ? authContext : { user: undefined };
+
+  const handleFavorite = (article: RSS) => {
+    if (!user?.googleId) {
+      alert("Vui lòng đăng nhập để lưu bài báo!");
+      return;
+    }
+    const link = article.link?.split('/').pop() ?? '';
+    setFavorited((prev) => [...prev, link ?? '']);
+    console.log(user.googleId, article);
+    favoriteArticle(user.googleId, article);
+  };
   if (!props.data.length || !props.data2.length) {
     return <BeatLoader />
   }
@@ -25,10 +45,15 @@ export default function MainPage1(props: { data: RSS[], data2: RSS[] }) {
       </div>
     </div>
     <div className='flex flex-col md:flex-row items-start gap-x-6 mt-5'>
-      <div className='w-full md:w-[45%] flex flex-col gap-y-1'>
+      <div className='w-full md:w-[45%] flex flex-col gap-y-1 relative' onMouseEnter={() => setHoveredIndex(0)} onMouseLeave={() => setHoveredIndex(null)}>
         <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
           <img loading="lazy" src={props.data[0].image} className='w-full aspect-video object-cover cursor-pointer' alt='' />
         </a>
+        {hoveredIndex === 0 && (
+            <div className='absolute top-2 right-2 text-red-500 cursor-pointer heart-icon' onClick={() => handleFavorite(props.data[0])}>
+              {favorited.includes(props.data[0].link?.split('/').pop() ?? '') ? <AiFillHeart size={24} /> : <AiOutlineHeart size={24} />}
+            </div>
+          )}
         <h2 className='font-bold text-[17px] hover:text-primaryColor cursor-pointer pt-3'>
           <a href={`/detail/${props.data[0].link?.split('/').pop()}`}>
             {props.data[0].title}
@@ -42,9 +67,14 @@ export default function MainPage1(props: { data: RSS[], data2: RSS[] }) {
       <div className='w-full md:w-[28%] flex flex-col gap-4'>
         {props.data.slice(1).map((item, index) => (
           <article key={index} className="mb-5 story">
-            <figure className="w-[90px] h-[50px] float-left mr-3 mt-[3px] story__thumb">
+            <figure className="w-[90px] h-[50px] float-left mr-3 mt-[3px] story__thumb relative" onMouseEnter={() => setHoveredIndex(index + 1)} onMouseLeave={() => setHoveredIndex(null)}>
               <a href={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
                 <img loading="lazy" className="" src={item.image} alt={item.title} />
+                {hoveredIndex === index + 1 && (
+              <div className='absolute top-2 right-2 text-red-500 cursor-pointer heart-icon' onClick={() => handleFavorite(item)}>
+                {favorited.includes(item.link?.split('/').pop() ?? '') ? <AiFillHeart size={24} /> : <AiOutlineHeart size={24} />}
+              </div>
+            )}
               </a>
             </figure>
             <h2 className="font-semibold text-base text-[15px] hover:text-primaryColor cursor-pointer story__heading">

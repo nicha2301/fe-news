@@ -1,8 +1,29 @@
+import { useState } from 'react';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { Link } from 'react-router-dom'
 import { BeatLoader } from 'react-spinners'
+import { useAuth } from '~/Auth/AuthContext';
 import { RSS } from '~/services/api/model/RSSModel'
+import { favoriteArticle } from '~/utils/firebase';
 
 export default function Media(props: { data: RSS[] }) {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [favorited, setFavorited] = useState<string[]>([]);
+
+  const authContext = useAuth();
+  const { user } = authContext?.user ? authContext : { user: undefined };
+
+  const handleFavorite = (article: RSS) => {
+    if (!user?.googleId) {
+      alert("Vui lòng đăng nhập để lưu bài báo!");
+      return;
+    }
+    const link = article.link?.split('/').pop() ?? '';
+    setFavorited((prev) => [...prev, link ?? '']);
+    console.log(user.googleId, article);
+    favoriteArticle(user.googleId, article);
+  };
+
   if (props.data.length === 0) {
     return <BeatLoader />
   }
@@ -24,10 +45,15 @@ export default function Media(props: { data: RSS[] }) {
       <div className='mt-3 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 gap-5'>
         {props.data.length > 0 &&
           props.data.map((item, index) => (
-            <div key={index} className='flex flex-col gap-y-2'>
+            <div key={index} className='flex flex-col gap-y-2 relative' onMouseEnter={() => setHoveredIndex(index + 1)} onMouseLeave={() => setHoveredIndex(null)}>
               <a href={`/detail/${item.link?.split('/').pop()}`}>
                 <img loading="lazy" src={item.image} className='w-full aspect-video object-cover' alt='' />
               </a>
+              {hoveredIndex === index + 1 && (
+                <div className='absolute top-2 right-2 text-red-500 cursor-pointer heart-icon' onClick={() => handleFavorite(item)}>
+                  {favorited.includes(item.link?.split('/').pop() ?? '') ? <AiFillHeart size={24} /> : <AiOutlineHeart size={24} />}
+                </div>
+              )}
               <p className='font-bold text-[13px] text-[#FFFFFF] hover:text-[#ccc] cursor-pointer'>
                 <Link to={`/detail/${item.link?.split('/').pop()}`}>
                   {item.title}

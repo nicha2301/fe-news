@@ -95,7 +95,7 @@ export default function Header() {
     <>
       <header className='page-header hidden lg:block'>
         {/* Top Info  */}
-        <div className=" py-2 bg-[#f5f5f5] text-[12px]">
+        <div className="bg-[#f5f5f5] text-[12px]">
           <div className='container'>
             <div className="mx-[130px] flex items-center justify-left flex-wrap">
               <div className='flex space-x-2 items-center mr-4'>

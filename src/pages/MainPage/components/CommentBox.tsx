@@ -1,8 +1,7 @@
-import { addDoc, collection, onSnapshot, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useAuth } from "~/Auth/AuthContext";
-import { db } from "~/config/firebaseConfig";
 import { Comment } from "~/services/api/model/Comment";
+import { addComment, getComments } from "~/utils/firebase";
 import { CommentList } from "./CommentList";
 
 export const CommentBox = (props: { slug: string }) => {
@@ -13,21 +12,16 @@ export const CommentBox = (props: { slug: string }) => {
 
 
   useEffect(() => {
-    const q = query(
-      collection(db, "comments"),
-      where("articleId", "==", props.slug),
-      
-    )
-    
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const fetchedComments: Comment[] = [];
-      querySnapshot.forEach((doc) => {
-        fetchedComments.push({ id: doc.id, ...doc.data() } as unknown as Comment);
-      });
-      setComments(fetchedComments);
-    });
+    const fetchComments = async () => {
+      try {
+        const fetchedComments = await getComments(props.slug);
+        setComments(fetchedComments);
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+      }
+    };
 
-    return () => unsubscribe();
+    fetchComments();
   }, [props.slug, comments])
 
   const handleCommentChange = (e: any) => {
@@ -40,17 +34,17 @@ export const CommentBox = (props: { slug: string }) => {
       return;
     }
 
-    const status = await addDoc(collection(db, "comments"), {
-      articleId: props.slug,
-      imageUrl: user.imageUrl,
-      author: user.googleId,
-      user: user.name,
-      content: comment,
-      createdAt: Date.now()
-    })
-
-    if (status) {
+    try {
+      await addComment(
+        props.slug,
+        user?.googleId ?? "",
+        comment,
+        user?.imageUrl ?? "",
+        user?.name ?? ""
+      );
       setComment("");
+    } catch (error) {
+      console.error("Error adding comment:", error);
     }
 
   }

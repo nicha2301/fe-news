@@ -1,14 +1,35 @@
 import { formatDistanceToNow } from "date-fns"
 import { vi } from "date-fns/locale"
+import { useState } from "react"
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
 import { Link } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 import { Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 import bgHeading from "~/assets/img/bg-heading.png"
 import bgSpecialNews from "~/assets/img/bg-special_news.jpg"
+import { useAuth } from "~/Auth/AuthContext"
 import { RSS } from "~/services/api/model/RSSModel"
+import { favoriteArticle } from "~/utils/firebase"
 
 export const SpecialNews = (props: { data: RSS[] }) => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [favorited, setFavorited] = useState<string[]>([]);
+
+  const authContext = useAuth();
+  const { user } = authContext?.user ? authContext : { user: undefined };
+
+  const handleFavorite = (article: RSS) => {
+    if (!user?.googleId) {
+      alert("Vui lòng đăng nhập để lưu bài báo!");
+      return;
+    }
+    const link = article.link?.split('/').pop() ?? '';
+    setFavorited((prev) => [...prev, link ?? '']);
+    console.log(user.googleId, article);
+    favoriteArticle(user.googleId, article);
+  };
+
   if (props.data.length === 0) {
     return <BeatLoader />
   }
@@ -34,11 +55,16 @@ export const SpecialNews = (props: { data: RSS[] }) => {
           >
             {props.data.map((item, index) => (
               <SwiperSlide key={index}>
-                <article key={index} className="story bg-white h-[260px] overflow-hidden">
-                  <figure className="story__thumb">
+                <article key={index} className="story bg-white h-[260px] overflow-hidden relative">
+                  <figure className="story__thumb relative" onMouseEnter={() => setHoveredIndex(index + 1)} onMouseLeave={() => setHoveredIndex(null)}>
                     <a href={`/detail/${item.link?.split('/').pop()}`}>
                       <img loading="lazy" src={item.image} alt={item.title} />
                     </a>
+                    {hoveredIndex === index + 1 && (
+                      <div className='absolute top-2 right-2 text-red-500 cursor-pointer heart-icon' onClick={() => handleFavorite(item)}>
+                        {favorited.includes(item.link?.split('/').pop() ?? '') ? <AiFillHeart size={24} /> : <AiOutlineHeart size={24} />}
+                      </div>
+                    )}
                   </figure>
                   <h3 className="story__heading mt-2.5 mb-1 text-[16px] font-medium  px-2.5 line-clamp-4 overflow-hidden text-ellipsis hover:opacity-60 cursor-pointer">
                     <a className="cms-link" href={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
@@ -48,7 +74,7 @@ export const SpecialNews = (props: { data: RSS[] }) => {
                   <Link to={`/detail/${item.link?.split('/').pop()}`} className="story__cate text-[#c31e40] no-underline mr-[14px] text-[12px] float-left ml-[10px]" title="Thời sự">
                     Thời sự
                   </Link>
-                  <h3 className='story__time mt-[5px] text-[12px]  text-[#959595]'>{item.pubDate ? formatDistanceToNow(item.pubDate, {locale: vi}) + " trước" : ''}</h3>
+                  <h3 className='story__time mt-[5px] text-[12px]  text-[#959595]'>{item.pubDate ? formatDistanceToNow(item.pubDate, { locale: vi }) + " trước" : ''}</h3>
                 </article>
               </SwiperSlide>
             ))}

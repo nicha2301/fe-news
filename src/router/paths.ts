@@ -8,5 +8,5 @@ export const paths = {
   notFound: "/404s",
   tienIch:'tien-ich',
   readingHistory : "/lich-su-doc",
-  notFound: "/404s"
+  favorite: "/yeu-thich"
 };
