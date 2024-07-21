@@ -12,12 +12,12 @@ import { NewsTopic, newsTopics } from '~/services/const'
 import { MenuAvt } from '~/pages/MainPage/components/MenuAvt';
 import { cities } from '~/services/const/city';
 import axios from 'axios'
-type CityType = 'Ho Chi Minh' | 'Ha Noi' | 'Da Nang' | 'Hue' | 'Can Tho' | 'Tay Ninh' 
+type CityType = 'Ho Chi Minh' | 'Ha Noi' | 'Da Nang' | 'Hue' | 'Can Tho' | 'Tay Ninh'
 
 
 export default function Header() {
   const [openMenuMobile, setOpenMenuMobile] = useState(false)
-  const currentDate = format(new Date(), 'EEEE, dd/MM/yyyy', { locale: vi }) 
+  const currentDate = format(new Date(), 'EEEE, dd/MM/yyyy', { locale: vi })
   const [weather, setWeather] = useState({ temp: 29 })
   const [city, setCity] = useState<CityType>('Ho Chi Minh')
   const [isScrolled, setIsScrolled] = useState(false)
@@ -95,15 +95,15 @@ export default function Header() {
     <>
       <header className='page-header hidden lg:block'>
         {/* Top Info  */}
-        <div className=" py-2">
+        <div className="bg-[#f5f5f5] text-[12px]">
           <div className='container'>
-            <div className=" flex items-center justify-center flex-wrap">
+            <div className="mx-[130px] flex items-center justify-left flex-wrap">
               <div className='flex space-x-2 items-center mr-4'>
                 <span>{currentDate}</span>
                 <span>|</span>
                 <span>
                   <select
-                    className='bg-transparent border-none outline-none'
+                    className='bg-transparent border-none outline-none text-[12px] w-[120px]'
                     value={city}
                     onChange={(e) => setCity(e.target.value as CityType)}
                   >
@@ -134,11 +134,11 @@ export default function Header() {
                 </div>
               </div>
 
-              <div className="flex items-center text-sm  ">
+              <div className="flex items-center text-[12px]  ">
                 <FontAwesomeIcon icon={faPhone} />
                 <span className="fa-solid fa-phone mr-2"></span>Đường dây nóng: <strong className="text-[#c31e40] mx-2">096.733.5089</strong>
               </div>
-              <div className="flex items-center text-sm ">
+              <div className="flex items-center text-[12px] ">
                 <FontAwesomeIcon icon={faEnvelope} />
                 <span className="icon icon-mail mr-2"></span>Email: <a href="mailto:gdtddientu@gmail.com" className="text-blue-600 hover:underline mx-2">gdtddientu@gmail.com</a>
               </div>
@@ -185,7 +185,7 @@ export default function Header() {
                 </a>
                 <MenuAvt />
                 <div className='fixed right-[10px] top-[50px]'>
-              <ModeToggle/>
+                  <ModeToggle />
                 </div>
               </div>
             </div>
@@ -309,7 +309,7 @@ export default function Header() {
             <li key={index} className="menu-item relative group py-[9px] hover:text-[#F7CE1A] hover:cursor-pointer">
               <a href={topic.link} className="menu-link" title="Giáo dục">{topic.name}</a>
               <ul className="sub-menu z-10 text-[15px] absolute top-[39px] hidden group-hover:block pl-[10px] pr-[20px] py-[5px] bg-white text-[#242424] [box-shadow:3px_3px_3px_rgba(0,_0,_0,_.25)]">
-                {topic.subTopics?.map((subTopic, index) => (
+                {(topic.subTopics && topic.subTopics.length > 0) && topic.subTopics?.map((subTopic, index) => (
                   <li key={index} className="sub-item min-w-max">
                     <a href={subTopic.link} className="block px-4 py-2 hover:text-primaryColor" title="Chính sách">{subTopic.name}</a>
                   </li>

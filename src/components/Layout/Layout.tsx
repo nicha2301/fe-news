@@ -13,7 +13,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="relative min-h-screen">
       <Header />
-      <div className="flex justify-center mb-5 mt-14 container">
+      <div className="flex justify-center mb-5 mt-14 container max-w-[1135px]">
         <div className="">
          <Slider />  
           {children}
