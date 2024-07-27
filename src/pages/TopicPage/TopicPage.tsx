@@ -8,6 +8,12 @@ import { mapSlugToTopic, rssFeed } from '~/services/const/map'
 import { HandleScroll } from '~/utils/HandleScroll'
 import { RSSApi } from '~/utils/rssUtils'
 import More from '../MainPage/components/More'
+import { useAuth } from '~/Auth/AuthContext'
+import { RSS } from '~/services/api/model/RSSModel'
+import { favoriteArticle } from '~/utils/firebase'
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import { formatDistanceToNow } from 'date-fns'
+import { vi } from 'date-fns/locale'
 
 
 export const TopicPage = () => {
@@ -34,6 +40,22 @@ export const TopicPage = () => {
     setStickyState({ sticky: isSticky && !isStickyy, stickyy: isStickyy });
   }, [topicSlug, distanceFromBottom, distanceFromTop]);
 
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [favorited, setFavorited] = useState<string[]>([]);
+
+  const authContext = useAuth();
+  const { user } = authContext?.user ? authContext : { user: undefined };
+
+  const handleFavorite = (article: RSS) => {
+    if (!user?.googleId) {
+      alert("Vui lòng đăng nhập để lưu bài báo!");
+      return;
+    }
+    const link = article.link?.split('/').pop() ?? '';
+    setFavorited((prev) => [...prev, link ?? '']);
+    console.log(user.googleId, article);
+    favoriteArticle(user.googleId, article);
+  };
 
 
   if (!data.length) {
@@ -42,9 +64,9 @@ export const TopicPage = () => {
 
   return (
     <>
-        <Helmet>
-                <title>{title}</title>
-            </Helmet>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <div className="cate-breadcrumb flex items-center mb-8 mt-3">
         <h1>
           <a
@@ -73,10 +95,15 @@ export const TopicPage = () => {
           <div className="wrapper" data-source="zone-highlight-8">
             <div>
               <article className="story">
-                <figure className="story__thumb">
+                <figure className="story__thumb relative" onMouseEnter={() => setHoveredIndex(0)} onMouseLeave={() => setHoveredIndex(null)}>
                   <Link className="cms-link" to={`/detail/${data[0].link?.split('/').pop()}`} target="_self">
                     <img loading="lazy" className="lazyloaded w-[650px]" src={data[0].image} data-src={data[0].image} alt={data[0].title} />
                   </Link>
+                  {hoveredIndex === 0 && (
+                    <div className='absolute top-2 right-2 text-red-500 cursor-pointer heart-icon' onClick={() => handleFavorite(data[0])}>
+                      {favorited.includes(data[0].link?.split('/').pop() ?? '') ? <AiFillHeart size={24} /> : <AiOutlineHeart size={24} />}
+                    </div>
+                  )}
                 </figure>
                 <h2 className="story__heading pt-3  text-[22px]">
                   <Link className="cms-link font-semibold hover:text-primaryColor cursor-pointer" to={`/detail/${data[0].link?.split('/').pop()}`} target="_self">
@@ -89,17 +116,22 @@ export const TopicPage = () => {
           <div className="many-pack content-list" data-source="zone-timeline-8">
             {data.slice(1).map((item, index) => (
               <article key={index} className="story mt-[25px] h-[145px]">
-                <figure className="story__thumb float-left mr-[20px]">
+                <figure className="story__thumb float-left mr-[20px] relative" onMouseEnter={() => setHoveredIndex(index + 1)} onMouseLeave={() => setHoveredIndex(null)}>
                   <Link to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
                     <img loading="lazy" className="lazyloaded w-[220px] h-[145px]" src={item.image} alt={item.title} />
                   </Link>
+                  {hoveredIndex === index + 1 && (
+                    <div className='absolute top-2 right-2 text-red-500 cursor-pointer heart-icon' onClick={() => handleFavorite(item)}>
+                      {favorited.includes(item.link?.split('/').pop() ?? '') ? <AiFillHeart size={24} /> : <AiOutlineHeart size={24} />}
+                    </div>
+                  )}
                 </figure>
                 <h3 className="story__heading">
                   <Link className="cms-link font-semibold text-[16px] leading-[24px]  hover:text-primaryColor cursor-pointer" to={`/detail/${item.link?.split('/').pop()}`} title={item.title}>
                     {item.title}
                   </Link>
                 </h3>
-                <time className="story__time mt-[5px] text-[12px] leading-[14px] text-[#959595]">{item.pubDate}</time>
+                <time className="story__time mt-[5px] text-[12px] leading-[14px] text-[#959595]">{item.pubDate ? formatDistanceToNow(new Date(item.pubDate), { locale: vi }) + ' trước' : ''}</time>
                 <div className="story__summary story__shorten mt-[8px] text-[15px]  leading-[22px] max-h-[88px] overflow-hidden">
                   {item.description}
                 </div>
