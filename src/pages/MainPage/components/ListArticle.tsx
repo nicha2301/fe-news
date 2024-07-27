@@ -39,39 +39,49 @@ export const ListArticle = (props: { data: RSS[], header: boolean, onRemoveArtic
         </div>
       }
       {props.data.length > 0 &&
-        props.data.map((item, index) => (
-          <article className="story mt-7 overflow-hidden" key={index}>
-            <figure className="story__thumb w-[300px] float-left mr-[20px] relative" onMouseEnter={() => setHoveredIndex(index + 1)} onMouseLeave={() => setHoveredIndex(null)}>
-              <Link className="cms-link" to={`/detail/${item.link?.split('/').pop()}`} target="_self">
-                <img loading="lazy" className="lazyloaded" src={item.image} data-src={item.image} alt={item.title} />
-              </Link>
-              {hoveredIndex === index + 1 && (
-                <div className='absolute top-2 right-2 text-red-500 cursor-pointer heart-icon' onClick={() => handleFavorite(item)}>
-                  {favorited.includes(item.link?.split('/').pop() ?? '') ? <AiFillHeart size={24} /> : <AiOutlineHeart size={24} />}
-                </div>
-              )}
-            </figure>
-            <div className="story__heading">
-              <h2 className="cms-link font-semibold  text-[15px] leading-6 hover:text-primaryColor cursor-pointer">
-                <Link to={`/detail/${item.link?.split('/').pop()}`} target="_self">
-                  {item.title}
+        props.data.map((item, index) =>{
+          let pubDateText = '';
+          if (item.pubDate) {
+            const pubDate = new Date(item.pubDate);
+            if (!isNaN(pubDate.getTime())) {
+              pubDateText = formatDistanceToNow(pubDate, { locale: vi }) + " trước";
+            }
+          }
+
+          return (
+            <article className="story mt-7 overflow-hidden" key={index}>
+              <figure className="story__thumb w-[300px] float-left mr-[20px] relative" onMouseEnter={() => setHoveredIndex(index + 1)} onMouseLeave={() => setHoveredIndex(null)}>
+                <Link className="cms-link" to={`/detail/${item.link?.split('/').pop()}`} target="_self">
+                  <img loading="lazy" className="lazyloaded" src={item.image} data-src={item.image} alt={item.title} />
                 </Link>
-              </h2>
-              <time className="story__time mt-2 leading-5 text-[#959595] text-[12px]">{item.pubDate ? formatDistanceToNow(item.pubDate, { locale: vi }) + " trước" : ''}</time>
-              <div className="story__summary mt-2 leading-6 h-22  text-[14px]">
-                {item.description}
+                {hoveredIndex === index + 1 && (
+                  <div className='absolute top-2 right-2 text-red-500 cursor-pointer heart-icon' onClick={() => handleFavorite(item)}>
+                    {favorited.includes(item.link?.split('/').pop() ?? '') ? <AiFillHeart size={24} /> : <AiOutlineHeart size={24} />}
+                  </div>
+                )}
+              </figure>
+              <div className="story__heading">
+                <h2 className="cms-link font-semibold text-[15px] leading-6 hover:text-primaryColor cursor-pointer">
+                  <Link to={`/detail/${item.link?.split('/').pop()}`} target="_self">
+                    {item.title}
+                  </Link>
+                </h2>
+                <time className="story__time mt-2 leading-5 text-[#959595] text-[12px]">{pubDateText}</time>
+                <div className="story__summary mt-2 leading-6 h-22 text-[14px]">
+                  {item.description}
+                </div>
+                {props.onRemoveArticle && (
+                  <button
+                    onClick={() => props.onRemoveArticle?.(item.link!)}
+                    className="mt-2 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"
+                  >
+                    Xóa
+                  </button>
+                )}
               </div>
-              {props.onRemoveArticle && (
-                <button
-                  onClick={() => props.onRemoveArticle?.(item.link!)}
-                  className="mt-2 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"
-                >
-                  Xóa
-                </button>
-              )}
-            </div>
-          </article>
-        ))
+            </article>
+          );
+        } )
       }
     </div>
 

@@ -9,6 +9,8 @@ import { HandleScroll } from "~/utils/HandleScroll";
 import { SearchResults } from '../../utils/rssUtils';
 import { ListArticle } from "../MainPage/components/ListArticle";
 import { Helmet } from "react-helmet";
+import { useAuth } from "~/Auth/AuthContext";
+import { favoriteArticle } from "~/utils/firebase";
 
 export const SearchPage = () => {
   const [page, setPage] = useState(0);
@@ -18,7 +20,7 @@ export const SearchPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const location = useLocation()
   const nav = useNavigate()
-  const {distanceFromBottom} = HandleScroll()
+  const { distanceFromBottom } = HandleScroll()
   const query = new URLSearchParams(location.search).get('q')
 
   useEffect(() => {
@@ -51,25 +53,42 @@ export const SearchPage = () => {
     }
   };
 
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [favorited, setFavorited] = useState<string[]>([]);
+
+  const authContext = useAuth();
+  const { user } = authContext?.user ? authContext : { user: undefined };
+
+  const handleFavorite = (article: RSS) => {
+    if (!user?.googleId) {
+      alert("Vui lòng đăng nhập để lưu bài báo!");
+      return;
+    }
+    const link = article.link?.split('/').pop() ?? '';
+    setFavorited((prev) => [...prev, link ?? '']);
+    console.log(user.googleId, article);
+    favoriteArticle(user.googleId, article);
+  };
+
   if (data && loading && page === 1) {
     return <BeatLoader />
   }
 
   return (
     <div className="w-[70%] desktop-sm:w-[80%] desktop-lg:w-1/2 desktop-lg:p-0 laptop:w-11/12">
-          <Helmet>
-                <title>Tìm kiếm "{query}"</title>
-            </Helmet>
+      <Helmet>
+        <title>Tìm kiếm "{query}"</title>
+      </Helmet>
       <div className="search-wrapper mb-[35px]">
         <div className="input-search relative mb-[20px]">
-          <Input 
+          <Input
             type="text"
             className="txtsearch2 rounded-[35px] h-[54px] text-[20px] text-[#000] pl-[20px] pr-[60px] border-[1px] border-[solid] border-[#c2c1c1] w-full"
             placeholder="Nhập từ khóa tìm kiếm"
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={handleSearch}
           />
-        
+
           <FontAwesomeIcon icon={faMagnifyingGlass} className="absolute right-[15px] top-2/4 -translate-y-1/2 w-[32px] h-[28px] opacity-50" />
         </div>
         <p className="result text-[#737373] text-[22px] leading-[29px] mb-[35px]">
