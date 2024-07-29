@@ -6,7 +6,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { User } from '~/services/api/model/User';
 import { db } from '~/config/firebaseConfig';
 
-const clientId = "305353374248-tmancapiepdhm8ghj411st7jq1ru2mp5.apps.googleusercontent.com";
+const clientId = "305353374248-6tu8hnpemdh6dq2s65t487uf7qa8ifcd.apps.googleusercontent.com";
 
 const AuthComponent: React.FC = () => {
   const { user, login, logout } = useAuth();

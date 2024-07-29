@@ -29,6 +29,10 @@ export const CommentBox = (props: { slug: string }) => {
   }
 
   const handleSubmitComment = async () => {
+    if (!user) {
+      alert("Vui lòng đăng nhập để bình luận!");
+      return;
+    }
     if (comment.trim() === "") {
       alert("Vui lòng nhập nội dung bình luận!");
       return;
