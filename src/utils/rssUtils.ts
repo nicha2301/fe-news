@@ -78,7 +78,7 @@ export const fetchHTMLData = async (url: string, page: number): Promise<RSS[]> =
 
     const articles: RSS[] = [];
     const category = $('div.cate-breadcrumb h1 a.cate-parent').text().trim();
-    $('article.story').each((index, element) => {
+    $('article.story').each((_index, element) => {
       const title = $(element).find('.story__heading a').text().trim();
       const link = $(element).find('.story__heading a').attr('href') || '';
       const description = $(element).find('.story__summary').text().trim();

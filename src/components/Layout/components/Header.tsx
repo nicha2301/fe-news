@@ -1,17 +1,16 @@
 import { faEnvelope, faHouseChimney, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import axios from 'axios'
+import { format } from 'date-fns'; // import date
+import { vi } from 'date-fns/locale'; // Import ngôn ngữ tiếng Việt
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import logo from '~/assets/logo.svg'
-import { format } from 'date-fns' // import date
-import { vi } from 'date-fns/locale' // Import ngôn ngữ tiếng Việt
 import m_logo from '~/assets/img/gdtd-logo.png'
-import { Input } from '~/components/ui/input'
+import logo from '~/assets/logo.svg'
+import { MenuAvt } from '~/pages/MainPage/components/MenuAvt'
 import { ModeToggle } from '~/pages/MainPage/components/mode-toggle'
 import { NewsTopic, newsTopics } from '~/services/const'
-import { MenuAvt } from '~/pages/MainPage/components/MenuAvt';
-import { cities } from '~/services/const/city';
-import axios from 'axios'
+import { cities } from '~/services/const/city'
 type CityType = 'Ho Chi Minh' | 'Ha Noi' | 'Da Nang' | 'Hue' | 'Can Tho' | 'Tay Ninh'
 
 

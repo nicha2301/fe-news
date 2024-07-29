@@ -1,6 +1,7 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useLocation, useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import { Input } from "~/components/ui/input";
@@ -8,9 +9,6 @@ import { RSS } from "~/services/api/model/RSSModel";
 import { HandleScroll } from "~/utils/HandleScroll";
 import { SearchResults } from '../../utils/rssUtils';
 import { ListArticle } from "../MainPage/components/ListArticle";
-import { Helmet } from "react-helmet";
-import { useAuth } from "~/Auth/AuthContext";
-import { favoriteArticle } from "~/utils/firebase";
 
 export const SearchPage = () => {
   const [page, setPage] = useState(0);
@@ -51,23 +49,6 @@ export const SearchPage = () => {
       setPage(1);
       setData([]);
     }
-  };
-
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [favorited, setFavorited] = useState<string[]>([]);
-
-  const authContext = useAuth();
-  const { user } = authContext?.user ? authContext : { user: undefined };
-
-  const handleFavorite = (article: RSS) => {
-    if (!user?.googleId) {
-      alert("Vui lòng đăng nhập để lưu bài báo!");
-      return;
-    }
-    const link = article.link?.split('/').pop() ?? '';
-    setFavorited((prev) => [...prev, link ?? '']);
-    console.log(user.googleId, article);
-    favoriteArticle(user.googleId, article);
   };
 
   if (data && loading && page === 1) {
